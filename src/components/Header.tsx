@@ -4,10 +4,9 @@ import { IoMdClose } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
 
 const NavLinks = [
-    { name: 'ARKIVET', path: '/arkivet' },
-    { name: 'Program', path: '/program' },
-    { name: 'Biografi', path: '/biografi' },
-    { name: 'Kontakt', path: '/kontakt' }
+    { name: 'Forestillinger', path: '/forestillinger' },
+    { name: 'Om oss', path: '/om-oss' },
+    { name: 'Bli med!', path: '/bli-med' }
 ];
 
 const NavbarLinks = ({ currentRoute }: { currentRoute: string }) => (
