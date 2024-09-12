@@ -1,9 +1,7 @@
+import Layout from '../components/Layout.tsx';
+
 const Home = () => {
-    return (
-        <div>
-            <h1>Home</h1>
-        </div>
-    );
-}
+    return <Layout></Layout>;
+};
 
 export default Home;

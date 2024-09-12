@@ -21,7 +21,7 @@ code {
   html,
   body,
   #root {
-    @apply h-full w-full;
+    @apply h-screen w-screen;
   }
 
   h1 {
