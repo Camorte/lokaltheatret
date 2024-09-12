@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    @apply h-full w-full;
+  }
+
+  h1 {
+    @apply text-5xl font-bold my-6 w-fit;
+  }
+  h2 {
+    @apply text-3xl font-bold my-6 w-fit;
+  }
+
+  h4 {
+    @apply text-2xl font-bold my-4 w-fit;
+  }
+
+  p {
+    @apply text-xl my-2 font-[300] w-fit;
+  }
+}
+
+@layer components {
+  .container {
+    @apply py-[2vh] px-[5vw] md:py-[3vh] md:px-[7vw] flex flex-col max-w-full w-full overflow-y-auto;
+  }
+}
+

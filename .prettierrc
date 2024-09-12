@@ -1,0 +1,19 @@
+{
+  "singleQuote": true,
+  "trailingComma": "none",
+  "tabWidth": 4,
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
+      "files": [".prettierrc", "*.json", "*.yml", ".travis.yml", "eslint.config.js"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}
