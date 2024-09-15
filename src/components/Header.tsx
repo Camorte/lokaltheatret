@@ -15,7 +15,7 @@ const NavbarLinks = ({ currentRoute }: { currentRoute: string }) => (
             <li className="group w-fit block" key={`navlink-${nav.name}`}>
                 <Link to={nav.path}>
                     <p
-                        className={`group-hover:border-b-2 group-hover:border-[lightyellow] py-2 px-2 md:text-xl ${currentRoute.includes(nav.path) ? 'border-b-2 border-[#D2B069]' : ''}`}
+                        className={`group-hover:underline py-2 px-2 md:text-xl ${currentRoute.includes(nav.path) ? 'border-b-2 border-[#D2B069]' : ''}`}
                     >
                         {nav.name}
                     </p>
@@ -50,12 +50,12 @@ const Header = () => {
     }, [divRef]);
 
     return (
-        <div className="flex shadow-md px-2 py-4 md:px-4 items-center border-b border-black justify-between">
+        <div className="flex shadow-md px-2 py-2 md:px-4 items-center border-b border-black justify-between">
             <Link to={'/'}>
                 <img
                     src="/assets/lokaltheatret-black-logo-white-bg.png"
                     alt="Lokaltheatret logo"
-                    className="w-1/2 md:w-[300px]"
+                    className="w-1/2 md:w-[200px]"
                 />
             </Link>
             <div className="flex items-center">

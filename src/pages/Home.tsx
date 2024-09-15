@@ -18,9 +18,10 @@ const Home = () => {
     return (
         <Layout>
             {!isLoading && mainBanner && (
-                <div className="shadow-inner">
+                <div className="relative">
+                    <div className="absolute z-10 shadow-inner-lg h-full w-full" />
                     <img
-                        className="w-full max-h-[50vh] object-cover "
+                        className="w-full max-h-[50vh] md:max-h-[70vh] object-cover"
                         src={urlFor(mainBanner.image).url()}
                         alt={mainBanner.caption}
                     />

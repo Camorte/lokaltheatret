@@ -11,6 +11,9 @@ export default {
             },
             animation: {
                 slideIn: 'slideIn .5s ease-in-out'
+            },
+            boxShadow: {
+                'inner-lg': 'rgba(0, 0, 0, 1) 1px 1px 40px 0px inset'
             }
         }
     },
