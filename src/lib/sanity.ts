@@ -27,7 +27,7 @@ export async function getAbout() {
 
 export async function getMainBanner() {
     return client.fetch(
-        `*[_type=="mainBanner"][0]{title, image, "caption": image.caption}`
+        `*[_type=="mainBanner"][0]{title, image, logo, "caption": image.caption, "logoCaption": logo.caption}`
     );
 }
 

@@ -18,12 +18,18 @@ const Home = () => {
     return (
         <Layout>
             {!isLoading && mainBanner && (
-                <div className="relative">
-                    <div className="absolute z-10 shadow-inner-lg h-full w-full" />
+                <div className="relative group hover:cursor-pointer">
+                    <div className="absolute z-[4] shadow-inner-lg h-full w-full" />
+                    <div className="bg-black absolute h-full w-full z-0 opacity-0 group-hover:opacity-100 " />
                     <img
-                        className="w-full max-h-[50vh] md:max-h-[70vh] object-cover"
+                        className="w-full object-cover h-[50vh] md:h-full max-h-[70vh] group-hover:opacity-[0.8]"
                         src={urlFor(mainBanner.image).url()}
                         alt={mainBanner.caption}
+                    />
+                    <img
+                        className="absolute bottom-10 right-0 max-w-[250px] md:max-w-[500px] ease-in duration-300 group-hover:scale-110"
+                        src={urlFor(mainBanner.logo).url()}
+                        alt={mainBanner.logoCaption}
                     />
                 </div>
             )}
