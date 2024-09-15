@@ -11,19 +11,47 @@ export const mainBanner = defineType({
       type: 'string',
     }),
     {
+      title: 'Logo',
+      name: 'logo',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          validation: (rule) =>
+            rule.custom((value, context) => {
+              const parent = context?.parent as {asset?: {_ref?: string}}
+
+              return !value && parent?.asset?._ref
+                ? 'Alt text is required when an image is present'
+                : true
+            }),
+        },
+      ],
+    },
+    {
       title: 'Bilde',
       name: 'image',
       type: 'image',
       validation: (Rule) => Rule.required(),
       options: {
-        hotspot: true, // <-- Defaults to false
+        hotspot: true,
       },
       fields: [
         {
           name: 'caption',
           type: 'string',
           title: 'Caption',
-          validation: (Rule) => Rule.required(),
+          validation: (rule) =>
+            rule.custom((value, context) => {
+              const parent = context?.parent as {asset?: {_ref?: string}}
+
+              return !value && parent?.asset?._ref
+                ? 'Alt text is required when an image is present'
+                : true
+            }),
         },
       ],
     },
