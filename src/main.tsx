@@ -4,12 +4,20 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Home from './pages/Home.tsx';
+import Plays from './pages/Plays.tsx';
+import About from './pages/About.tsx';
+import Join from './pages/Join.tsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
         errorElement: <ErrorPage />,
-        children: [{ path: '', element: <Home /> }]
+        children: [
+            { path: '', element: <Home /> },
+            { path: '/forestillinger', element: <Plays /> },
+            { path: '/om-oss', element: <About /> },
+            { path: '/bli-med', element: <Join /> }
+        ]
     }
 ]);
 
