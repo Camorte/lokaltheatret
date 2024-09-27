@@ -13,6 +13,7 @@ export async function getMainBanner() {
     return client.fetch(
         `*[_type=="landingPage"][0]{
             image, logo, "bannerAltText": image.alt, "logoAltText": logo.alt, 
+           "bannerUrl":bannerReference->{"urlRef":"/"+slug.current}.urlRef,
             highlightedPlays[]{
                 title, image, "imageAlt": imgage.alt, description, 
                 playReference->{"urlRef":"/"+slug.current, playStartDate, playEndDate, "playColor": playColor.hex}

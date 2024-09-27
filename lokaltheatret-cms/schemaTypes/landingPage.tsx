@@ -51,8 +51,17 @@ export const landingPage = defineType({
       ],
     },
     {
+      title: 'Banner referanse',
+      description: 'Dette er forestillingen som dirigeres til når brukeren trykker på banneret',
+      name: 'bannerReference',
+      type: 'reference',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'play'}],
+    },
+    {
       title: 'Forestillinger',
       name: 'highlightedPlays',
+      description: 'Listen av forestillinger som vises under banneret',
       type: 'array',
       of: [
         {
@@ -93,6 +102,8 @@ export const landingPage = defineType({
             },
             {
               title: 'Forestillingsreferanse',
+              description:
+                'Dette er forestillingen som dirigeres til når brukeren trykker på kortet',
               name: 'playReference',
               type: 'reference',
               to: [{type: 'play'}],

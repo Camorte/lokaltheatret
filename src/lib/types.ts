@@ -6,6 +6,7 @@ export type LandingPage = {
     image: SanityImageAssetDocument;
     logoAltText: string;
     bannerAltText: string;
+    bannerUrl: string;
     highlightedPlays: HighlightedPlay[];
 };
 
