@@ -24,14 +24,22 @@ export const about = defineType({
           type: 'image',
           fields: [
             {
-              name: 'imageCaption',
+              name: 'caption',
               type: 'string',
               title: 'Caption',
             },
             {
-              name: 'imageAlt',
+              title: 'Alt. text',
+              name: 'alt',
               type: 'string',
-              title: 'Image alt. text',
+              validation: (rule) =>
+                rule.custom((value, context) => {
+                  const parent = context?.parent as {asset?: {_ref?: string}}
+
+                  return !value && parent?.asset?._ref
+                    ? 'Alt text is required when an image is present'
+                    : true
+                }),
             },
           ],
         }),

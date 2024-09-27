@@ -6,13 +6,15 @@ const structure: StructureToolOptions = (S: StructureBuilder) =>
     .title('Folkearkivet')
     .items([
       S.listItem()
-        .title('Hovedbanner')
-        .schemaType('mainBanner')
-        .child(S.document().title('Hovedbanner').schemaType('mainBanner').documentId('mainBanner')),
+        .title('Landingsside')
+        .schemaType('landingPage')
+        .child(
+          S.document().title('Landingsside').schemaType('landingPage').documentId('landingPage'),
+        ),
       S.listItem()
-        .title('Artikler')
-        .schemaType('article')
-        .child(S.documentList().title('Future projects').filter('_type == "article"')),
+        .title('Forestillinger')
+        .schemaType('play')
+        .child(S.documentList().title('Forestilling').filter('_type == "play"')),
       S.listItem()
         .title('Om oss')
         .schemaType('about')
