@@ -70,7 +70,7 @@ const Header = () => {
                 </button>
             </div>
             {showMenu && (
-                <div className="fixed top-0 right-0 w-full h-full animate-slideIn">
+                <div className="fixed top-0 right-0 w-full h-full animate-slideIn z-10">
                     <div
                         ref={divRef}
                         className="absolute flex flex-col w-2/3 h-full bg-white shadow-lg right-0"
