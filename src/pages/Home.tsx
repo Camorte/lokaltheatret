@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { getMainBanner, urlFor } from '../lib/sanity.ts';
 import { LandingPage } from '../lib/types.ts';
 import PlayCard from '../components/PlayCard.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const navigate = useNavigate();
+
     const [landingPage, setLandingPage] = useState<LandingPage>();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -19,7 +22,10 @@ const Home = () => {
         <main>
             {!isLoading && landingPage && (
                 <>
-                    <div className="relative group hover:cursor-pointer">
+                    <div
+                        onClick={() => navigate(landingPage.bannerUrl)}
+                        className="relative group hover:cursor-pointer"
+                    >
                         <div className="absolute z-[4] shadow-inner-lg h-full w-full" />
                         <div className="bg-black absolute h-full w-full z-0 opacity-100" />
                         <img
