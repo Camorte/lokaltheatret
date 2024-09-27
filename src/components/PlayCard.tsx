@@ -34,7 +34,7 @@ const PlayCard = ({
 
     return (
         <div
-            className="flex w-full md:max-w-[380px] h-[500px] relative transition ease-in-out duration-300 hover:scale-105"
+            className="cursor-pointer flex w-full h-[400px] md:max-w-[380px] lg:max-w-[500px] md:h-[450px] lg:h-[560px] relative transition ease-in-out duration-300 hover:scale-105"
             onClick={() => setFlipped(true)}
         >
             <a.div
