@@ -9,25 +9,15 @@ export const client = createClient({
     apiVersion: '2023-05-03'
 });
 
-export async function getArticles() {
-    return await client.fetch(
-        '*[_type == "article"]{articleTitle, articleSlug, articleDescription, "articleImage": content[_type == "image"][0]{...}}'
-    );
-}
-
-export async function getArticle(articleSlug: string) {
-    return client.fetch(
-        `*[_type=="article" && articleSlug.current=="${articleSlug}"][0]{articleTitle, articleSlug, content}`
-    );
-}
-
-export async function getAbout() {
-    return client.fetch(`*[_type=="about"][0]{title, content}`);
-}
-
 export async function getMainBanner() {
     return client.fetch(
-        `*[_type=="mainBanner"][0]{title, image, logo, "caption": image.caption, "logoCaption": logo.caption}`
+        `*[_type=="landingPage"][0]{
+            image, logo, "bannerAltText": image.alt, "logoAltText": logo.alt, 
+            highlightedPlays[]{
+                title, image, "imageAlt": imgage.alt, description, 
+                playReference->{"urlRef":"/"+slug.current, playStartDate, playEndDate, "playColor": playColor.hex}
+            }
+        }`
     );
 }
 

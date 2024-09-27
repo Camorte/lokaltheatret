@@ -1,9 +1,23 @@
 import { SanityImageAssetDocument } from '@sanity/client';
 
-export type MainBanner = {
+export type LandingPage = {
     title?: string;
     logo: SanityImageAssetDocument;
     image: SanityImageAssetDocument;
-    logoCaption: string;
-    caption: string;
+    logoAltText: string;
+    bannerAltText: string;
+    highlightedPlays: HighlightedPlay[];
+};
+
+export type HighlightedPlay = {
+    title: string;
+    image: SanityImageAssetDocument;
+    imageAlt: string;
+    description: string;
+    playReference: {
+        playStartDate: string;
+        playEndDate: string;
+        urlRef: string;
+        playColor: string;
+    };
 };
