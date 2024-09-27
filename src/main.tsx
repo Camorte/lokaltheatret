@@ -7,10 +7,12 @@ import Home from './pages/Home.tsx';
 import Plays from './pages/Plays.tsx';
 import About from './pages/About.tsx';
 import Join from './pages/Join.tsx';
+import Layout from './components/Layout.tsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
+        element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
             { path: '', element: <Home /> },

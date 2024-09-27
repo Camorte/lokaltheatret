@@ -1,11 +1,5 @@
-import Layout from '../components/Layout.tsx';
-
 const Join = () => {
-    return (
-        <Layout>
-            <h1>Join</h1>
-        </Layout>
-    );
+    return <h1>Join</h1>;
 };
 
 export default Join;

@@ -1,11 +1,5 @@
-import Layout from '../components/Layout.tsx';
-
 const Plays = () => {
-    return (
-        <Layout>
-            <h1>Plays</h1>
-        </Layout>
-    );
+    return <h1>Plays</h1>;
 };
 
 export default Plays;

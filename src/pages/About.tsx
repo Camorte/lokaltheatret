@@ -1,11 +1,5 @@
-import Layout from '../components/Layout.tsx';
-
 const About = () => {
-    return (
-        <Layout>
-            <h1>About</h1>
-        </Layout>
-    );
+    return <h1>About</h1>;
 };
 
 export default About;
