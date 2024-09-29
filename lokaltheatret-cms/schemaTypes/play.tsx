@@ -6,6 +6,15 @@ export const play = defineType({
   type: 'document',
   fields: [
     defineField({
+      title: 'Aktiv forestilling',
+      name: 'active',
+      type: 'boolean',
+      validation: (Rule) =>
+        Rule.custom((currentValue) => {
+          return currentValue === undefined ? 'Required' : true
+        }),
+    }),
+    defineField({
       title: 'Tittel',
       name: 'playTitle',
       type: 'string',
@@ -39,7 +48,6 @@ export const play = defineType({
       title: 'Logo bilde',
       name: 'playLogoImg',
       type: 'image',
-      validation: (Rule) => Rule.required(),
       fields: [
         {
           title: 'Alt. text',
@@ -71,8 +79,25 @@ export const play = defineType({
           },
         },
       ],
-      validation: (Rule) => Rule.required(),
+      hidden: ({document}) => !document?.active,
+      validation: (Rule) =>
+        Rule.custom((currentValue, {document}) => {
+          return document?.active && (!currentValue || currentValue.length === 0)
+            ? 'Required'
+            : true
+        }),
     }),
+    {
+      title: 'Forestillingsperiode',
+      description: 'Når ble denne forestillingen fremført?',
+      name: 'playPeriod',
+      type: 'string',
+      validation: (Rule) =>
+        Rule.custom((currentValue, {document}) => {
+          return !document?.active && !currentValue ? 'Required' : true
+        }),
+      hidden: ({document}) => document && document.active,
+    },
     {
       title: 'Scene/Lokasjon',
       name: 'location',
@@ -83,7 +108,11 @@ export const play = defineType({
       title: 'Varighet',
       name: 'duration',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((currentValue, {document}) => {
+          return document?.active && !currentValue ? 'Required' : true
+        }),
+      hidden: ({document}) => !document?.active,
     },
     {
       name: 'playColor',

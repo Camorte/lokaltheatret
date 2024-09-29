@@ -44,20 +44,30 @@ const Home = () => {
                     <div className="page-container">
                         <div className="grid grid-cols-1 w-full md:grid-cols-3 justify-center gap-x-4 gap-y-8 content-start justify-items-center">
                             {landingPage.highlightedPlays.map((play, index) => {
-                                const startDate = new Date(
-                                    play.playReference.playStartDate
-                                );
-                                const endDate = new Date(
+                                let playPeriod = '';
+                                if (
+                                    play.playReference.playStartDate &&
                                     play.playReference.playEndDate
-                                );
+                                ) {
+                                    const startDate = new Date(
+                                        play.playReference.playStartDate
+                                    );
+                                    const endDate = new Date(
+                                        play.playReference.playEndDate
+                                    );
+
+                                    playPeriod = `${startDate.toLocaleDateString('nb')} - ${endDate.toLocaleDateString('nb')}`;
+                                } else if (play.playReference.playPeriod) {
+                                    playPeriod = play.playReference.playPeriod;
+                                }
+
                                 return (
                                     <PlayCard
                                         key={'play-card-' + index}
                                         title={play.title}
                                         image={play.image}
                                         imageAlt={play.imageAlt}
-                                        playStartDate={startDate}
-                                        playEndDate={endDate}
+                                        playPeriod={playPeriod}
                                         description={play.description}
                                         color={play.playReference.playColor}
                                         href={play.playReference.urlRef}

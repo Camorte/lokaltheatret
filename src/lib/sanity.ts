@@ -19,7 +19,7 @@ export const getPlay = async (slug: string) => {
             "playColor":playColor.hex, 
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
-            playTitle,playDates, duration, location, content
+            playTitle,playDates, duration, location, content, playPeriod
         }`
     );
 };
@@ -31,7 +31,10 @@ export const getMainBanner = async () => {
            "bannerUrl":bannerReference->{"urlRef":"/"+slug.current}.urlRef,
             highlightedPlays[]{
                 title, image, "imageAlt": imgage.alt, description, 
-                playReference->{"urlRef":"/"+slug.current, "playStartDate": playDates[0], "playEndDate": playDates[-1], "playColor": playColor.hex}
+                playReference->{"urlRef":"/"+slug.current, 
+                    "playStartDate": playDates[0], "playEndDate": playDates[-1], "playColor": 
+                    playColor.hex, playPeriod
+                }
             }
         }`
     );

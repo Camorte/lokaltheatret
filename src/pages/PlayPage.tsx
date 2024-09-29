@@ -14,6 +14,7 @@ const PlayPage = () => {
         if (params.slug) {
             getPlay(params.slug)
                 .then((response) => {
+                    console.log(response);
                     setPlay(response);
                 })
                 .finally(() => setIsLoading(false));
@@ -35,21 +36,34 @@ const PlayPage = () => {
                                     className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                                     style={{ backgroundColor: play.playColor }}
                                 >
-                                    <img
-                                        src={urlFor(play.logoImg.image).url()}
-                                        className="max-w-[40vw]"
-                                        alt={play.logoImg.altText}
-                                    />
-                                    <p className="text-lg m-0 md:text-4xl">
-                                        {parseToDate(
-                                            play.playDates[0]
-                                        ).toLocaleDateString('nb')}{' '}
-                                        -{' '}
-                                        {parseToDate(
-                                            play.playDates[
-                                                play.playDates.length - 1
-                                            ]
-                                        ).toLocaleDateString('nb')}
+                                    {play.logoImg?.image ? (
+                                        <img
+                                            src={urlFor(
+                                                play.logoImg.image
+                                            ).url()}
+                                            className="max-w-[40vw] md:max-w-[30vw]"
+                                            alt={play.logoImg.altText}
+                                        />
+                                    ) : (
+                                        <p className="font-bold text-2xl max-w-[200px] md:text-4xl md:max-w-[300px]">
+                                            {play.playTitle.toLocaleUpperCase()}
+                                        </p>
+                                    )}
+                                    <p className="text-lg m-0 md:text-3xl">
+                                        {play.playDates &&
+                                            `${parseToDate(
+                                                play.playDates[0]
+                                            ).toLocaleDateString(
+                                                'nb'
+                                            )} - ${parseToDate(
+                                                play.playDates[
+                                                    play.playDates.length - 1
+                                                ]
+                                            ).toLocaleDateString('nb')}`}
+                                        {(!play.playDates ||
+                                            play.playDates.length > 0) &&
+                                            play.playPeriod &&
+                                            play.playPeriod}
                                     </p>
                                 </div>
                                 <img
@@ -61,40 +75,62 @@ const PlayPage = () => {
                                 />
                             </div>
                             <div
-                                className="grid grid-cols-1 md:grid-cols-3 gap-4 px-[32px] md:px-[10vw] py-8"
+                                className="grid grid-cols-1 justify-between md:grid-cols-3 gap-4 px-[32px] md:px-[10vw] py-8"
                                 style={{ backgroundColor: play.playColor }}
                             >
                                 <div className="flex flex-col items-center">
                                     <p className="font-bold">
-                                        Forestillingsdatoer:{' '}
+                                        {play.playDates &&
+                                        play.playDates.length > 0
+                                            ? 'Forestillingsdatoer'
+                                            : 'Forestilling spilt'}
+                                        :
                                     </p>
                                     <p className="text-center">
-                                        {play.playDates.reduce(
-                                            (acc, curr, index) => {
-                                                const currDate = parseToDate(
-                                                    curr
-                                                ).toLocaleDateString('nb', {
-                                                    month: 'long',
-                                                    day: 'numeric'
-                                                });
-                                                if (
-                                                    index !==
-                                                    play.playDates.length - 1
-                                                ) {
-                                                    return (
-                                                        acc + currDate + ', '
-                                                    );
-                                                }
+                                        {play.playDates &&
+                                        play.playDates.length > 0
+                                            ? play.playDates.reduce(
+                                                  (acc, curr, index) => {
+                                                      const currDate =
+                                                          parseToDate(
+                                                              curr
+                                                          ).toLocaleDateString(
+                                                              'nb',
+                                                              {
+                                                                  month: 'long',
+                                                                  day: 'numeric'
+                                                              }
+                                                          );
+                                                      if (
+                                                          play.playDates &&
+                                                          index !==
+                                                              play.playDates
+                                                                  .length -
+                                                                  1
+                                                      ) {
+                                                          return (
+                                                              acc +
+                                                              currDate +
+                                                              ', '
+                                                          );
+                                                      }
 
-                                                return acc + currDate;
-                                            },
-                                            ''
-                                        )}
+                                                      return acc + currDate;
+                                                  },
+                                                  ''
+                                              )
+                                            : play.playPeriod}
                                     </p>
                                 </div>
-                                <div className="flex flex-col items-center">
-                                    <p className="font-bold">Varighet:</p>
-                                    <p>{play.duration}</p>
+                                <div>
+                                    {play.duration && (
+                                        <div className="flex flex-col items-center">
+                                            <p className="font-bold">
+                                                Varighet:
+                                            </p>
+                                            <p>{play.duration}</p>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="flex flex-col items-center">
                                     <p className="font-bold">Lokasjon:</p>

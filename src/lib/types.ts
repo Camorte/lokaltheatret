@@ -22,8 +22,9 @@ export type HighlightedPlay = {
     imageAlt: string;
     description: string;
     playReference: {
-        playStartDate: string;
-        playEndDate: string;
+        playStartDate?: string;
+        playEndDate?: string;
+        playPeriod?: string;
         urlRef: string;
         playColor: string;
     };
@@ -32,11 +33,12 @@ export type HighlightedPlay = {
 export type Play = {
     playTitle: string;
     bannerImg: Image;
-    logoImg: Image;
-    playDates: string[];
+    logoImg?: Image;
+    playDates?: string[];
     playColor: string;
-    duration: string;
+    duration?: string;
     location: string;
+    playPeriod?: string;
     content: PortableTextBlock;
 };
 

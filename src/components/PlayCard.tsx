@@ -9,8 +9,7 @@ const PlayCard = ({
     color,
     image,
     imageAlt,
-    playStartDate,
-    playEndDate,
+    playPeriod,
     description,
     href
 }: {
@@ -18,8 +17,7 @@ const PlayCard = ({
     color: string;
     image: SanityImageAssetDocument;
     imageAlt: string;
-    playStartDate: Date;
-    playEndDate: Date;
+    playPeriod: string;
     description: string;
     href: string;
 }) => {
@@ -50,14 +48,11 @@ const PlayCard = ({
                     src={urlFor(image).url()}
                     alt={imageAlt}
                 />
-                <div className="p-4 flex flex-col items-center justify-center">
-                    <p className="text-4xl font-bold text-center">
+                <div className="p-4 flex flex-col items-center justify-between">
+                    <p className="text-2xl font-bold text-center">
                         {title.toLocaleUpperCase()}
                     </p>
-                    <p>
-                        {playStartDate.toLocaleDateString('nb')} -{' '}
-                        {playEndDate.toLocaleDateString('nb')}
-                    </p>
+                    <p>{playPeriod}</p>
                 </div>
             </a.div>
             <a.div
@@ -78,10 +73,7 @@ const PlayCard = ({
                         <p className="text-2xl font-bold">
                             {title.toLocaleUpperCase()}
                         </p>
-                        <p>
-                            {playStartDate.toLocaleDateString('nb')} -{' '}
-                            {playEndDate.toLocaleDateString('nb')}
-                        </p>
+                        <p>{playPeriod}</p>
                         <p>{description}</p>
                     </div>
                     <div
