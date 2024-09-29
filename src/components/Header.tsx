@@ -55,7 +55,7 @@ const Header = () => {
                 <img
                     src="/assets/lokaltheatret-black-logo-white-bg.png"
                     alt="Lokaltheatret logo"
-                    className="w-1/2 md:w-[200px]"
+                    className="w-[150px] md:w-[200px]"
                 />
             </Link>
             <div className="flex items-center">
