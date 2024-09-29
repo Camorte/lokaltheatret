@@ -63,7 +63,7 @@ const PlayCard = ({
             <a.div
                 onClick={() => {
                     if (flipped) {
-                        navigate(href);
+                        navigate('/forestillinger' + href);
                     }
                 }}
                 className="play-card-content"

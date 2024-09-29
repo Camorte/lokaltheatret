@@ -23,7 +23,9 @@ const Home = () => {
             {!isLoading && landingPage && (
                 <>
                     <div
-                        onClick={() => navigate(landingPage.bannerUrl)}
+                        onClick={() =>
+                            navigate('/forestillinger' + landingPage.bannerUrl)
+                        }
                         className="relative group hover:cursor-pointer"
                     >
                         <div className="absolute z-[4] shadow-inner-lg h-full w-full" />

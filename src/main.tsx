@@ -8,6 +8,7 @@ import Plays from './pages/Plays.tsx';
 import About from './pages/About.tsx';
 import Join from './pages/Join.tsx';
 import Layout from './components/Layout.tsx';
+import PlayPage from './pages/PlayPage.tsx';
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         children: [
             { path: '', element: <Home /> },
             { path: '/forestillinger', element: <Plays /> },
+            { path: '/forestillinger/:slug', element: <PlayPage /> },
             { path: '/om-oss', element: <About /> },
             { path: '/bli-med', element: <Join /> }
         ]

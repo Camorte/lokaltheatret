@@ -9,18 +9,33 @@ export const client = createClient({
     apiVersion: '2023-05-03'
 });
 
-export async function getMainBanner() {
+export const getFooter = async () => {
+    return client.fetch("*[_type=='footer'][0]{...}");
+};
+
+export const getPlay = async (slug: string) => {
+    return client.fetch(
+        `*[_type=="play" && slug.current=="${slug}"][0]{
+            "playColor":playColor.hex, 
+            "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
+            "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
+            playTitle,playDates, duration, location, content
+        }`
+    );
+};
+
+export const getMainBanner = async () => {
     return client.fetch(
         `*[_type=="landingPage"][0]{
             image, logo, "bannerAltText": image.alt, "logoAltText": logo.alt, 
            "bannerUrl":bannerReference->{"urlRef":"/"+slug.current}.urlRef,
             highlightedPlays[]{
                 title, image, "imageAlt": imgage.alt, description, 
-                playReference->{"urlRef":"/"+slug.current, playStartDate, playEndDate, "playColor": playColor.hex}
+                playReference->{"urlRef":"/"+slug.current, "playStartDate": playDates[0], "playEndDate": playDates[-1], "playColor": playColor.hex}
             }
         }`
     );
-}
+};
 
 const urlBuilderFactory = imageUrlBuilder(client);
 

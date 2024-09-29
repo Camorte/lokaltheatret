@@ -1,4 +1,10 @@
 import { SanityImageAssetDocument } from '@sanity/client';
+import { PortableTextBlock } from '@portabletext/react';
+
+type Image = {
+    image: SanityImageAssetDocument;
+    altText: string;
+};
 
 export type LandingPage = {
     title?: string;
@@ -21,4 +27,23 @@ export type HighlightedPlay = {
         urlRef: string;
         playColor: string;
     };
+};
+
+export type Play = {
+    playTitle: string;
+    bannerImg: Image;
+    logoImg: Image;
+    playDates: string[];
+    playColor: string;
+    duration: string;
+    location: string;
+    content: PortableTextBlock;
+};
+
+export type Footer = {
+    twitter?: string;
+    facebook?: string;
+    instagram?: string;
+    slogan?: string;
+    contactEmail: string;
 };
