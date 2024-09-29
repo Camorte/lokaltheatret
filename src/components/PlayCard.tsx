@@ -77,7 +77,7 @@ const PlayCard = ({
                         <p>{description}</p>
                     </div>
                     <div
-                        className="absolute w-full h-full z-[1] opacity-[0.75] top-0"
+                        className="absolute w-full h-full z-[1] opacity-[0.85] top-0"
                         style={{ backgroundColor: color }}
                     />
                     <img
