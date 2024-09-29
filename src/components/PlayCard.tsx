@@ -49,7 +49,7 @@ const PlayCard = ({
                     alt={imageAlt}
                 />
                 <div className="p-4 flex flex-col items-center justify-between">
-                    <p className="text-2xl font-bold text-center">
+                    <p className="text-lg md:text-2xl font-bold text-center">
                         {title.toLocaleUpperCase()}
                     </p>
                     <p>{playPeriod}</p>
