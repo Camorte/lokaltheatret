@@ -4,13 +4,6 @@ export const play = defineType({
   title: 'Forestilling',
   name: 'play',
   type: 'document',
-  fieldsets: [
-    {
-      name: 'playDatePeriod',
-      title: 'Forestillingsperiode',
-      options: {columns: 2},
-    },
-  ],
   fields: [
     defineField({
       title: 'Tittel',
@@ -19,31 +12,77 @@ export const play = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      title: 'Bildetittel',
-      name: 'playImgTitle',
+      title: 'Banner bilde',
+      name: 'playBannerImg',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
+      validation: (Rule) => Rule.required(),
+      fields: [
+        {
+          title: 'Alt. text',
+          name: 'alt',
+          type: 'string',
+          validation: (rule) =>
+            rule.custom((value, context) => {
+              const parent = context?.parent as {asset?: {_ref?: string}}
+
+              return !value && parent?.asset?._ref
+                ? 'Alt text is required when an image is present'
+                : true
+            }),
+        },
+      ],
+    }),
+    defineField({
+      title: 'Logo bilde',
+      name: 'playLogoImg',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+      fields: [
+        {
+          title: 'Alt. text',
+          name: 'alt',
+          type: 'string',
+          validation: (rule) =>
+            rule.custom((value, context) => {
+              const parent = context?.parent as {asset?: {_ref?: string}}
+
+              return !value && parent?.asset?._ref
+                ? 'Alt text is required when an image is present'
+                : true
+            }),
+        },
+      ],
+    }),
+    defineField({
+      title: 'Forestillingsdatoer',
+      name: 'playDates',
+      type: 'array',
+      of: [
+        {
+          title: 'Forestillingsdato',
+          name: 'playDates',
+          type: 'date',
+          options: {
+            dateFormat: 'DD-MM-YYYY',
+            calendarTodayLabel: 'Today',
+          },
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     {
-      title: 'Første forestilling',
-      name: 'playStartDate',
-      type: 'date',
-      fieldset: 'playDatePeriod',
-      options: {
-        dateFormat: 'DD-MM-YYYY',
-        calendarTodayLabel: 'Today',
-      },
+      title: 'Scene/Lokasjon',
+      name: 'location',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
-      title: 'Siste forestillings',
-      name: 'playEndDate',
-      type: 'date',
-      fieldset: 'playDatePeriod',
-      options: {
-        dateFormat: 'DD-MM-YYYY',
-        calendarTodayLabel: 'Today',
-      },
+      title: 'Varighet',
+      name: 'duration',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
@@ -72,6 +111,7 @@ export const play = defineType({
               name: 'imageAlt',
               type: 'string',
               title: 'Image alt. text',
+              validation: (Rule) => Rule.required(),
             },
           ],
         }),
