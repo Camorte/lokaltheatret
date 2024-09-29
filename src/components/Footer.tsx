@@ -19,7 +19,7 @@ const Footer = () => {
     return (
         <>
             {!isLoading && footer && (
-                <div className="flex py-8 px-16 items-center justify-between border-t border-black">
+                <div className="flex py-8 px-4 md:px-16 items-center justify-between border-t border-black">
                     <Link className="group" to={'/'}>
                         <img
                             src="/assets/lokaltheatret-logo-black-white.png"
@@ -30,32 +30,34 @@ const Footer = () => {
                             {footer.slogan}
                         </p>
                     </Link>
-                    <div className="flex flex-row">
-                        {footer.facebook && (
-                            <a href={footer.facebook} target="_blank">
-                                <CiFacebook />
+                    <div className="flex flex-col gap-y-4">
+                        <div className="flex flex-row">
+                            {footer.facebook && (
+                                <a href={footer.facebook} target="_blank">
+                                    <CiFacebook />
+                                </a>
+                            )}
+                            {footer.twitter && (
+                                <a href={footer.twitter} target="_blank">
+                                    <CiTwitter />
+                                </a>
+                            )}
+                            {footer.instagram && (
+                                <a href={footer.instagram} target="_blank">
+                                    <CiInstagram />
+                                </a>
+                            )}
+                        </div>
+                        <div>
+                            <p className="m-0 text-sm">Har du noen spørsmål?</p>
+                            <p className="m-0 text-sm">Ta kontakt med oss</p>
+                            <a
+                                className="text-sm hover:underline"
+                                href={'mailto:' + footer.contactEmail}
+                            >
+                                {footer.contactEmail}
                             </a>
-                        )}
-                        {footer.twitter && (
-                            <a href={footer.twitter} target="_blank">
-                                <CiTwitter />
-                            </a>
-                        )}
-                        {footer.instagram && (
-                            <a href={footer.instagram} target="_blank">
-                                <CiInstagram />
-                            </a>
-                        )}
-                    </div>
-                    <div>
-                        <p className="m-0 text-sm">Har du noen spørsmål?</p>
-                        <p className="m-0 text-sm">Ta kontakt med oss</p>
-                        <a
-                            className="text-sm hover:underline"
-                            href={'mailto:' + footer.contactEmail}
-                        >
-                            {footer.contactEmail}
-                        </a>
+                        </div>
                     </div>
                 </div>
             )}
