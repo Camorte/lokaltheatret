@@ -42,8 +42,9 @@ code {
 
 @layer components {
   .page-container {
-    @apply px-[5vw] md:px-[7vw] py-4 md:py-8 flex flex-col max-w-full w-full overflow-y-auto h-full;
+    @apply px-[5vw] md:px-[7vw] py-4 md:py-8 flex flex-col max-w-full w-full h-full;
   }
+
   .play-card-contents {
     @apply absolute cursor-pointer w-full h-full will-change-transform-opacity;
   }
