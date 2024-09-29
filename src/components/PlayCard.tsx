@@ -34,7 +34,7 @@ const PlayCard = ({
 
     return (
         <div
-            className="cursor-pointer flex w-full h-[400px] md:max-w-[380px] lg:max-w-[500px] md:h-[450px] lg:h-[560px] relative transition ease-in-out duration-300 hover:scale-105"
+            className="cursor-pointer flex w-full h-[400px] md:max-w-[380px] lg:max-w-[500px] md:h-[450px] lg:h-[560px] relative md:transition md:ease-in-out md:duration-300 md:hover:scale-105"
             onClick={() => setFlipped(true)}
         >
             <a.div
@@ -46,7 +46,7 @@ const PlayCard = ({
                 }}
             >
                 <img
-                    className="w-full bg-black h-[330px] object-cover"
+                    className="w-full bg-black h-[280px] md:h-[400px] object-cover"
                     src={urlFor(image).url()}
                     alt={imageAlt}
                 />
