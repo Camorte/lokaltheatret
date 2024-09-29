@@ -32,7 +32,7 @@ const PlayPage = () => {
                         <div className="flex flex-col">
                             <div className="relative">
                                 <div
-                                    className="absolute w-fit z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
+                                    className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                                     style={{ backgroundColor: play.playColor }}
                                 >
                                     <img
