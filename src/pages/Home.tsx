@@ -34,7 +34,7 @@ const Home = () => {
                             alt={landingPage.bannerAltText}
                         />
                         <img
-                            className="absolute bottom-10 right-0 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] group-hover:scale-110"
+                            className="absolute bottom-10 right-10 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] group-hover:scale-110"
                             src={urlFor(landingPage.logo).url()}
                             alt={landingPage.logoAltText}
                         />
