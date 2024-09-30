@@ -42,7 +42,7 @@ const Home = () => {
                         />
                     </div>
                     <div className="page-container">
-                        <div className="grid grid-cols-1 w-full md:grid-cols-3 justify-center gap-x-4 gap-y-8 content-start justify-items-center">
+                        <div className="grid grid-cols-1 w-full md:grid-cols-3 justify-center gap-x-2 lg:gap-x-4 gap-y-8 content-start justify-items-center">
                             {landingPage.highlightedPlays.map((play, index) => {
                                 let playPeriod = '';
                                 if (

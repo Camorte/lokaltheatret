@@ -25,24 +25,29 @@ code {
   }
 
   h1 {
-    @apply text-4xl font-bold my-6 w-fit;
-  }
-  h2 {
     @apply text-3xl font-bold my-6 w-fit;
   }
 
+  h2 {
+    @apply text-2xl font-bold my-6 w-fit;
+  }
+
+  h2 {
+    @apply text-xl font-bold my-6 w-fit;
+  }
+
   h4 {
-    @apply text-2xl font-bold my-4 w-fit;
+    @apply text-lg font-bold my-4 w-fit;
   }
 
   p {
-    @apply text-lg my-2 font-[300] w-fit;
+    @apply text-base my-2 font-[300] w-fit;
   }
 }
 
 @layer components {
   .page-container {
-    @apply px-[32px] md:px-[10vw] py-4 md:py-8 flex flex-col w-full h-full;
+    @apply px-[6vw] md:px-[6vw] lg:px-[10vw] py-4 md:py-8 flex flex-col w-full h-full;
   }
 
   .play-card-contents {

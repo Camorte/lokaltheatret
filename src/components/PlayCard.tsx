@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SanityImageAssetDocument } from '@sanity/client';
 import { urlFor } from '../lib/sanity.ts';
+import { FaArrowRightLong } from 'react-icons/fa6';
 
 const PlayCard = ({
     title,
@@ -75,14 +76,17 @@ const PlayCard = ({
             >
                 <div className="w-full h-full relative">
                     <div
-                        className="relative z-[2] p-4"
+                        className="relative z-[2] p-[10px] lg:p-4 flex flex-col h-full justify-between"
                         style={{ color: textColor }}
                     >
-                        <p className="text-2xl font-bold">
-                            {title.toLocaleUpperCase()}
-                        </p>
-                        <p>{playPeriod}</p>
-                        <p>{description}</p>
+                        <div>
+                            <p className="md:text-base lg:text-2xl font-bold">
+                                {title.toLocaleUpperCase()}
+                            </p>
+                            <p className="m-0">{playPeriod}</p>
+                            <p>{description}</p>
+                        </div>
+                        <FaArrowRightLong className="self-end" />
                     </div>
                     <div
                         className="absolute w-full h-full z-[1] opacity-[0.85] top-0"
