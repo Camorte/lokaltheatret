@@ -4,6 +4,7 @@ export const play = defineType({
   title: 'Forestilling',
   name: 'play',
   type: 'document',
+  fieldsets: [{name: 'playColorProfile', title: 'Forestillingens fargeprofil'}],
   fields: [
     defineField({
       title: 'Aktiv forestilling',
@@ -118,6 +119,14 @@ export const play = defineType({
       name: 'playColor',
       title: 'Forestillingsfarge',
       type: 'color',
+      fieldset: 'playColorProfile',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      title: 'Tekstfarge',
+      name: 'textColor',
+      type: 'color',
+      fieldset: 'playColorProfile',
       validation: (Rule) => Rule.required(),
     },
     defineField({
