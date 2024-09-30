@@ -45,11 +45,17 @@ const PlayPage = () => {
                                             alt={play.logoImg.altText}
                                         />
                                     ) : (
-                                        <p className="font-bold text-2xl max-w-[200px] md:text-4xl md:max-w-[300px]">
+                                        <p
+                                            className="font-bold text-2xl max-w-[200px] md:text-4xl md:max-w-[300px]"
+                                            style={{ color: play.textColor }}
+                                        >
                                             {play.playTitle.toLocaleUpperCase()}
                                         </p>
                                     )}
-                                    <p className="text-lg m-0 md:text-3xl">
+                                    <p
+                                        className="text-lg m-0 md:text-3xl"
+                                        style={{ color: play.textColor }}
+                                    >
                                         {play.playDates &&
                                             `${parseToDate(
                                                 play.playDates[0]
@@ -78,7 +84,10 @@ const PlayPage = () => {
                                 className="grid grid-cols-1 justify-between md:grid-cols-3 gap-4 px-[32px] md:px-[10vw] py-8"
                                 style={{ backgroundColor: play.playColor }}
                             >
-                                <div className="flex flex-col items-center">
+                                <div
+                                    className="flex flex-col items-center"
+                                    style={{ color: play.textColor }}
+                                >
                                     <p className="font-bold">
                                         {play.playDates &&
                                         play.playDates.length > 0
@@ -122,7 +131,7 @@ const PlayPage = () => {
                                             : play.playPeriod}
                                     </p>
                                 </div>
-                                <div>
+                                <div style={{ color: play.textColor }}>
                                     {play.duration && (
                                         <div className="flex flex-col items-center">
                                             <p className="font-bold">
@@ -132,7 +141,10 @@ const PlayPage = () => {
                                         </div>
                                     )}
                                 </div>
-                                <div className="flex flex-col items-center">
+                                <div
+                                    className="flex flex-col items-center"
+                                    style={{ color: play.textColor }}
+                                >
                                     <p className="font-bold">Lokasjon:</p>
                                     <p>{play.location}</p>
                                 </div>

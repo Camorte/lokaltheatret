@@ -16,10 +16,10 @@ export const getFooter = async () => {
 export const getPlay = async (slug: string) => {
     return client.fetch(
         `*[_type=="play" && slug.current=="${slug}"][0]{
-            "playColor":playColor.hex, 
+            "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
-            playTitle,playDates, duration, location, content, playPeriod
+            playTitle, playDates, duration, location, content, playPeriod
         }`
     );
 };
@@ -32,8 +32,8 @@ export const getMainBanner = async () => {
             highlightedPlays[]{
                 title, image, "imageAlt": imgage.alt, description, 
                 playReference->{"urlRef":"/"+slug.current, 
-                    "playStartDate": playDates[0], "playEndDate": playDates[-1], "playColor": 
-                    playColor.hex, playPeriod
+                    "playStartDate": playDates[0], "playEndDate": playDates[-1], 
+                    "playColor": playColor.hex, "textColor": textColor.hex, playPeriod
                 }
             }
         }`

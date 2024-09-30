@@ -6,7 +6,8 @@ import { urlFor } from '../lib/sanity.ts';
 
 const PlayCard = ({
     title,
-    color,
+    bgColor,
+    textColor,
     image,
     imageAlt,
     playPeriod,
@@ -14,7 +15,8 @@ const PlayCard = ({
     href
 }: {
     title: string;
-    color: string;
+    bgColor: string;
+    textColor: string;
     image: SanityImageAssetDocument;
     imageAlt: string;
     playPeriod: string;
@@ -38,21 +40,24 @@ const PlayCard = ({
             <a.div
                 className="play-card-contents"
                 style={{
-                    backgroundColor: color,
+                    backgroundColor: bgColor,
                     opacity: opacity.to((o) => 1 - o),
                     transform
                 }}
             >
                 <img
-                    className="w-full bg-black h-[280px] md:h-[400px] object-cover"
+                    className="w-full bg-black h-[280px] md:h-[280px] lg:h-[400px] object-cover"
                     src={urlFor(image).url()}
                     alt={imageAlt}
                 />
-                <div className="p-4 flex flex-col items-center justify-between">
-                    <p className="text-lg md:text-2xl font-bold text-center">
+                <div
+                    className="p-4 flex flex-col items-center justify-between"
+                    style={{ color: textColor }}
+                >
+                    <p className="text-lg md:text-xl lg:text-2xl font-bold text-center">
                         {title.toLocaleUpperCase()}
                     </p>
-                    <p>{playPeriod}</p>
+                    <p className="text-center">{playPeriod}</p>
                 </div>
             </a.div>
             <a.div
@@ -69,7 +74,10 @@ const PlayCard = ({
                 }}
             >
                 <div className="w-full h-full relative">
-                    <div className="relative z-[2] p-4 text-white">
+                    <div
+                        className="relative z-[2] p-4"
+                        style={{ color: textColor }}
+                    >
                         <p className="text-2xl font-bold">
                             {title.toLocaleUpperCase()}
                         </p>
@@ -78,7 +86,7 @@ const PlayCard = ({
                     </div>
                     <div
                         className="absolute w-full h-full z-[1] opacity-[0.85] top-0"
-                        style={{ backgroundColor: color }}
+                        style={{ backgroundColor: bgColor }}
                     />
                     <img
                         className="absolute h-full w-full object-cover z-0 top-0"

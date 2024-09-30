@@ -69,7 +69,8 @@ const Home = () => {
                                         imageAlt={play.imageAlt}
                                         playPeriod={playPeriod}
                                         description={play.description}
-                                        color={play.playReference.playColor}
+                                        bgColor={play.playReference.playColor}
+                                        textColor={play.playReference.textColor}
                                         href={play.playReference.urlRef}
                                     />
                                 );

@@ -27,6 +27,7 @@ export type HighlightedPlay = {
         playPeriod?: string;
         urlRef: string;
         playColor: string;
+        textColor: string;
     };
 };
 
@@ -36,6 +37,7 @@ export type Play = {
     logoImg?: Image;
     playDates?: string[];
     playColor: string;
+    textColor: string;
     duration?: string;
     location: string;
     playPeriod?: string;
