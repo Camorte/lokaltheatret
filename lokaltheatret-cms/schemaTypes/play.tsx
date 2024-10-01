@@ -66,6 +66,19 @@ export const play = defineType({
       ],
     }),
     defineField({
+      title: 'Billettsiden',
+      name: 'ticketsPage',
+      description: 'Lenke til hvor man kjøper billetter til forestillingen',
+      type: 'url',
+      hidden: ({document}) => !document?.active,
+      validation: (Rule) =>
+        Rule.custom((currentValue, {document}) => {
+          return document?.active && (!currentValue || currentValue.length === 0)
+            ? 'Required'
+            : true
+        }),
+    }),
+    defineField({
       title: 'Forestillingsdatoer',
       name: 'playDates',
       type: 'array',

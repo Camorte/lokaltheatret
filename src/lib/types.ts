@@ -41,6 +41,7 @@ export type Play = {
     duration?: string;
     location: string;
     playPeriod?: string;
+    ticketsPage: string;
     content: PortableTextBlock;
 };
 

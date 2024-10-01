@@ -149,11 +149,38 @@ const PlayPage = () => {
                                     <p>{play.location}</p>
                                 </div>
                             </div>
-                            <div className="page-container">
-                                <PortableText
-                                    value={play.content}
-                                    components={PortableTextComponent}
-                                />
+                            <div>
+                                <div className="page-container">
+                                    <a
+                                        className="hidden md:block w-full my-4 p-4 font-bold text-center"
+                                        style={{
+                                            color: play.textColor,
+                                            backgroundColor: play.playColor
+                                        }}
+                                        href={play.ticketsPage}
+                                    >
+                                        KJØP BILLETTER
+                                    </a>
+
+                                    <PortableText
+                                        value={play.content}
+                                        components={PortableTextComponent}
+                                    />
+                                </div>
+                                <button
+                                    className="sticky md:hidden bottom-0 w-full p-4 font-bold text-center"
+                                    style={{
+                                        color: play.textColor,
+                                        backgroundColor: play.playColor
+                                    }}
+                                    onClick={() =>
+                                        (window.location.href =
+                                            play.ticketsPage)
+                                    }
+                                    role="link"
+                                >
+                                    KJØP BILLETTER
+                                </button>
                             </div>
                         </div>
                     )}

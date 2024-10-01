@@ -19,7 +19,7 @@ export const getPlay = async (slug: string) => {
             "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
-            playTitle, playDates, duration, location, content, playPeriod
+            playTitle, playDates, duration, location, content, playPeriod, ticketsPage
         }`
     );
 };
