@@ -55,3 +55,28 @@ code {
   }
 }
 
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev{
+  background-color: #428cff;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0.8;
+  height:30px;
+  width:30px;
+}
+
+.slick-arrow.slick-next:hover,
+.slick-arrow.slick-prev:hover
+{
+  background-color: #2574f5;
+  opacity:1;
+}
+
+
+.slick-prev::before,.slick-next::before{
+  display:none;
+}
+

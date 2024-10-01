@@ -47,7 +47,8 @@ const Home = () => {
                                 let playPeriod = '';
                                 if (
                                     play.playReference.playStartDate &&
-                                    play.playReference.playEndDate
+                                    play.playReference.playEndDate &&
+                                    play.playReference.active
                                 ) {
                                     const startDate = new Date(
                                         play.playReference.playStartDate

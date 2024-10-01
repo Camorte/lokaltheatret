@@ -1,9 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getPlay, urlFor } from '../lib/sanity.ts';
+import { getPlay } from '../lib/sanity.ts';
 import { Play } from '../lib/types.ts';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '../components/PortableTextComponent.tsx';
+import { parseToDate } from '../lib/helpers.ts';
+import PlayBanner from '../components/PlayBanner.tsx';
+import ImageGallery from '../components/ImageGallery.tsx';
 
 const PlayPage = () => {
     const params = useParams();
@@ -21,8 +24,6 @@ const PlayPage = () => {
         }
     }, []);
 
-    const parseToDate = (date: string) => new Date(date);
-
     return (
         <>
             {isLoading ? (
@@ -31,55 +32,15 @@ const PlayPage = () => {
                 <>
                     {play && (
                         <div className="flex flex-col">
-                            <div className="relative">
-                                <div
-                                    className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
-                                    style={{ backgroundColor: play.playColor }}
-                                >
-                                    {play.logoImg?.image ? (
-                                        <img
-                                            src={urlFor(
-                                                play.logoImg.image
-                                            ).url()}
-                                            className="max-w-[40vw] md:max-w-[30vw]"
-                                            alt={play.logoImg.altText}
-                                        />
-                                    ) : (
-                                        <p
-                                            className="font-bold text-2xl max-w-[200px] md:text-4xl md:max-w-[300px]"
-                                            style={{ color: play.textColor }}
-                                        >
-                                            {play.playTitle.toLocaleUpperCase()}
-                                        </p>
-                                    )}
-                                    <p
-                                        className="text-lg m-0 md:text-3xl"
-                                        style={{ color: play.textColor }}
-                                    >
-                                        {play.playDates &&
-                                            `${parseToDate(
-                                                play.playDates[0]
-                                            ).toLocaleDateString(
-                                                'nb'
-                                            )} - ${parseToDate(
-                                                play.playDates[
-                                                    play.playDates.length - 1
-                                                ]
-                                            ).toLocaleDateString('nb')}`}
-                                        {(!play.playDates ||
-                                            play.playDates.length > 0) &&
-                                            play.playPeriod &&
-                                            play.playPeriod}
-                                    </p>
-                                </div>
-                                <img
-                                    className="relative w-full h-full max-h-[80vh] object-cover"
-                                    src={urlFor(play.bannerImg.image)
-                                        .width(1900)
-                                        .url()}
-                                    alt={play.bannerImg.altText}
-                                />
-                            </div>
+                            <PlayBanner
+                                bannerImg={play.bannerImg}
+                                logoImg={play.logoImg}
+                                playPeriod={play.playPeriod}
+                                playDates={play.playDates}
+                                textColor={play.textColor}
+                                playColor={play.playColor}
+                                playTitle={play.playTitle}
+                            />
                             <div
                                 className="grid grid-cols-1 justify-between md:grid-cols-3 gap-4 px-[32px] md:px-[10vw] py-8"
                                 style={{ backgroundColor: play.playColor }}
@@ -90,6 +51,7 @@ const PlayPage = () => {
                                 >
                                     <p className="font-bold">
                                         {play.playDates &&
+                                        play.active &&
                                         play.playDates.length > 0
                                             ? 'Forestillingsdatoer'
                                             : 'Forestilling spilt'}
@@ -97,6 +59,7 @@ const PlayPage = () => {
                                     </p>
                                     <p className="text-center">
                                         {play.playDates &&
+                                        play.active &&
                                         play.playDates.length > 0
                                             ? play.playDates.reduce(
                                                   (acc, curr, index) => {
@@ -132,7 +95,7 @@ const PlayPage = () => {
                                     </p>
                                 </div>
                                 <div style={{ color: play.textColor }}>
-                                    {play.duration && (
+                                    {play.duration && play.active && (
                                         <div className="flex flex-col items-center">
                                             <p className="font-bold">
                                                 Varighet:
@@ -151,36 +114,46 @@ const PlayPage = () => {
                             </div>
                             <div>
                                 <div className="page-container">
-                                    <a
-                                        className="hidden md:block w-full my-4 p-4 font-bold text-center"
-                                        style={{
-                                            color: play.textColor,
-                                            backgroundColor: play.playColor
-                                        }}
-                                        href={play.ticketsPage}
-                                    >
-                                        KJØP BILLETTER
-                                    </a>
+                                    {play.active && (
+                                        <a
+                                            className="hidden md:block w-full my-4 p-4 font-bold text-center"
+                                            style={{
+                                                color: play.textColor,
+                                                backgroundColor: play.playColor
+                                            }}
+                                            href={play.ticketsPage}
+                                        >
+                                            KJØP BILLETTER
+                                        </a>
+                                    )}
 
                                     <PortableText
                                         value={play.content}
                                         components={PortableTextComponent}
                                     />
+                                    {play.imageGallery &&
+                                        play.imageGallery.length > 0 && (
+                                            <ImageGallery
+                                                images={play.imageGallery}
+                                            />
+                                        )}
                                 </div>
-                                <button
-                                    className="sticky md:hidden bottom-0 w-full p-4 font-bold text-center"
-                                    style={{
-                                        color: play.textColor,
-                                        backgroundColor: play.playColor
-                                    }}
-                                    onClick={() =>
-                                        (window.location.href =
-                                            play.ticketsPage)
-                                    }
-                                    role="link"
-                                >
-                                    KJØP BILLETTER
-                                </button>
+                                {play.active && (
+                                    <button
+                                        className="sticky md:hidden bottom-0 w-full p-4 font-bold text-center"
+                                        style={{
+                                            color: play.textColor,
+                                            backgroundColor: play.playColor
+                                        }}
+                                        onClick={() =>
+                                            (window.location.href =
+                                                play.ticketsPage)
+                                        }
+                                        role="link"
+                                    >
+                                        KJØP BILLETTER
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}

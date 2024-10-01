@@ -169,6 +169,12 @@ export const play = defineType({
       ],
     }),
     defineField({
+      title: 'Bildegalleri',
+      name: 'imageGallery',
+      type: 'array',
+      of: [defineArrayMember({type: 'playImage'})],
+    }),
+    defineField({
       title: 'URL slug',
       name: 'slug',
       type: 'slug',

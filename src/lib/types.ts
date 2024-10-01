@@ -1,8 +1,9 @@
 import { SanityImageAssetDocument } from '@sanity/client';
 import { PortableTextBlock } from '@portabletext/react';
 
-type Image = {
+export type SanityImage = {
     image: SanityImageAssetDocument;
+    caption?: string;
     altText: string;
 };
 
@@ -22,6 +23,7 @@ export type HighlightedPlay = {
     imageAlt: string;
     description: string;
     playReference: {
+        active: boolean;
         playStartDate?: string;
         playEndDate?: string;
         playPeriod?: string;
@@ -33,8 +35,8 @@ export type HighlightedPlay = {
 
 export type Play = {
     playTitle: string;
-    bannerImg: Image;
-    logoImg?: Image;
+    bannerImg: SanityImage;
+    logoImg?: SanityImage;
     playDates?: string[];
     playColor: string;
     textColor: string;
@@ -42,6 +44,8 @@ export type Play = {
     location: string;
     playPeriod?: string;
     ticketsPage: string;
+    active: boolean;
+    imageGallery?: SanityImage[];
     content: PortableTextBlock;
 };
 
