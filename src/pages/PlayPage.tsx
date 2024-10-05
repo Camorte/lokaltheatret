@@ -17,7 +17,6 @@ const PlayPage = () => {
         if (params.slug) {
             getPlay(params.slug)
                 .then((response) => {
-                    console.log(response);
                     setPlay(response);
                 })
                 .finally(() => setIsLoading(false));
