@@ -181,5 +181,6 @@ export const play = defineType({
       options: {source: 'playTitle'},
       validation: (Rule) => Rule.required(),
     }),
+    defineField({title: 'Medvirkende', name: 'contributors', type: 'contributors'}),
   ],
 })

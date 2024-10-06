@@ -1,6 +1,6 @@
-import { urlFor } from '../lib/sanity.ts';
-import { SanityImage } from '../lib/types.ts';
-import { parseToDate } from '../lib/helpers.ts';
+import { urlFor } from '../../lib/sanity.ts';
+import { SanityImage } from '../../lib/types.ts';
+import { parseToDate } from '../../lib/helpers.ts';
 
 const PlayBanner = ({
     bannerImg,

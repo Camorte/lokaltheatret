@@ -20,7 +20,10 @@ export const getPlay = async (slug: string) => {
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
             playTitle, playDates, duration, location, content, playPeriod, ticketsPage, active,
-            imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption}
+            imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption},
+            contributors{"actors": actors[]{role, name}, "artisticTeam": aristicTeam[]{role, name},
+              "productionTeam": productionTeam[]{role, names[]{name}}
+            }
         }`
     );
 };

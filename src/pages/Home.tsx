@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getMainBanner, urlFor } from '../lib/sanity.ts';
 import { LandingPage } from '../lib/types.ts';
-import PlayCard from '../components/PlayCard.tsx';
+import PlayCard from '../components/Plays/PlayCard.tsx';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -31,12 +31,12 @@ const Home = () => {
                         <div className="absolute z-[4] shadow-inner-lg h-full w-full" />
                         <div className="bg-black absolute h-full w-full z-0 opacity-100" />
                         <img
-                            className="relative z-[2] w-full object-cover h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 opacity-100 group-hover:opacity-[0.8]"
+                            className="relative z-[2] w-full object-cover h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 opacity-100 md:group-hover:opacity-[0.8]"
                             src={urlFor(landingPage.image).url()}
                             alt={landingPage.bannerAltText}
                         />
                         <img
-                            className="absolute bottom-10 right-10 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] group-hover:scale-110"
+                            className="absolute bottom-10 right-5 md:right-10 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] md:group-hover:scale-110"
                             src={urlFor(landingPage.logo).url()}
                             alt={landingPage.logoAltText}
                         />

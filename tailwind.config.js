@@ -3,6 +3,10 @@ export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
+            transitionProperty: {
+                'height-width-opacity-display':
+                    'height, width, opacity, display'
+            },
             willChange: {
                 'transform-opacity': 'transform, opacity'
             },

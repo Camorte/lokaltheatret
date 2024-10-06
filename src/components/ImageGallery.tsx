@@ -40,7 +40,7 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                         <img
                             key={'img-gallery-' + index}
                             onClick={() => setChosenImg(image)}
-                            className="cursor-pointer snap-start md:max-w-[50%] max-h-[20%] mr-4 last-of-type:mr-0 "
+                            className="cursor-pointer snap-start md:max-w-[50%] max-h-[15%] mr-4 last-of-type:mr-0 "
                             src={urlFor(image.image).width(800).url()}
                             alt={image.altText}
                         />

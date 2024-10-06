@@ -1,5 +1,4 @@
 import {defineField} from 'sanity'
-import {SanityImageAssetDocument} from '@sanity/client'
 
 export const playImage = {
   title: 'Forestillingsbilde',

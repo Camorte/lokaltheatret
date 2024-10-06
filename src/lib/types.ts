@@ -47,6 +47,7 @@ export type Play = {
     active: boolean;
     imageGallery?: SanityImage[];
     content: PortableTextBlock;
+    contributors: Contributors;
 };
 
 export type Footer = {
@@ -55,4 +56,15 @@ export type Footer = {
     instagram?: string;
     slogan?: string;
     contactEmail: string;
+};
+
+export type Contributor = {
+    role: string;
+    names: string[];
+};
+
+export type Contributors = {
+    actors?: Contributor[];
+    artisticTeam?: Contributor[];
+    productionTeam?: Contributor[];
 };

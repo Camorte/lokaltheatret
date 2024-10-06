@@ -13,7 +13,6 @@ export const about = defineType({
     }),
     defineField({
       title: 'Innhold',
-      description: 'What is this article about?',
       name: 'content',
       type: 'array',
       of: [

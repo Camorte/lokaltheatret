@@ -2,7 +2,7 @@ import { useSpring, a } from '@react-spring/web';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SanityImageAssetDocument } from '@sanity/client';
-import { urlFor } from '../lib/sanity.ts';
+import { urlFor } from '../../lib/sanity.ts';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 const PlayCard = ({

@@ -5,8 +5,9 @@ import { Play } from '../lib/types.ts';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '../components/PortableTextComponent.tsx';
 import { parseToDate } from '../lib/helpers.ts';
-import PlayBanner from '../components/PlayBanner.tsx';
+import PlayBanner from '../components/Plays/PlayBanner.tsx';
 import ImageGallery from '../components/ImageGallery.tsx';
+import ContributorsSection from '../components/Plays/ContributorsSection.tsx';
 
 const PlayPage = () => {
     const params = useParams();
@@ -117,8 +118,8 @@ const PlayPage = () => {
                                         <a
                                             className="hidden md:block w-full my-4 p-4 font-bold text-center"
                                             style={{
-                                                color: play.textColor,
-                                                backgroundColor: play.playColor
+                                                backgroundColor: play.textColor,
+                                                color: play.playColor
                                             }}
                                             href={play.ticketsPage}
                                         >
@@ -136,13 +137,19 @@ const PlayPage = () => {
                                                 images={play.imageGallery}
                                             />
                                         )}
+                                    {play.contributors && (
+                                        <ContributorsSection
+                                            contributors={play.contributors}
+                                        />
+                                    )}
                                 </div>
+
                                 {play.active && (
                                     <button
                                         className="sticky md:hidden bottom-0 w-full p-4 font-bold text-center"
                                         style={{
-                                            color: play.textColor,
-                                            backgroundColor: play.playColor
+                                            backgroundColor: play.textColor,
+                                            color: play.playColor
                                         }}
                                         onClick={() =>
                                             (window.location.href =
