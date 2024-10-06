@@ -10,6 +10,7 @@ const ContributorList = ({
     title?: string;
     contributorList: Contributor[] | undefined;
 }) => {
+    console.log(contributorList);
     return (
         <>
             {contributorList && contributorList.length > 0 && (
@@ -23,7 +24,9 @@ const ContributorList = ({
                                 <p className="font-bold text-lg m-0">
                                     {contributor.role}
                                 </p>
-                                <p className="m-0">{contributor.name}</p>
+                                {contributor.names.map((name) => (
+                                    <p className="m-0">{name}</p>
+                                ))}
                             </div>
                         ))}
                     </div>
