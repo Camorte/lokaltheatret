@@ -36,6 +36,8 @@ const Home = () => {
                                 className={`absolute z-[4] h-[50vh] w-full md:h-full max-h-[70vh] ease-in transition-opacity duration-300 ${videoEnded ? 'opacity-0' : 'opacity-1'}`}
                             >
                                 <video
+                                    preload="auto"
+                                    playsInline
                                     autoPlay
                                     muted
                                     loop={false}
