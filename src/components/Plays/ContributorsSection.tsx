@@ -19,8 +19,8 @@ const ContributorList = ({
                         <h2 className="text-2xl md:text-4xl m-0">{title}</h2>
                     )}
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3 w-full border-t border-black pt-4">
-                        {contributorList.map((contributor) => (
-                            <div>
+                        {contributorList.map((contributor, index) => (
+                            <div key={`contributor-${title}-${index}`}>
                                 <p className="font-bold text-lg m-0">
                                     {contributor.role}
                                 </p>
@@ -72,7 +72,7 @@ const ContributorsSection = ({
                     </button>
                 )}
                 <div
-                    className={`flex flex-col gap-y-8 md:gap-y-16 transition-height-width-opacity-display ease-in-out delay-150 ${isOpen ? 'w-full h-full opacity-1' : 'w-0 h-0 opacity-0'}`}
+                    className={`flex flex-col gap-y-8 md:gap-y-16 transition-height-width-opacity-display ease-in-out delay-200 ${isOpen ? 'w-full h-full opacity-1' : 'w-0 h-0 opacity-0'}`}
                 >
                     <ContributorList contributorList={contributors.actors} />
                     <ContributorList

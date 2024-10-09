@@ -15,6 +15,7 @@ export type LandingPage = {
     bannerAltText: string;
     bannerUrl: string;
     highlightedPlays: HighlightedPlay[];
+    videoUrl: string;
 };
 
 export type HighlightedPlay = {

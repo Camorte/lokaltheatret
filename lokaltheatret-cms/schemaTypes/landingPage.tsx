@@ -27,6 +27,14 @@ export const landingPage = defineType({
       ],
     },
     {
+      title: 'Bannervideo',
+      name: 'video',
+      type: 'file',
+      options: {
+        accept: '.mp4',
+      },
+    },
+    {
       title: 'Bilde',
       name: 'image',
       type: 'image',

@@ -32,7 +32,7 @@ export const getMainBanner = async () => {
     return client.fetch(
         `*[_type=="landingPage"][0]{
             image, logo, "bannerAltText": image.alt, "logoAltText": logo.alt, 
-           "bannerUrl":bannerReference->{"urlRef":"/"+slug.current}.urlRef,
+           "bannerUrl":bannerReference->{"urlRef":"/"+slug.current}.urlRef, "videoUrl": video.asset->url,
             highlightedPlays[]{
                 title, image, "imageAlt": imgage.alt, description, 
                 playReference->{"urlRef":"/"+slug.current, 

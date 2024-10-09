@@ -9,6 +9,7 @@ const Home = () => {
 
     const [landingPage, setLandingPage] = useState<LandingPage>();
     const [isLoading, setIsLoading] = useState(true);
+    const [videoEnded, setVideoEnded] = useState(false);
 
     useEffect(() => {
         getMainBanner()
@@ -30,11 +31,34 @@ const Home = () => {
                     >
                         <div className="absolute z-[4] shadow-inner-lg h-full w-full" />
                         <div className="bg-black absolute h-full w-full z-0 opacity-100" />
+                        {landingPage.videoUrl && (
+                            <div
+                                className={`absolute z-[4] h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 ${videoEnded ? 'opacity-0' : 'opacity-1'}`}
+                            >
+                                <video
+                                    autoPlay
+                                    muted
+                                    loop={false}
+                                    className="h-full"
+                                    style={{ objectFit: 'fill' }}
+                                    onEnded={() => setVideoEnded(true)}
+                                >
+                                    <source
+                                        src={landingPage.videoUrl}
+                                        type="video/mp4"
+                                    />
+                                    Sorry, your browser doesn't support embedded
+                                    videos.
+                                </video>
+                            </div>
+                        )}
+
                         <img
                             className="relative z-[2] w-full object-cover h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 opacity-100 md:group-hover:opacity-[0.8]"
                             src={urlFor(landingPage.image).url()}
                             alt={landingPage.bannerAltText}
                         />
+
                         <img
                             className="absolute bottom-10 right-5 md:right-10 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] md:group-hover:scale-110"
                             src={urlFor(landingPage.logo).url()}
