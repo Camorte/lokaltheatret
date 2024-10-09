@@ -33,14 +33,16 @@ const Home = () => {
                         <div className="bg-black absolute h-full w-full z-0 opacity-100" />
                         {landingPage.videoUrl && (
                             <div
-                                className={`absolute z-[4] h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 ${videoEnded ? 'opacity-0' : 'opacity-1'}`}
+                                className={`absolute z-[4] h-[50vh] w-full md:h-full max-h-[70vh] ease-in transition-opacity duration-300 ${videoEnded ? 'opacity-0' : 'opacity-1'}`}
                             >
                                 <video
                                     autoPlay
                                     muted
                                     loop={false}
-                                    className="h-full"
-                                    style={{ objectFit: 'fill' }}
+                                    className="w-full h-full"
+                                    style={{
+                                        objectFit: 'cover'
+                                    }}
                                     onEnded={() => setVideoEnded(true)}
                                 >
                                     <source
