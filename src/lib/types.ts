@@ -34,6 +34,18 @@ export type HighlightedPlay = {
     };
 };
 
+export type PlaysList = {
+    playTitle: string;
+    bannerImg: SanityImage;
+    logoImg?: SanityImage;
+    playDates?: string[];
+    playColor: string;
+    textColor: string;
+    location: string;
+    playPeriod?: string;
+    active: boolean;
+}[];
+
 export type Play = {
     playTitle: string;
     bannerImg: SanityImage;

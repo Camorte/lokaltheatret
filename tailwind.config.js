@@ -5,7 +5,8 @@ export default {
         extend: {
             transitionProperty: {
                 'height-width-opacity-display':
-                    'height, width, opacity, display'
+                    'height, width, opacity, display',
+                'filter-width': 'filter, width'
             },
             willChange: {
                 'transform-opacity': 'transform, opacity'

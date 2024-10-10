@@ -13,6 +13,17 @@ export const getFooter = async () => {
     return client.fetch("*[_type=='footer'][0]{...}");
 };
 
+export const getPlays = async () => {
+    return client.fetch(`
+        *[_type=="play"]{
+            "playColor":playColor.hex, "textColor": textColor.hex,
+            "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
+            "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
+            playTitle, playDates, location, playPeriod, active,
+        }
+    `);
+};
+
 export const getPlay = async (slug: string) => {
     return client.fetch(
         `*[_type=="play" && slug.current=="${slug}"][0]{

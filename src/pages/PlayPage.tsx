@@ -8,6 +8,7 @@ import { parseToDate } from '../lib/helpers.ts';
 import PlayBanner from '../components/Plays/PlayBanner.tsx';
 import ImageGallery from '../components/ImageGallery.tsx';
 import ContributorsSection from '../components/Plays/ContributorsSection.tsx';
+import LoadingSpinner from '../components/LoadingSpinner.tsx';
 
 const PlayPage = () => {
     const params = useParams();
@@ -27,7 +28,7 @@ const PlayPage = () => {
     return (
         <>
             {isLoading ? (
-                <p>Loading...</p>
+                <LoadingSpinner />
             ) : (
                 <>
                     {play && (
