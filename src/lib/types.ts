@@ -44,6 +44,7 @@ export type PlaysList = {
     location: string;
     playPeriod?: string;
     active: boolean;
+    slug: string;
 }[];
 
 export type Play = {

@@ -20,6 +20,7 @@ export const getPlays = async () => {
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
             playTitle, playDates, location, playPeriod, active,
+            "slug":"/"+slug.current
         }
     `);
 };
