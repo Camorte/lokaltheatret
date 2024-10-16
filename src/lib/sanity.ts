@@ -56,6 +56,14 @@ export const getMainBanner = async () => {
     );
 };
 
+export const getAboutPage = async () => {
+    return client.fetch(
+        `*[_type=="about"][0]{
+            title, content
+        }`
+    );
+};
+
 const urlBuilderFactory = imageUrlBuilder(client);
 
 export function urlFor(image: SanityImageSource) {

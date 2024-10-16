@@ -82,3 +82,8 @@ export type Contributors = {
     artisticTeam?: Contributor[];
     productionTeam?: Contributor[];
 };
+
+export type AboutPage = {
+    title?: string;
+    content: PortableTextBlock;
+};
