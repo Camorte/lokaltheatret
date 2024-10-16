@@ -65,7 +65,7 @@ const About = () => {
                                 />
                             </div>
                             <div
-                                className="grid p-2 rounded-md items-center"
+                                className="grid p-2 items-center"
                                 style={{
                                     backgroundColor: aboutPage.bannerColor
                                 }}
