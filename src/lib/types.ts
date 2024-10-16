@@ -87,5 +87,11 @@ export type AboutPage = {
     aboutPageBannerImg: SanityImage;
     title?: string;
     content: PortableTextBlock;
-    bannerColor: SanityColor;
+    bannerColor: string;
+    foundersContent: PortableTextBlock;
+    foundersList: {
+        name: string;
+        role: string;
+        image: SanityImage;
+    }[];
 };

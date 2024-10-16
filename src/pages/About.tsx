@@ -54,6 +54,48 @@ const About = () => {
                             components={PortableTextComponent}
                         />
                     </div>
+
+                    <div className="w-3/4 grid grid-cols-3  gap-8">
+                        <div className="col-span-2">
+                            <h2>Våre grunnleggere</h2>
+                            <PortableText
+                                value={aboutPage.foundersContent}
+                                components={PortableTextComponent}
+                            />
+                        </div>
+                        <div
+                            className="grid p-2"
+                            style={{
+                                backgroundColor: aboutPage.bannerColor
+                            }}
+                        >
+                            {aboutPage.foundersList?.map((founder, i) => {
+                                return (
+                                    <div className="relative p-4" key={i}>
+                                        <div className="">
+                                            {founder.image && (
+                                                <img
+                                                    className="rounded-full"
+                                                    src={urlFor(
+                                                        founder.image
+                                                    ).url()}
+                                                    alt={founder.image.altText}
+                                                />
+                                            )}
+                                        </div>
+                                        <div className="p-2 bg-white absolute bottom-0 right-1">
+                                            <p className="text-sm font-bold">
+                                                {founder.name}
+                                            </p>
+                                            <p className="text-sm">
+                                                {founder.role}
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </>
             )}
         </main>

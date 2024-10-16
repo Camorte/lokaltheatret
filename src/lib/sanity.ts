@@ -59,7 +59,7 @@ export const getMainBanner = async () => {
 export const getAboutPage = async () => {
     return client.fetch(
         `*[_type=="about"][0]{
-            aboutPageBannerImg, "bannerColor":bannerColor.hex, title, content
+            aboutPageBannerImg, "bannerColor":bannerColor.hex, title, content, foundersContent, foundersList
         }`
     );
 };
