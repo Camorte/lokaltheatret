@@ -84,6 +84,8 @@ export type Contributors = {
 };
 
 export type AboutPage = {
+    aboutPageBannerImg: SanityImage;
     title?: string;
     content: PortableTextBlock;
+    bannerColor: SanityColor;
 };
