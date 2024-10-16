@@ -48,52 +48,61 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className="mx-0 my-auto w-3/4 mt-16">
-                        <PortableText
-                            value={aboutPage.content}
-                            components={PortableTextComponent}
-                        />
-                    </div>
-
-                    <div className="w-3/4 grid grid-cols-3  gap-8">
-                        <div className="col-span-2">
-                            <h2>Våre grunnleggere</h2>
+                    <div className="w-3/4">
+                        <div className="mx-0 my-auto mt-16">
                             <PortableText
-                                value={aboutPage.foundersContent}
+                                value={aboutPage.content}
                                 components={PortableTextComponent}
                             />
                         </div>
-                        <div
-                            className="grid p-2"
-                            style={{
-                                backgroundColor: aboutPage.bannerColor
-                            }}
-                        >
-                            {aboutPage.foundersList?.map((founder, i) => {
-                                return (
-                                    <div className="relative p-4" key={i}>
-                                        <div className="">
-                                            {founder.image && (
-                                                <img
-                                                    className="rounded-full"
-                                                    src={urlFor(
-                                                        founder.image
-                                                    ).url()}
-                                                    alt={founder.image.altText}
-                                                />
-                                            )}
+
+                        <div className="grid grid-flow-row md:grid-flow-col md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+                            <div className="lg:col-span-2">
+                                <h2>Våre grunnleggere</h2>
+                                <PortableText
+                                    value={aboutPage.foundersContent}
+                                    components={PortableTextComponent}
+                                />
+                            </div>
+                            <div
+                                className="grid p-2 rounded-md items-center"
+                                style={{
+                                    backgroundColor: aboutPage.bannerColor
+                                }}
+                            >
+                                {aboutPage.foundersList?.map((founder, i) => {
+                                    return (
+                                        <div
+                                            className="p-4 relative h-full flex items-center"
+                                            key={i}
+                                        >
+                                            <div className="">
+                                                {founder.image && (
+                                                    <img
+                                                        className="rounded-full"
+                                                        src={urlFor(
+                                                            founder.image
+                                                        ).url()}
+                                                        alt={
+                                                            founder.image
+                                                                .altText
+                                                        }
+                                                        width={'200px'}
+                                                    />
+                                                )}
+                                            </div>
+                                            <div className="p-2 rounded-md bg-white absolute bottom-0 right-1 w-2/3">
+                                                <p className="text-sm font-bold">
+                                                    {founder.name}
+                                                </p>
+                                                <p className="text-sm">
+                                                    {founder.role}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className="p-2 bg-white absolute bottom-0 right-1">
-                                            <p className="text-sm font-bold">
-                                                {founder.name}
-                                            </p>
-                                            <p className="text-sm">
-                                                {founder.role}
-                                            </p>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
                 </>
