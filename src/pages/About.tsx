@@ -16,11 +16,6 @@ const About = () => {
             .finally(() => setIsLoading(false));
     }, []);
 
-    // About page
-    // banner image
-    // title
-    // content
-
     return (
         <main className="flex flex-col justify-center items-center mb-16">
             {!isLoading && aboutPage && (
