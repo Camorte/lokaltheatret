@@ -65,7 +65,7 @@ const Home = () => {
 
                         <img
                             className="absolute bottom-10 right-5 md:right-10 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] md:group-hover:scale-110"
-                            src={urlFor(landingPage.logo).url()}
+                            src={urlFor(landingPage.logo).width(700).url()}
                             alt={landingPage.logoAltText}
                         />
                     </div>
