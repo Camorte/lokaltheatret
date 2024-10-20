@@ -9,11 +9,22 @@ const NavLinks = [
     { name: 'Bli med!', path: '/bli-med' }
 ];
 
-const NavbarLinks = ({ currentRoute }: { currentRoute: string }) => (
+const NavbarLinks = ({
+    currentRoute,
+    setShowMenu
+}: {
+    currentRoute: string;
+    setShowMenu?: (show: boolean) => void;
+}) => (
     <>
         {NavLinks.map((nav) => (
             <li className="group w-fit block" key={`navlink-${nav.name}`}>
-                <Link to={nav.path}>
+                <Link
+                    onClick={() => {
+                        if (setShowMenu) setShowMenu(false);
+                    }}
+                    to={nav.path}
+                >
                     <p
                         className={`group-hover:underline py-2 px-2 md:text-xl ${currentRoute.includes(nav.path) ? 'underline' : ''}`}
                     >
@@ -82,7 +93,10 @@ const Header = () => {
                             <IoMdClose />
                         </button>
                         <ul className="flex flex-col pl-4 items-center  ">
-                            <NavbarLinks currentRoute={location.pathname} />
+                            <NavbarLinks
+                                setShowMenu={setShowMenu}
+                                currentRoute={location.pathname}
+                            />
                         </ul>
                     </div>
                 </div>
