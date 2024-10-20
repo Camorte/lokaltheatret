@@ -63,7 +63,9 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                 currScrollRef.scrollWidth <= currScrollRef.clientWidth
             );
 
-            const pages = currScrollRef.scrollWidth / 750;
+            const pages = Math.round(
+                currScrollRef.scrollWidth / currScrollRef.clientWidth
+            );
             if (pages > 4) {
                 setNumberOfPages(4);
             } else if (pages > 1) {
@@ -106,13 +108,13 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                         scrollBehavior: 'smooth'
                     }}
                     ref={scrollToRef}
-                    className="snap-x snap-mandatory flex flex-row overflow-x-scroll items-center no-scrollbar w-full"
+                    className="snap-x snap-mandatory flex flex-row overflow-x-scroll items-center no-scrollbar w-full h-[500px]"
                 >
                     {images.map((image, index) => (
                         <div
                             key={'img-gallery-' + index}
                             onClick={() => setChosenImg(image)}
-                            className="cursor-pointer shrink-0 snap-start h-full w-[350px] p-4"
+                            className="cursor-pointer shrink-0 snap-start h-[500px] w-[350px] p-4"
                         >
                             <img
                                 className="w-full h-full"
