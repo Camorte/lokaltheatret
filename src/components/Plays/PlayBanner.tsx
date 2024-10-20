@@ -22,13 +22,13 @@ const PlayBanner = ({
     return (
         <div className="relative">
             <div
-                className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
+                className="absolute w-fit p-2 z-[2] top-[40%] left-[32px] md:left-[10vw] md:p-8"
                 style={{ backgroundColor: playColor }}
             >
                 {logoImg?.image ? (
                     <img
-                        src={urlFor(logoImg.image).url()}
-                        className="max-w-[40vw] md:max-w-[30vw]"
+                        src={urlFor(logoImg.image).width(300).url()}
+                        className="max-w-[30vw] md:max-w-[30vw]"
                         alt={logoImg.altText}
                     />
                 ) : (
@@ -40,7 +40,7 @@ const PlayBanner = ({
                     </p>
                 )}
                 <p
-                    className="text-lg m-0 md:text-3xl"
+                    className="text-sm m-0 md:text-3xl"
                     style={{ color: textColor }}
                 >
                     {playDates &&
@@ -56,7 +56,7 @@ const PlayBanner = ({
             </div>
             <img
                 className="relative w-full h-full max-h-[80vh] object-cover"
-                src={urlFor(bannerImg.image).width(1900).url()}
+                src={urlFor(bannerImg.image).width(1600).url()}
                 alt={bannerImg.altText}
             />
         </div>

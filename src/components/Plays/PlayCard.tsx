@@ -48,7 +48,7 @@ const PlayCard = ({
             >
                 <img
                     className="w-full bg-black h-[280px] md:h-[280px] lg:h-[400px] object-cover"
-                    src={urlFor(image).url()}
+                    src={urlFor(image).width(480).url()}
                     alt={imageAlt}
                 />
                 <div
@@ -94,7 +94,7 @@ const PlayCard = ({
                     />
                     <img
                         className="absolute h-full w-full object-cover z-0 top-0"
-                        src={urlFor(image).url()}
+                        src={urlFor(image).width(350).url()}
                         alt={imageAlt}
                     />
                 </div>

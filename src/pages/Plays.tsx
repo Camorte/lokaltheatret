@@ -50,7 +50,7 @@ const Plays = () => {
                             <img
                                 className="w-[150px] md:w-[200px]"
                                 src={urlFor(play.logoImg.image)
-                                    .width(200)
+                                    .width(300)
                                     .url()}
                                 alt={play.logoImg.altText}
                             />

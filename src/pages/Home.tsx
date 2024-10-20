@@ -27,7 +27,7 @@ const Home = () => {
                         onClick={() =>
                             navigate('/forestillinger' + landingPage.bannerUrl)
                         }
-                        className="relative group hover:cursor-pointer"
+                        className="relative group hover:cursor-pointer w-full h-[50vh] md:h-full max-h-[70vh]"
                     >
                         <div className="absolute z-[4] shadow-inner-lg h-full w-full" />
                         <div className="bg-black absolute h-full w-full z-0 opacity-100" />
@@ -59,7 +59,7 @@ const Home = () => {
 
                         <img
                             className="relative z-[2] w-full object-cover h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 opacity-100 md:group-hover:opacity-[0.8]"
-                            src={urlFor(landingPage.image).url()}
+                            src={urlFor(landingPage.image).width(1500).url()}
                             alt={landingPage.bannerAltText}
                         />
 
