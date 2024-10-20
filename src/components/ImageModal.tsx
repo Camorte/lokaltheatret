@@ -68,7 +68,7 @@ const ImageModal = ({
                             setIsLoading(false);
                         }}
                     />
-                    {chosenImg.caption && (
+                    {chosenImg.caption && !isLoading && (
                         <p
                             className="absolute bottom-5 left-0 right-0 mx-auto text-white m-0 max-w-[300px] p-2 md:max-w-[500px]"
                             style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}

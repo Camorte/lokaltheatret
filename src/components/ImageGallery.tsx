@@ -3,6 +3,8 @@ import { urlFor } from '../lib/sanity.ts';
 import { IoIosArrowForward } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { FaCircle } from 'react-icons/fa';
+
 import ImageModal from './ImageModal.tsx';
 
 const ImageGallery = ({ images }: { images: SanityImage[] }) => {
@@ -11,18 +13,31 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
         undefined
     );
 
+    const [numberOfPages, setNumberOfPages] = useState<number | undefined>();
     const [maxScrollRight, setMaxScrollRight] = useState(true);
     const [maxScrollLeft, setMaxScrollLeft] = useState(true);
+    const [scrollIndex, setScrollIndex] = useState(0);
 
     const updateScrollMax = () => {
         const currScrollRef = scrollToRef.current;
         if (currScrollRef) {
             setMaxScrollRight(currScrollRef.scrollLeft === 0);
-
             setMaxScrollLeft(
                 currScrollRef.scrollLeft + currScrollRef.clientWidth >=
                     currScrollRef.scrollWidth
             );
+
+            if (numberOfPages !== undefined) {
+                const scrollPercentage =
+                    currScrollRef.scrollLeft / currScrollRef.scrollWidth;
+
+                const newIndex = Math.ceil(scrollPercentage * numberOfPages);
+                if (newIndex > numberOfPages - 1) {
+                    setScrollIndex(numberOfPages - 1);
+                } else {
+                    setScrollIndex(newIndex);
+                }
+            }
         }
     };
 
@@ -47,6 +62,13 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
             setMaxScrollLeft(
                 currScrollRef.scrollWidth <= currScrollRef.clientWidth
             );
+
+            const pages = currScrollRef.scrollWidth / 750;
+            if (pages > 4) {
+                setNumberOfPages(4);
+            } else if (pages > 1) {
+                setNumberOfPages(pages);
+            }
         }
     }, []);
 
@@ -70,8 +92,8 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
     }, [scrollToRef]);
 
     return (
-        <>
-            <div className="flex flex-row items-center my-8">
+        <div className="my-8">
+            <div className="flex flex-row items-center">
                 <div className="hidden md:block mr-4 h-[40px] w-[40px]">
                     {!maxScrollRight && (
                         <button onClick={() => handleScroll(false)}>
@@ -100,6 +122,7 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                         </div>
                     ))}
                 </div>
+
                 <div className="hidden md:block ml-4 h-[40px] w-[40px]">
                     {!maxScrollLeft && (
                         <button onClick={() => handleScroll(true)}>
@@ -108,10 +131,20 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                     )}
                 </div>
             </div>
+            <div className="flex flex-row items-center justify-center gap-x-2 w-full">
+                {numberOfPages &&
+                    Array.from({ length: numberOfPages }, (_, i) => (
+                        <FaCircle
+                            key={'image-gallery-circle-' + i}
+                            size={10}
+                            color={`${i == scrollIndex ? 'black' : 'lightgrey'}`}
+                        />
+                    ))}
+            </div>
             {chosenImg && (
                 <ImageModal chosenImg={chosenImg} setChosenImg={setChosenImg} />
             )}
-        </>
+        </div>
     );
 };
 
