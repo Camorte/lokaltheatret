@@ -50,9 +50,9 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
             const scrollPercentage =
                 currScrollRef.scrollLeft / currScrollRef.scrollWidth;
 
-            const newIndex = Math.ceil(scrollPercentage * numberOfPages);
+            const newIndex = Math.round(scrollPercentage * numberOfPages);
             if (newIndex > numberOfPages) {
-                setScrollIndex(numberOfPages);
+                setScrollIndex(numberOfPages - 1);
             } else {
                 setScrollIndex(newIndex);
             }
