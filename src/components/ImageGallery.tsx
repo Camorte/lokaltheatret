@@ -114,7 +114,7 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                         <div
                             key={'img-gallery-' + index}
                             onClick={() => setChosenImg(image)}
-                            className="cursor-pointer shrink-0 snap-start h-[500px] w-[350px] p-4"
+                            className="cursor-pointer shrink-0 snap-start max-h-[500px] w-[350px] p-4"
                         >
                             <img
                                 className="w-full h-full"
