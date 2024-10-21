@@ -26,18 +26,6 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                 currScrollRef.scrollLeft + currScrollRef.clientWidth >=
                     currScrollRef.scrollWidth
             );
-
-            if (numberOfPages !== undefined) {
-                const scrollPercentage =
-                    currScrollRef.scrollLeft / currScrollRef.scrollWidth;
-
-                const newIndex = Math.ceil(scrollPercentage * numberOfPages);
-                if (newIndex > numberOfPages - 1) {
-                    setScrollIndex(numberOfPages - 1);
-                } else {
-                    setScrollIndex(newIndex);
-                }
-            }
         }
     };
 
@@ -54,6 +42,34 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
         }
     };
 
+    const updateScrollIndex = () => {
+        const currScrollRef = scrollToRef.current;
+
+        if (!currScrollRef) return;
+        if (numberOfPages !== undefined) {
+            const scrollPercentage =
+                currScrollRef.scrollLeft / currScrollRef.scrollWidth;
+
+            const newIndex = Math.ceil(scrollPercentage * numberOfPages);
+            if (newIndex > numberOfPages) {
+                setScrollIndex(numberOfPages);
+            } else {
+                setScrollIndex(newIndex);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const currScrollRef = scrollToRef.current;
+        if (currScrollRef) {
+            currScrollRef.addEventListener('scroll', updateScrollIndex);
+
+            return () => {
+                currScrollRef.removeEventListener('scroll', updateScrollIndex);
+            };
+        }
+    }, [numberOfPages]);
+
     useEffect(() => {
         updateScrollMax();
         const currScrollRef = scrollToRef.current;
@@ -66,6 +82,7 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
             const pages = Math.round(
                 currScrollRef.scrollWidth / currScrollRef.clientWidth
             );
+
             if (pages > 4) {
                 setNumberOfPages(4);
             } else if (pages > 1) {
@@ -80,6 +97,16 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
         window.addEventListener('resize', updateScrollMax);
 
         if (currScrollRef) {
+            const pages = Math.round(
+                currScrollRef.scrollWidth / currScrollRef.clientWidth
+            );
+
+            if (pages > 4) {
+                setNumberOfPages(4);
+            } else if (pages > 1) {
+                setNumberOfPages(pages);
+            }
+
             currScrollRef.addEventListener('scroll', updateScrollMax);
             currScrollRef.addEventListener('focus', scrollOnFocus);
         }
