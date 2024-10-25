@@ -75,7 +75,7 @@ export type Footer = {
 export type Contributor = {
     role: string;
     names: string[];
-};
+} & Partial<SanityImage>;
 
 export type Contributors = {
     actors?: Contributor[];

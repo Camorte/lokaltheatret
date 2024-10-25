@@ -2,6 +2,7 @@ import { Contributor, Contributors } from '../../lib/types.ts';
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { IoIosArrowForward } from 'react-icons/io';
+import { urlFor } from '../../lib/sanity.ts';
 
 const ContributorList = ({
     title,
@@ -20,6 +21,15 @@ const ContributorList = ({
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3 w-full border-t border-black pt-4">
                         {contributorList.map((contributor, index) => (
                             <div key={`contributor-${title}-${index}`}>
+                                {contributor.image && (
+                                    <img
+                                        className="w-[200px] max-h-[300px] object-cover"
+                                        src={urlFor(contributor.image)
+                                            .width(300)
+                                            .url()}
+                                        alt={contributor.altText}
+                                    />
+                                )}
                                 <p className="font-bold text-lg m-0">
                                     {contributor.role}
                                 </p>

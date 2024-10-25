@@ -33,7 +33,7 @@ export const getPlay = async (slug: string) => {
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
             playTitle, playDates, duration, location, content, playPeriod, ticketsPage, active,
             imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption},
-            contributors{"actors": actors[]{role, names[]}, "artisticTeam": aristicTeam[]{role, names[]},
+            contributors{"actors": actors[]{role, image, "imageAlt": image.altText,names[]}, "artisticTeam": aristicTeam[]{role, names[]},
               "productionTeam": productionTeam[]{role, names[]}
             }
         }`
