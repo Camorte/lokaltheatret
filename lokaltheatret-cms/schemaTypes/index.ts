@@ -4,5 +4,6 @@ import {about} from './about'
 import {footer} from './footer'
 import {playImage} from './playImage'
 import {contributors} from './contributors'
+import {join} from './join'
 
-export const schemaTypes = [landingPage, about, play, footer, playImage, contributors]
+export const schemaTypes = [landingPage, about, play, footer, playImage, contributors, join]

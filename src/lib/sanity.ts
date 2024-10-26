@@ -64,6 +64,14 @@ export const getAboutPage = async () => {
     );
 };
 
+export const getJoinPage = async () => {
+    return client.fetch(
+        `*[_type=="join"][0]{
+            joinPageBannerImg, "bannerColor":bannerColor.hex, title, content
+        }`
+    );
+};
+
 const urlBuilderFactory = imageUrlBuilder(client);
 
 export function urlFor(image: SanityImageSource) {
