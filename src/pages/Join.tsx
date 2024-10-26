@@ -60,24 +60,22 @@ const Join = () => {
     const [fallbackMessage, setFallbackMessage] = useState<JSX.Element | null>(
         null
     );
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
-    const validateForm = (): ValidationErrors => {
+    const validateForm = (data: FormData): ValidationErrors => {
         const newErrors: ValidationErrors = {};
-        if (!formData.name) newErrors.name = 'Navn er påkrevd';
-        if (!formData.email) {
+        if (!data.name) newErrors.name = 'Navn er påkrevd';
+        if (!data.email) {
             newErrors.email = 'E-post er påkrevd';
-        } else if (!/^\S+@\S+$/.test(formData.email)) {
+        } else if (!/^\S+@\S+$/.test(data.email)) {
             newErrors.email = 'E-post er ugyldig';
         }
-        if (!formData.phone) {
+        if (!data.phone) {
             newErrors.phone = 'Telefonnummer er påkrevd';
-        } else if (
-            formData.phone &&
-            !/^(\+47|0047|47)?\d{8}$/.test(formData.phone)
-        ) {
+        } else if (data.phone && !/^(\+47|0047|47)?\d{8}$/.test(data.phone)) {
             newErrors.phone = 'Telefonnummer er ugyldig';
         }
-        if (!Object.values(formData.role).some(Boolean)) {
+        if (!Object.values(data.role).some(Boolean)) {
             newErrors.role = 'Du må velge minst ett alternativ for rolle';
         }
         return newErrors;
@@ -90,18 +88,28 @@ const Join = () => {
 
         if (type === 'checkbox') {
             const checked = (e.target as HTMLInputElement).checked;
-            setFormData((prevData) => ({
-                ...prevData,
-                role: { ...prevData.role, [name]: checked }
-            }));
+            setFormData((prevData) => {
+                const updatedRole = { ...prevData.role, [name]: checked };
+                const newErrors = validateForm({
+                    ...prevData,
+                    role: updatedRole
+                });
+                setErrors(newErrors);
+                setIsSubmitDisabled(Object.keys(newErrors).length > 0);
+                return { ...prevData, role: updatedRole };
+            });
         } else {
             setFormData({ ...formData, [name]: value });
+
+            const newErrors = validateForm({ ...formData, [name]: value });
+            setErrors(newErrors);
+            setIsSubmitDisabled(Object.keys(newErrors).length > 0);
         }
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const validationErrors = validateForm();
+        const validationErrors = validateForm(formData);
         if (Object.keys(validationErrors).length === 0) {
             const selectedRoles = Object.keys(formData.role)
                 .filter(
@@ -117,11 +125,11 @@ const Join = () => {
             window.location.href = mailtoLink;
 
             setFallbackMessage(
-                <div className="fallback-message">
+                <div className="mt-4 p-4 border border-gray-300 rounded bg-gray-100">
                     <p>
                         Hvis e-posten klienten din ikke åpner seg automatisk,
-                        vennligst kopier følgende informasjon og send det til
-                        oss. Takk!
+                        vennligst kopier følgende informasjon og send det til{' '}
+                        {toEmail}. Takk!
                     </p>
                     <strong>Til:</strong> {toEmail}
                     <br />
@@ -141,6 +149,21 @@ const Join = () => {
                     </p>
                 </div>
             );
+
+            setFormData({
+                name: '',
+                phone: '',
+                email: '',
+                message: '',
+                role: {
+                    stage: false,
+                    costumes: false,
+                    builder: false,
+                    other: false
+                }
+            });
+            setErrors({});
+            setIsSubmitDisabled(true);
         } else {
             setErrors(validationErrors);
             setFallbackMessage(null);
@@ -174,118 +197,166 @@ const Join = () => {
                         </div>
                     </div>
 
-                    <section className="w-3/4 mt-16">
+                    <section className="w-4/5 md:w-2/4 mt-16">
                         <PortableText
                             value={joinPage.content}
                             components={PortableTextComponent}
                         />
 
-                        <form className="flex flex-col" onSubmit={handleSubmit}>
-                            <label htmlFor="name">Navn</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                aria-invalid={errors.name ? 'true' : 'false'}
-                            />
-                            {errors.name && (
-                                <p role="alert" className="error">
-                                    {errors.name}
-                                </p>
-                            )}
+                        <form
+                            className="flex flex-col space-y-4 mt-16"
+                            onSubmit={handleSubmit}
+                        >
+                            <div>
+                                <label
+                                    htmlFor="name"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Navn
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+                                    aria-invalid={
+                                        errors.name ? 'true' : 'false'
+                                    }
+                                />
+                                {errors.name && (
+                                    <p
+                                        role="alert"
+                                        className="text-red-600 text-sm"
+                                    >
+                                        {errors.name}
+                                    </p>
+                                )}
+                            </div>
 
-                            <label htmlFor="phone">Telefon</label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                required
-                                aria-invalid={errors.email ? 'true' : 'false'}
-                            />
-                            {errors.phone && (
-                                <p role="alert" className="error">
-                                    {errors.phone}
-                                </p>
-                            )}
+                            <div>
+                                <label
+                                    htmlFor="phone"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Telefon
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+                                    aria-invalid={
+                                        errors.phone ? 'true' : 'false'
+                                    }
+                                />
+                                {errors.phone && (
+                                    <p
+                                        role="alert"
+                                        className="text-red-600 text-sm"
+                                    >
+                                        {errors.phone}
+                                    </p>
+                                )}
+                            </div>
 
-                            <label htmlFor="email">E-post</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                aria-invalid={errors.email ? 'true' : 'false'}
-                            />
-                            {errors.email && (
-                                <p role="alert" className="error">
-                                    {errors.email}
-                                </p>
-                            )}
+                            <div>
+                                <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    E-post
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+                                    aria-invalid={
+                                        errors.email ? 'true' : 'false'
+                                    }
+                                />
+                                {errors.email && (
+                                    <p
+                                        role="alert"
+                                        className="text-red-600 text-sm"
+                                    >
+                                        {errors.email}
+                                    </p>
+                                )}
+                            </div>
 
-                            <fieldset>
-                                <legend>Rolle (velg minst én)</legend>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="stage"
-                                        checked={formData.role.stage}
-                                        onChange={handleChange}
-                                    />
-                                    {roleDisplayNames.stage}
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="costumes"
-                                        checked={formData.role.costumes}
-                                        onChange={handleChange}
-                                    />
-                                    {roleDisplayNames.costumes}
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="builder"
-                                        checked={formData.role.builder}
-                                        onChange={handleChange}
-                                    />
-                                    {roleDisplayNames.builder}
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="other"
-                                        checked={formData.role.other}
-                                        onChange={handleChange}
-                                    />
-                                    {roleDisplayNames.other}
-                                </label>
+                            <fieldset className="space-y-2">
+                                <legend className="block text-sm font-medium text-gray-700">
+                                    Rolle (velg minst én)
+                                </legend>
+                                {Object.keys(formData.role).map((role) => (
+                                    <label
+                                        key={role}
+                                        className="flex items-center"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            name={role}
+                                            checked={
+                                                formData.role[
+                                                    role as keyof FormData['role']
+                                                ]
+                                            }
+                                            onChange={handleChange}
+                                            className="mr-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                        />
+                                        {
+                                            roleDisplayNames[
+                                                role as keyof FormData['role']
+                                            ]
+                                        }
+                                    </label>
+                                ))}
                             </fieldset>
                             {errors.role && (
-                                <p role="alert" className="error">
+                                <p
+                                    role="alert"
+                                    className="text-red-600 text-sm"
+                                >
                                     {errors.role}
                                 </p>
                             )}
 
-                            <label htmlFor="message">Melding</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                maxLength={280}
-                            ></textarea>
-
-                            <button type="submit">Send</button>
+                            <div>
+                                <label
+                                    htmlFor="message"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Melding
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    maxLength={280}
+                                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+                                ></textarea>
+                            </div>
 
                             {fallbackMessage}
+
+                            <button
+                                type="submit"
+                                disabled={isSubmitDisabled}
+                                className={`mt-4 w-full font-bold py-2 rounded-md shadow ${isSubmitDisabled ? 'bg-gray-300' : 'bg-indigo-600 text-white hover:bg-indigo-700'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                            >
+                                Send
+                            </button>
                         </form>
                     </section>
                 </>
