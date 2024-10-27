@@ -25,7 +25,7 @@ const ContributorList = ({
                                     <img
                                         className="w-[200px] max-h-[300px] object-cover"
                                         src={urlFor(contributor.image)
-                                            .width(300)
+                                            .width(400)
                                             .url()}
                                         alt={contributor.altText}
                                     />
@@ -33,14 +33,15 @@ const ContributorList = ({
                                 <p className="font-bold text-lg m-0">
                                     {contributor.role}
                                 </p>
-                                {contributor.names.map((name, index) => (
-                                    <p
-                                        key={`contributor-name-${title}-${index}`}
-                                        className="m-0"
-                                    >
-                                        {name}
-                                    </p>
-                                ))}
+                                {contributor.names &&
+                                    contributor.names.map((name, index) => (
+                                        <p
+                                            key={`contributor-name-${title}-${index}`}
+                                            className="m-0"
+                                        >
+                                            {name}
+                                        </p>
+                                    ))}
                             </div>
                         ))}
                     </div>
