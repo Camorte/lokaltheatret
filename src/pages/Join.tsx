@@ -185,7 +185,7 @@ const Join = () => {
                                 {joinPage.title}
                             </h1>
                         </div>
-                        <div className="relative w-full h-full max-h-[60vh] object-cover">
+                        <div className="relative w-full h-full max-h-[80vh] object-cover">
                             {joinPage.joinPageBannerImg && (
                                 <img
                                     src={urlFor(
