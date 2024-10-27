@@ -21,15 +21,13 @@ const ContributorList = ({
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3 w-full border-t border-black pt-4">
                         {contributorList.map((contributor, index) => (
                             <div key={`contributor-${title}-${index}`}>
-                                {contributor.imageObject && (
+                                {contributor.image && (
                                     <img
                                         className="w-[200px] max-h-[300px] object-cover"
-                                        src={urlFor(
-                                            contributor.imageObject.image
-                                        )
+                                        src={urlFor(contributor.image)
                                             .width(400)
                                             .url()}
-                                        alt={contributor.imageObject.altText}
+                                        alt={contributor.altText}
                                     />
                                 )}
                                 <p className="font-bold text-lg m-0">
