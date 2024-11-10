@@ -1,6 +1,8 @@
 import { urlFor } from '../../lib/sanity.ts';
 import { SanityImage } from '../../lib/types.ts';
 import { parseToDate } from '../../lib/helpers.ts';
+import { FaArrowLeftLong } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 
 const PlayBanner = ({
     bannerImg,
@@ -19,8 +21,15 @@ const PlayBanner = ({
     playColor: string;
     playTitle: string;
 }) => {
+    const navigate = useNavigate();
     return (
         <div className="relative">
+            <button
+                className="absolute top-6 left-6 z-[3] flex text-white text-xl items-center gap-x-2 hover:border-b"
+                onClick={() => navigate('/forestillinger')}
+            >
+                <FaArrowLeftLong /> Forestillinger
+            </button>
             <div
                 className="absolute w-fit p-2 z-[2] top-[40%] left-[32px] md:left-[10vw] md:p-8"
                 style={{ backgroundColor: playColor }}
