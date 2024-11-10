@@ -25,13 +25,14 @@ const PlayBanner = ({
     return (
         <div className="relative">
             <button
-                className="absolute top-6 left-6 z-[3] flex text-white text-xl items-center gap-x-2 hover:border-b"
+                className="absolute top-6 left-6 z-[3] flex text-base font-bold items-center gap-x-2 p-4"
+                style={{ backgroundColor: playColor, color: textColor }}
                 onClick={() => navigate('/forestillinger')}
             >
                 <FaArrowLeftLong /> Forestillinger
             </button>
             <div
-                className="absolute w-fit p-2 z-[2] top-[40%] left-[32px] md:left-[10vw] md:p-8"
+                className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                 style={{ backgroundColor: playColor }}
             >
                 {logoImg?.image ? (
