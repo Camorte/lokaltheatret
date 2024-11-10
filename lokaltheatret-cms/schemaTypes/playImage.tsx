@@ -1,6 +1,6 @@
-import {defineField} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
-export const playImage = {
+export const playImage = defineType({
   title: 'Forestillingsbilde',
   name: 'playImage',
   type: 'object',
@@ -47,4 +47,4 @@ export const playImage = {
       }
     },
   },
-}
+})

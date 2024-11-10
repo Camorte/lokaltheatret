@@ -16,6 +16,17 @@ export const play = defineType({
         }),
     }),
     defineField({
+      title: 'Utsolgt',
+      description: 'Er forestillingen helt utsolgt?',
+      name: 'soldOut',
+      type: 'boolean',
+      hidden: ({document}) => !document?.active,
+      validation: (Rule) =>
+        Rule.custom((currentValue) => {
+          return currentValue === undefined ? 'Required' : true
+        }),
+    }),
+    defineField({
       title: 'Tittel',
       name: 'playTitle',
       type: 'string',
@@ -82,17 +93,7 @@ export const play = defineType({
       title: 'Forestillingsdatoer',
       name: 'playDates',
       type: 'array',
-      of: [
-        {
-          title: 'Forestillingsdato',
-          name: 'playDates',
-          type: 'date',
-          options: {
-            dateFormat: 'DD-MM-YYYY',
-            calendarTodayLabel: 'Today',
-          },
-        },
-      ],
+      of: [defineArrayMember({type: 'playDay'})],
       hidden: ({document}) => !document?.active,
       validation: (Rule) =>
         Rule.custom((currentValue, {document}) => {
