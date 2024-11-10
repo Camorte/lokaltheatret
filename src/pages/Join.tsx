@@ -301,7 +301,7 @@ const Join = () => {
                                 {Object.keys(formData.role).map((role) => (
                                     <label
                                         key={role}
-                                        className="flex items-center"
+                                        className="flex items-center text-base"
                                     >
                                         <input
                                             type="checkbox"
