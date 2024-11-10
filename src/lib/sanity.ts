@@ -31,7 +31,7 @@ export const getPlay = async (slug: string) => {
             "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
-            playTitle, playDates[]{playDate, soldOut}, duration, location, content, playPeriod, ticketsPage, active, soldOut,
+            playTitle, playDates[]{playDate, soldOut, fewTickets}, duration, location, content, playPeriod, ticketsPage, active, soldOut,
             imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption},
             contributors{"actors": actors[]{role, "image": image.asset, "altText": image.altText,names[]}, "artisticTeam": aristicTeam[]{role, names[]},
               "productionTeam": productionTeam[]{role, names[]}

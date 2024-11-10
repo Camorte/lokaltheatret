@@ -62,7 +62,13 @@ const PlayPage = () => {
                                     play.active &&
                                     play.playDates.length > 0 ? (
                                         play.playDates.map((date, index) => {
+                                            const dateNow = new Date();
+
                                             const currDate = parseToDate(
+                                                date.playDate
+                                            );
+
+                                            const currDateCopy = parseToDate(
                                                 date.playDate
                                             );
 
@@ -74,9 +80,13 @@ const PlayPage = () => {
                                                         day: 'numeric'
                                                     }
                                                 );
+                                            console.log(date.fewTickets);
 
                                             return (
-                                                <p key={`play-date-${index}`}>
+                                                <p
+                                                    key={`play-date-${index}`}
+                                                    className={`${dateNow.setHours(0, 0, 0, 0) > currDateCopy.setHours(0, 0, 0, 0) ? 'line-through' : ''}`}
+                                                >
                                                     {dateText},{' '}
                                                     {currDate.toLocaleTimeString(
                                                         'default',
@@ -84,10 +94,10 @@ const PlayPage = () => {
                                                             hour: '2-digit',
                                                             minute: '2-digit'
                                                         }
-                                                    )}
+                                                    )}{' '}
                                                     {date.soldOut
                                                         ? ' – Utsolgt'
-                                                        : ''}
+                                                        : `${!(dateNow.setHours(0, 0, 0, 0) > currDateCopy.setHours(0, 0, 0, 0)) && date.fewTickets ? ' – Få billetter igjen' : ''}`}
                                                 </p>
                                             );
                                         })

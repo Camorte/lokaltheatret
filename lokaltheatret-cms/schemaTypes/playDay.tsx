@@ -18,14 +18,19 @@ export const playDay = defineType({
       validation: (Rule) => Rule.required(),
     },
     {title: 'Utsolgt', name: 'soldOut', type: 'boolean', initialValue: false},
+    {title: 'Få billetter', name: 'fewTickets', type: 'boolean', initialValue: false},
   ],
   preview: {
     select: {
       title: 'playDate',
-      subtitle: 'soldOut',
+      soldOut: 'soldOut',
+      fewTickets: 'fewTickets',
     },
-    prepare({title, subtitle}: {title: string; subtitle: boolean}) {
-      const subtitleText = subtitle ? 'Utsolgt' : 'Ikke utsolgt'
+    prepare({title, soldOut, fewTickets}: {title: string; soldOut: boolean; fewTickets: boolean}) {
+      let subtitleText = soldOut ? 'Utsolgt' : 'Ikke utsolgt'
+      if (fewTickets) {
+        subtitleText += ' - Få billetter igjen'
+      }
 
       return {
         title: title,

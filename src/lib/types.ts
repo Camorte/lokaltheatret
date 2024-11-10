@@ -34,7 +34,11 @@ export type HighlightedPlay = {
     };
 };
 
-export type PlayDate = { playDate: string; soldOut: boolean };
+export type PlayDate = {
+    playDate: string;
+    soldOut: boolean;
+    fewTickets: boolean;
+};
 
 export type PlaysList = {
     playTitle: string;
