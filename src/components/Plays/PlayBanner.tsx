@@ -1,5 +1,5 @@
 import { urlFor } from '../../lib/sanity.ts';
-import { SanityImage } from '../../lib/types.ts';
+import { PlayDate, SanityImage } from '../../lib/types.ts';
 import { parseToDate } from '../../lib/helpers.ts';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ const PlayBanner = ({
     bannerImg: SanityImage;
     logoImg: SanityImage | undefined;
     playPeriod: string | undefined;
-    playDates: string[] | undefined;
+    playDates: PlayDate[] | undefined;
     textColor: string;
     playColor: string;
     playTitle: string;
@@ -55,11 +55,15 @@ const PlayBanner = ({
                     style={{ color: textColor }}
                 >
                     {playDates &&
-                        `${parseToDate(playDates[0]).toLocaleDateString(
-                            'nb'
-                        )} - ${parseToDate(
-                            playDates[playDates.length - 1]
-                        ).toLocaleDateString('nb')}`}
+                        `${parseToDate(
+                            playDates[0].playDate
+                        ).toLocaleDateString('nb')}  ${
+                            playDates.length > 1
+                                ? `- ${parseToDate(
+                                      playDates[playDates.length - 1].playDate
+                                  ).toLocaleDateString('nb')}`
+                                : ''
+                        }`}
                     {(!playDates || playDates.length > 0) &&
                         playPeriod &&
                         playPeriod}

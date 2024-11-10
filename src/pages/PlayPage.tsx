@@ -18,7 +18,7 @@ const PlayPage = () => {
     useEffect(() => {
         if (params.slug) {
             getPlay(params.slug)
-                .then((response) => {
+                .then((response: Play) => {
                     setPlay(response);
                 })
                 .finally(() => setIsLoading(false));
@@ -58,42 +58,42 @@ const PlayPage = () => {
                                             : 'Forestilling spilt'}
                                         :
                                     </p>
-                                    <p className="text-center">
-                                        {play.playDates &&
-                                        play.active &&
-                                        play.playDates.length > 0
-                                            ? play.playDates.reduce(
-                                                  (acc, curr, index) => {
-                                                      const currDate =
-                                                          parseToDate(
-                                                              curr
-                                                          ).toLocaleDateString(
-                                                              'nb',
-                                                              {
-                                                                  month: 'long',
-                                                                  day: 'numeric'
-                                                              }
-                                                          );
-                                                      if (
-                                                          play.playDates &&
-                                                          index !==
-                                                              play.playDates
-                                                                  .length -
-                                                                  1
-                                                      ) {
-                                                          return (
-                                                              acc +
-                                                              currDate +
-                                                              ', '
-                                                          );
-                                                      }
+                                    {play.playDates &&
+                                    play.active &&
+                                    play.playDates.length > 0 ? (
+                                        play.playDates.map((date, index) => {
+                                            const currDate = parseToDate(
+                                                date.playDate
+                                            );
 
-                                                      return acc + currDate;
-                                                  },
-                                                  ''
-                                              )
-                                            : play.playPeriod}
-                                    </p>
+                                            const dateText =
+                                                currDate.toLocaleDateString(
+                                                    'nb',
+                                                    {
+                                                        month: 'long',
+                                                        day: 'numeric'
+                                                    }
+                                                );
+
+                                            return (
+                                                <p key={`play-date-${index}`}>
+                                                    {dateText},{' '}
+                                                    {currDate.toLocaleTimeString(
+                                                        'default',
+                                                        {
+                                                            hour: '2-digit',
+                                                            minute: '2-digit'
+                                                        }
+                                                    )}
+                                                    {date.soldOut
+                                                        ? ' – Utsolgt'
+                                                        : ''}
+                                                </p>
+                                            );
+                                        })
+                                    ) : (
+                                        <p>play.playPeriod</p>
+                                    )}
                                 </div>
                                 <div style={{ color: play.textColor }}>
                                     {play.duration && play.active && (
@@ -116,16 +116,22 @@ const PlayPage = () => {
                             <div>
                                 <div className="page-container">
                                     {play.active && (
-                                        <a
+                                        <button
                                             className="hidden md:block w-full my-4 p-4 font-bold text-center"
                                             style={{
                                                 backgroundColor: play.textColor,
                                                 color: play.playColor
                                             }}
-                                            href={play.ticketsPage}
+                                            onClick={() =>
+                                                (window.location.href =
+                                                    play.ticketsPage)
+                                            }
+                                            disabled={play.soldOut}
                                         >
-                                            KJØP BILLETTER
-                                        </a>
+                                            {play.soldOut
+                                                ? 'UTSOLGT'
+                                                : 'KJØP BILLETTER'}
+                                        </button>
                                     )}
 
                                     <PortableText
@@ -157,8 +163,11 @@ const PlayPage = () => {
                                                 play.ticketsPage)
                                         }
                                         role="link"
+                                        disabled={play.soldOut}
                                     >
-                                        KJØP BILLETTER
+                                        {play.soldOut
+                                            ? 'UTSOLGT'
+                                            : 'KJØP BILLETTER'}
                                     </button>
                                 )}
                             </div>

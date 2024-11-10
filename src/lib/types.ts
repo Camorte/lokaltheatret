@@ -34,16 +34,19 @@ export type HighlightedPlay = {
     };
 };
 
+export type PlayDate = { playDate: string; soldOut: boolean };
+
 export type PlaysList = {
     playTitle: string;
     bannerImg: SanityImage;
     logoImg?: SanityImage;
-    playDates?: string[];
+    playDates?: PlayDate[];
     playColor: string;
     textColor: string;
     location: string;
     playPeriod?: string;
     active: boolean;
+    soldOut?: boolean;
     slug: string;
 }[];
 
@@ -51,7 +54,8 @@ export type Play = {
     playTitle: string;
     bannerImg: SanityImage;
     logoImg?: SanityImage;
-    playDates?: string[];
+    playDates?: PlayDate[];
+    soldOut?: boolean;
     playColor: string;
     textColor: string;
     duration?: string;

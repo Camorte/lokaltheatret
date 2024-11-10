@@ -19,7 +19,7 @@ export const getPlays = async () => {
             "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
-            playTitle, playDates, location, playPeriod, active,
+            playTitle, playDates[]{playDate, soldOut}, location, playPeriod, active,  soldOut,
             "slug":"/"+slug.current
         }
     `);
@@ -31,7 +31,7 @@ export const getPlay = async (slug: string) => {
             "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 
-            playTitle, playDates, duration, location, content, playPeriod, ticketsPage, active,
+            playTitle, playDates[]{playDate, soldOut}, duration, location, content, playPeriod, ticketsPage, active, soldOut,
             imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption},
             contributors{"actors": actors[]{role, "image": image.asset, "altText": image.altText,names[]}, "artisticTeam": aristicTeam[]{role, names[]},
               "productionTeam": productionTeam[]{role, names[]}
@@ -48,7 +48,7 @@ export const getMainBanner = async () => {
             highlightedPlays[]{
                 title, image, "imageAlt": imgage.alt, description, 
                 playReference->{"urlRef":"/"+slug.current, 
-                    "playStartDate": playDates[0], "playEndDate": playDates[-1], 
+                    "playStartDate": playDates[0].playDate, "playEndDate": playDates[-1].playDate, 
                     "playColor": playColor.hex, "textColor": textColor.hex, playPeriod, active
                 }
             }

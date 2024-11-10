@@ -62,7 +62,8 @@ const Plays = () => {
                                 </h2>
                             )}
                             <p className="md:text-lg font-bold text-center">
-                                {play.active && 'Billetter tilgjengelig nå'}
+                                {play.active &&
+                                    `${play.soldOut ? 'Billetter utsolgt' : 'Billetter tilgjengelig nå'}`}
                             </p>
                             <p className="text-lg mb-8 text-center">
                                 Lokasjon: {play.location}
@@ -75,11 +76,12 @@ const Plays = () => {
                                               className="m-0"
                                           >
                                               {parseToDate(
-                                                  date
+                                                  date.playDate
                                               ).toLocaleDateString('nb', {
                                                   month: 'long',
                                                   day: 'numeric'
-                                              })}
+                                              })}{' '}
+                                              {date.soldOut ? ' – Utsolgt' : ''}
                                           </span>
                                       ))
                                     : play.playPeriod}
