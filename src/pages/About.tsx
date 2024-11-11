@@ -20,7 +20,7 @@ const About = () => {
         <main className="flex flex-col justify-center items-center mb-16">
             {!isLoading && aboutPage && (
                 <>
-                    <div className="relative">
+                    <div className="relative w-full h-full max-h-[80vh]">
                         <div
                             className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                             style={{
@@ -31,16 +31,13 @@ const About = () => {
                                 {aboutPage.title}
                             </h1>
                         </div>
-                        <div className="relative w-full h-full max-h-[80vh] object-cover">
-                            {aboutPage.aboutPageBannerImg && (
-                                <img
-                                    src={urlFor(
-                                        aboutPage.aboutPageBannerImg
-                                    ).url()}
-                                    alt={aboutPage.aboutPageBannerImg.altText}
-                                />
-                            )}
-                        </div>
+                        {aboutPage.aboutPageBannerImg && (
+                            <img
+                                src={urlFor(aboutPage.aboutPageBannerImg).url()}
+                                alt={aboutPage.aboutPageBannerImg.altText}
+                                className="relative w-full h-full max-h-[80vh] object-cover"
+                            />
+                        )}
                     </div>
 
                     <div className="w-3/4">
