@@ -1,20 +1,24 @@
 // @ts-expect-error - required for sanity to recognize the file
-import {StructureBuilder, StructureToolOptions} from 'sanity/lib/structure'
+import {StructureBuilder, StructureToolOptions, ConfigContext} from 'sanity/lib/structure'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
-const structure: StructureToolOptions = (S: StructureBuilder) =>
+const structure: StructureToolOptions = (S: StructureBuilder, context: ConfigContext) =>
   S.list()
     .title('Folkearkivet')
     .items([
+      orderableDocumentListDeskItem({
+        type: 'play',
+        title: 'Forestillinger',
+        id: 'playOrderList',
+        S,
+        context,
+      }),
       S.listItem()
         .title('Landingsside')
         .schemaType('landingPage')
         .child(
           S.document().title('Landingsside').schemaType('landingPage').documentId('landingPage'),
         ),
-      S.listItem()
-        .title('Forestillinger')
-        .schemaType('play')
-        .child(S.documentList().title('Forestilling').filter('_type == "play"')),
       S.listItem()
         .title('Om oss')
         .schemaType('about')

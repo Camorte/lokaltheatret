@@ -1,10 +1,12 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export const play = defineType({
   title: 'Forestilling',
   name: 'play',
   type: 'document',
   fieldsets: [{name: 'playColorProfile', title: 'Forestillingens fargeprofil'}],
+  orderings: [orderRankOrdering],
   fields: [
     defineField({
       title: 'Aktiv forestilling',
@@ -32,6 +34,7 @@ export const play = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+    orderRankField({type: 'play', newItemPosition: 'before'}),
     defineField({
       title: 'Banner bilde',
       name: 'playBannerImg',
