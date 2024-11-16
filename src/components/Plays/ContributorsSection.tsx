@@ -52,16 +52,24 @@ const ContributorList = ({
 };
 
 const ContributorsSection = ({
-    contributors
+    contributors,
+    buttonBgColor,
+    buttonTextColor
 }: {
     contributors: Contributors;
+    buttonBgColor?: string;
+    buttonTextColor?: string;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
             <div
-                className={`flex flex-col border border-black p-8 overflow-hidden ${isOpen ? 'w-full' : 'w-fit'}`}
+                className={`flex flex-col ${buttonBgColor ? '' : 'border border-black'} p-8 overflow-hidden ${isOpen ? 'w-full' : 'w-fit'}`}
+                style={{
+                    color: buttonTextColor ? buttonTextColor : 'black',
+                    backgroundColor: buttonBgColor ? buttonBgColor : 'white'
+                }}
             >
                 {isOpen ? (
                     <div className="flex flex-row items-center justify-between">

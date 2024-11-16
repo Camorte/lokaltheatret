@@ -15,7 +15,7 @@ export const getFooter = async () => {
 
 export const getPlays = async () => {
     return client.fetch(`
-        *[_type=="play"]{
+        *[_type=="play"] | order(orderRank){
             "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}, 
             "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt}, 

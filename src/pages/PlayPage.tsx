@@ -151,6 +151,8 @@ const PlayPage = () => {
                                         )}
                                     {play.contributors && (
                                         <ContributorsSection
+                                            buttonBgColor={play.playColor}
+                                            buttonTextColor={play.textColor}
                                             contributors={play.contributors}
                                         />
                                     )}
