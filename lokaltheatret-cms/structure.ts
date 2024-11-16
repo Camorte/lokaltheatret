@@ -6,6 +6,12 @@ const structure: StructureToolOptions = (S: StructureBuilder, context: ConfigCon
   S.list()
     .title('Folkearkivet')
     .items([
+      S.listItem()
+        .title('Landingsside')
+        .schemaType('landingPage')
+        .child(
+          S.document().title('Landingsside').schemaType('landingPage').documentId('landingPage'),
+        ),
       orderableDocumentListDeskItem({
         type: 'play',
         title: 'Forestillinger',
@@ -13,12 +19,6 @@ const structure: StructureToolOptions = (S: StructureBuilder, context: ConfigCon
         S,
         context,
       }),
-      S.listItem()
-        .title('Landingsside')
-        .schemaType('landingPage')
-        .child(
-          S.document().title('Landingsside').schemaType('landingPage').documentId('landingPage'),
-        ),
       S.listItem()
         .title('Om oss')
         .schemaType('about')
