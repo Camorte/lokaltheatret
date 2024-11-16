@@ -102,7 +102,7 @@ const PlayPage = () => {
                                             );
                                         })
                                     ) : (
-                                        <p>play.playPeriod</p>
+                                        <p>{play.playPeriod}</p>
                                     )}
                                 </div>
                                 <div style={{ color: play.textColor }}>
