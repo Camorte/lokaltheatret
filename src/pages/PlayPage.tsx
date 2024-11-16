@@ -51,12 +51,7 @@ const PlayPage = () => {
                                     style={{ color: play.textColor }}
                                 >
                                     <p className="font-bold">
-                                        {play.playDates &&
-                                        play.active &&
-                                        play.playDates.length > 0
-                                            ? 'Forestillingsdatoer'
-                                            : 'Forestilling spilt'}
-                                        :
+                                        Forestillingsperiode:
                                     </p>
                                     {play.playDates &&
                                     play.active &&
