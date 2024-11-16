@@ -22,8 +22,8 @@ export const play = defineType({
       type: 'boolean',
       hidden: ({document}) => !document?.active,
       validation: (Rule) =>
-        Rule.custom((currentValue) => {
-          return currentValue === undefined ? 'Required' : true
+        Rule.custom((currentValue, {document}) => {
+          return document?.active && !currentValue ? 'Required' : true
         }),
     }),
     defineField({
