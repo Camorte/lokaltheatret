@@ -34,6 +34,7 @@ const PlayPage = () => {
                     {play && (
                         <div className="flex flex-col">
                             <PlayBanner
+                                playActive={play.active}
                                 bannerImg={play.bannerImg}
                                 logoImg={play.logoImg}
                                 playPeriod={play.playPeriod}
@@ -75,7 +76,6 @@ const PlayPage = () => {
                                                         day: 'numeric'
                                                     }
                                                 );
-                                            console.log(date.fewTickets);
 
                                             return (
                                                 <p

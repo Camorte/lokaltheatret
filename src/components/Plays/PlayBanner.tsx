@@ -11,12 +11,14 @@ const PlayBanner = ({
     textColor,
     playColor,
     playTitle,
+    playActive,
     logoImg
 }: {
     bannerImg: SanityImage;
     logoImg: SanityImage | undefined;
     playPeriod: string | undefined;
     playDates: PlayDate[] | undefined;
+    playActive: boolean;
     textColor: string;
     playColor: string;
     playTitle: string;
@@ -55,6 +57,7 @@ const PlayBanner = ({
                     style={{ color: textColor }}
                 >
                     {playDates &&
+                        playActive &&
                         `${parseToDate(
                             playDates[0].playDate
                         ).toLocaleDateString('nb')}  ${
