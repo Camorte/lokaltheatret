@@ -12,6 +12,7 @@ export const play = defineType({
       title: 'Aktiv forestilling',
       name: 'active',
       type: 'boolean',
+      initialValue: false,
       validation: (Rule) =>
         Rule.custom((currentValue) => {
           return currentValue === undefined ? 'Required' : true
@@ -22,6 +23,7 @@ export const play = defineType({
       description: 'Er forestillingen helt utsolgt?',
       name: 'soldOut',
       type: 'boolean',
+      initialValue: false,
       hidden: ({document}) => !document?.active,
       validation: (Rule) =>
         Rule.custom((currentValue, {document}) => {
