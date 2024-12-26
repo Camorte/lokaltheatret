@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
+import ColorContrastString from '../components/ColorContrastString'
 
 export const play = defineType({
   title: 'Forestilling',
@@ -147,6 +148,13 @@ export const play = defineType({
       type: 'color',
       fieldset: 'playColorProfile',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'customField',
+      title: 'Custom field',
+      type: 'string',
+      fieldset: 'playColorProfile',
+      components: {field: ColorContrastString},
     },
     defineField({
       title: 'Innhold',
