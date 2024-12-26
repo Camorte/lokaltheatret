@@ -50,7 +50,7 @@ const ColorContrastString = (props) => {
             <Stack space={3}>
               {contrastValue > 3 && (
                 <Text style={{color: contrastValue >= 3 ? 'green' : 'red'}}>
-                  A: Kontrasten er bra for store tekster og UI elementer.
+                  AA: Kontrasten er bra for store tekster og UI elementer.
                 </Text>
               )}
               <Text style={{color: contrastValue >= 4.5 ? 'green' : 'red'}}>
