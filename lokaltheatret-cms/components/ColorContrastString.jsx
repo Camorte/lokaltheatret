@@ -47,28 +47,39 @@ const ColorContrastString = (props) => {
               Denne kontrastratioen er ikke innenfor WCAG standarden
             </Text>
           ) : (
-            <>
+            <Stack space={3}>
               {contrastValue > 3 && (
                 <Text style={{color: contrastValue >= 3 ? 'green' : 'red'}}>
-                  Kontrasten er bra for store tekster og UI elementer.
+                  A: Kontrasten er bra for store tekster og UI elementer.
                 </Text>
               )}
               <Text style={{color: contrastValue >= 4.5 ? 'green' : 'red'}}>
+                AA:{' '}
                 {contrastValue >= 4.5
                   ? 'Kontrasten er bra for normal tekst.'
                   : 'Kontrasten er ikke bra nok for normal tekst.'}
               </Text>
               <Text style={{color: contrastValue >= 7 ? 'green' : 'red'}}>
+                AAA:{' '}
                 {contrastValue >= 7
                   ? 'Kontrasten er bra for alle, selv med de som har nedsatt syn.'
                   : 'Kontrasten er ikke bra nok med de som har nedsatt syn.'}
               </Text>
-            </>
+            </Stack>
           )}
         </>
       ) : (
         <Text size={3}>Ikke alle farger er valgt ennå</Text>
       )}
+      <p style={{marginBottom: 0}}>
+        Les mer om WCAG standarden{' '}
+        <a
+          href="https://en.wikipedia.org/wiki/Web_Content_Accessibility_Guidelines"
+          target="_blank"
+        >
+          her
+        </a>
+      </p>
     </Stack>
   )
 }
