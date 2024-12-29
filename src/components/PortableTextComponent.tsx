@@ -50,7 +50,7 @@ const PortableTextComponent: PortableTextComponents = {
     block: {
         normal: ({ children }) => <p className="mb-4 mt-0">{children}</p>,
         blockquote: ({ children }) => (
-            <div className="ml-8 border-l-2 border-gray-400 pl-4">
+            <div className="ml-8 border-l-2 border-gray-400 pl-4 mb-4">
                 <p className="italic m-0">{children}</p>
             </div>
         )
