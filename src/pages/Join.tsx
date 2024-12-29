@@ -174,7 +174,7 @@ const Join = () => {
         <main className="flex flex-col justify-center items-center mb-16">
             {joinPage && !isLoading && (
                 <>
-                    <div className="relative">
+                    <div className="relative w-full h-[80vh]">
                         <div
                             className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                             style={{
@@ -185,16 +185,13 @@ const Join = () => {
                                 {joinPage.title}
                             </h1>
                         </div>
-                        <div className="relative w-full h-full max-h-[80vh] object-cover">
-                            {joinPage.joinPageBannerImg && (
-                                <img
-                                    src={urlFor(
-                                        joinPage.joinPageBannerImg
-                                    ).url()}
-                                    alt={joinPage.joinPageBannerImg.altText}
-                                />
-                            )}
-                        </div>
+                        {joinPage.joinPageBannerImg && (
+                            <img
+                                className="relative w-full h-full max-h-[80vh] object-cover"
+                                src={urlFor(joinPage.joinPageBannerImg).url()}
+                                alt={joinPage.joinPageBannerImg.altText}
+                            />
+                        )}
                     </div>
 
                     <section className="w-4/5 md:w-2/4 mt-16">
