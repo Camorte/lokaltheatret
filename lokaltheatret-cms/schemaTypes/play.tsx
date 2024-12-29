@@ -110,7 +110,6 @@ export const play = defineType({
     }),
     {
       title: 'Forestillingsperiode',
-      description: 'Når ble denne forestillingen fremført?',
       name: 'playPeriod',
       type: 'string',
       validation: (Rule) =>
