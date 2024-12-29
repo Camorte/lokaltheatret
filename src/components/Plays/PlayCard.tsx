@@ -93,7 +93,7 @@ const PlayCard = ({
                         style={{ backgroundColor: bgColor }}
                     />
                     <img
-                        className="absolute h-full w-full object-cover z-0 top-0"
+                        className="absolute h-full w-full object-cover z-0 top-0 grayscale"
                         src={urlFor(image).width(350).url()}
                         alt={imageAlt}
                     />
