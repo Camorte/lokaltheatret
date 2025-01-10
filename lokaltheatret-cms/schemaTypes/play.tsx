@@ -28,7 +28,7 @@ export const play = defineType({
       hidden: ({document}) => !document?.active,
       validation: (Rule) =>
         Rule.custom((currentValue, {document}) => {
-          return document?.active && !currentValue ? 'Required' : true
+          return document?.active && currentValue == null ? 'Required' : true
         }),
     }),
     defineField({

@@ -75,5 +75,12 @@ export const join = defineType({
         },
       ],
     }),
+    defineField({
+      title: 'Rollealternativer',
+      description: 'F.eks. "Skuespiller", "Lage kostymer" osv.',
+      type: 'array',
+      of: [{type: 'string'}],
+      name: 'roleAlternatives',
+    }),
   ],
 })
