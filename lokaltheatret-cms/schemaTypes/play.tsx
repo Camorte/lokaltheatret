@@ -116,7 +116,9 @@ export const play = defineType({
         Rule.custom((currentValue, {document}) => {
           return !document?.active && !currentValue ? 'Required' : true
         }),
-      hidden: ({document}) => document && document.active,
+      hidden: ({document}) => {
+        return (document && document.active) as boolean
+      },
     },
     {
       title: 'Scene/Lokasjon',
