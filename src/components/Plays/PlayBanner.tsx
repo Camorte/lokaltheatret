@@ -67,7 +67,7 @@ const PlayBanner = ({
                                   ).toLocaleDateString('nb')}`
                                 : ''
                         }`}
-                    {(!playDates || playDates.length > 0) &&
+                    {(!playDates || playDates.length === 0) &&
                         playPeriod &&
                         playPeriod}
                 </p>
