@@ -10,7 +10,7 @@
       }
     },
     {
-      "files": [".prettierrc", "*.json", "*.yml", ".travis.yml", "eslint.config.js"],
+      "files": [".prettierrc", "*.json", "*.yml", ".travis.yml", ".eslintrc"],
       "options": {
         "tabWidth": 2
       }
