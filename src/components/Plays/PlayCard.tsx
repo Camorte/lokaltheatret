@@ -1,6 +1,6 @@
 'use client';
 
-import { useSpring, a } from '@react-spring/web';
+import { motion } from 'motion/react';
 import { useState } from 'react';
 import { SanityImageAssetDocument } from '@sanity/client';
 import { urlFor } from '../../lib/sanity';
@@ -28,23 +28,21 @@ const PlayCard = ({
 }) => {
     const router = useRouter();
     const [flipped, setFlipped] = useState(false);
-    const { transform, opacity } = useSpring({
-        opacity: flipped ? 1 : 0,
-        transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
-        config: { mass: 5, tension: 500, friction: 80 }
-    });
 
     return (
         <div
             className="cursor-pointer flex w-full h-[400px] md:max-w-[380px] lg:max-w-[500px] md:h-[450px] lg:h-[560px] relative md:transition md:ease-in-out md:duration-300 md:hover:scale-105"
             onClick={() => setFlipped(true)}
         >
-            <a.div
+            <motion.div
                 className="play-card-contents"
                 style={{
-                    backgroundColor: bgColor,
-                    opacity: opacity.to((o) => 1 - o),
-                    transform
+                    backgroundColor: bgColor
+                }}
+                initial={{ opacity: 1 }}
+                animate={{
+                    opacity: flipped ? 0 : 1,
+                    transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`
                 }}
             >
                 <img
@@ -61,18 +59,18 @@ const PlayCard = ({
                     </p>
                     <p className="text-center">{playPeriod}</p>
                 </div>
-            </a.div>
-            <a.div
+            </motion.div>
+            <motion.div
                 onClick={() => {
                     if (flipped) {
                         router.push('/forestillinger' + href);
                     }
                 }}
                 className="play-card-content"
-                style={{
-                    opacity,
-                    transform,
-                    rotateX: '180deg'
+                initial={{ opacity: 0, rotateX: '180deg' }}
+                animate={{
+                    opacity: flipped ? 1 : 0,
+                    transform: `perspective(600px) rotateX(${flipped ? 360 : 180}deg)`
                 }}
             >
                 <div className="w-full h-full relative">
@@ -99,7 +97,7 @@ const PlayCard = ({
                         alt={imageAlt}
                     />
                 </div>
-            </a.div>
+            </motion.div>
         </div>
     );
 };
