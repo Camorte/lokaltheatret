@@ -1,8 +1,10 @@
-import { Contributor, Contributors } from '../../lib/types.ts';
+'use client';
+
+import { Contributor, Contributors } from '@/lib/types';
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { IoIosArrowForward } from 'react-icons/io';
-import { urlFor } from '../../lib/sanity.ts';
+import { urlFor } from '@/lib/sanity';
 
 const ContributorList = ({
     title,

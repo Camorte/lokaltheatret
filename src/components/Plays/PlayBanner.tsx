@@ -1,8 +1,10 @@
-import { urlFor } from '../../lib/sanity.ts';
-import { PlayDate, SanityImage } from '../../lib/types.ts';
-import { parseToDate } from '../../lib/helpers.ts';
+'use client';
+
+import { urlFor } from '@/lib/sanity';
+import { PlayDate, SanityImage } from '@/lib/types';
+import { parseToDate } from '@/lib/helpers';
 import { FaArrowLeftLong } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const PlayBanner = ({
     bannerImg,
@@ -23,13 +25,13 @@ const PlayBanner = ({
     playColor: string;
     playTitle: string;
 }) => {
-    const navigate = useNavigate();
+    const route = useRouter();
     return (
         <div className="relative w-full h-[80vh]">
             <button
                 className="absolute top-4 left-4 md:top-6 md:left-6 z-[3] flex text-base font-bold items-center gap-x-2 p-4"
                 style={{ backgroundColor: playColor, color: textColor }}
-                onClick={() => navigate('/forestillinger')}
+                onClick={() => route.push('/forestillinger')}
             >
                 <FaArrowLeftLong />{' '}
                 <p className="hidden md:block">Forestillinger</p>

@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
-import { getAboutPage, urlFor } from '../lib/sanity';
-import { AboutPage } from '../lib/types';
-import { PortableText } from '@portabletext/react';
-import PortableTextComponent from '../components/PortableTextComponent';
+'use client';
 
-const About = () => {
+import { useEffect, useState } from 'react';
+import { getAboutPage, urlFor } from '@/lib/sanity';
+import { AboutPage } from '@/lib/types';
+import { PortableText } from '@portabletext/react';
+import PortableTextComponent from '@/components/PortableTextComponent';
+
+const Page = () => {
     const [aboutPage, setAboutPage] = useState<AboutPage>();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -103,4 +105,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default Page;

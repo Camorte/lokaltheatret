@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
-import { getPlays, urlFor } from '../lib/sanity.ts';
-import { PlaysList } from '../lib/types.ts';
-import { parseToDate } from '../lib/helpers.ts';
-import LoadingSpinner from '../components/LoadingSpinner.tsx';
-import { useNavigate } from 'react-router-dom';
+'use client';
 
-const Plays = () => {
-    const navigate = useNavigate();
+import { useEffect, useState } from 'react';
+import { getPlays, urlFor } from '@/lib/sanity';
+import { PlaysList } from '@/lib/types';
+import { parseToDate } from '@/lib/helpers';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import { useRouter } from 'next/navigation';
+
+const Page = () => {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
     const [playsList, setPlaysList] = useState<PlaysList>([]);
     const [hoverIndex, setHoverIndex] = useState<number | undefined>(undefined);
@@ -36,7 +38,9 @@ const Plays = () => {
                         style={{ backgroundColor: play.playColor }}
                         onMouseEnter={() => setHoverIndex(index)}
                         onMouseLeave={() => setHoverIndex(undefined)}
-                        onClick={() => navigate('/forestillinger' + play.slug)}
+                        onClick={() =>
+                            router.push('/forestillinger' + play.slug)
+                        }
                     >
                         <img
                             className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== undefined && hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
@@ -94,4 +98,4 @@ const Plays = () => {
     );
 };
 
-export default Plays;
+export default Page;
