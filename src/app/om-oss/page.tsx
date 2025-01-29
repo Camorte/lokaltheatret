@@ -5,6 +5,7 @@ import { getAboutPage, urlFor } from '@/lib/sanity';
 import { AboutPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
+import Image from 'next/image';
 
 const Page = () => {
     const [aboutPage, setAboutPage] = useState<AboutPage>();
@@ -34,7 +35,7 @@ const Page = () => {
                             </h1>
                         </div>
                         {aboutPage.aboutPageBannerImg && (
-                            <img
+                            <Image
                                 src={urlFor(aboutPage.aboutPageBannerImg).url()}
                                 alt={aboutPage.aboutPageBannerImg.altText}
                                 className="relative w-full h-full max-h-[80vh] object-cover"
@@ -72,7 +73,7 @@ const Page = () => {
                                         >
                                             <div className="">
                                                 {founder.image && (
-                                                    <img
+                                                    <Image
                                                         className="rounded-full"
                                                         src={urlFor(
                                                             founder.image
@@ -81,7 +82,7 @@ const Page = () => {
                                                             founder.image
                                                                 .altText
                                                         }
-                                                        width={'200px'}
+                                                        width="200"
                                                     />
                                                 )}
                                             </div>

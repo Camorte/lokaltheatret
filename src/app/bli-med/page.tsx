@@ -5,6 +5,7 @@ import { getJoinPage, urlFor } from '@/lib/sanity';
 import { JoinPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
+import Image from 'next/image';
 
 interface FormData {
     name: string;
@@ -188,7 +189,7 @@ const Page = () => {
                             </h1>
                         </div>
                         {joinPage.joinPageBannerImg && (
-                            <img
+                            <Image
                                 className="relative w-full h-full max-h-[80vh] object-cover"
                                 src={urlFor(joinPage.joinPageBannerImg).url()}
                                 alt={joinPage.joinPageBannerImg.altText}

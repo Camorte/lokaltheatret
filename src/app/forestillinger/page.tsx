@@ -6,6 +6,7 @@ import { PlaysList } from '@/lib/types';
 import { parseToDate } from '@/lib/helpers';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Page = () => {
     const router = useRouter();
@@ -42,7 +43,7 @@ const Page = () => {
                             router.push('/forestillinger' + play.slug)
                         }
                     >
-                        <img
+                        <Image
                             className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== undefined && hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
                             src={urlFor(play.bannerImg.image).width(1200).url()}
                             alt={play.bannerImg.altText}
@@ -52,7 +53,7 @@ const Page = () => {
                             style={{ color: play.textColor }}
                         >
                             {play.logoImg?.image && (
-                                <img
+                                <Image
                                     className="w-[150px] md:w-[200px]"
                                     src={urlFor(play.logoImg.image)
                                         .width(300)

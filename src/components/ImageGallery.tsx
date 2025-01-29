@@ -8,6 +8,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 
 import ImageModal from './ImageModal';
+import Image from 'next/image';
 
 const ImageGallery = ({ images }: { images: SanityImage[] }) => {
     const scrollToRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -145,7 +146,7 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                             onClick={() => setChosenImg(image)}
                             className="cursor-pointer shrink-0 snap-start max-h-[500px] w-[350px] p-4"
                         >
-                            <img
+                            <Image
                                 className="w-full h-full"
                                 src={urlFor(image.image).width(450).url()}
                                 alt={image.altText}

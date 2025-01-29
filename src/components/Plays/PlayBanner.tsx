@@ -5,6 +5,7 @@ import { PlayDate, SanityImage } from '@/lib/types';
 import { parseToDate } from '@/lib/helpers';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const PlayBanner = ({
     bannerImg,
@@ -41,7 +42,8 @@ const PlayBanner = ({
                 style={{ backgroundColor: playColor }}
             >
                 {logoImg?.image ? (
-                    <img
+                    <Image
+                        fill={true}
                         src={urlFor(logoImg.image).width(300).url()}
                         className="max-w-[30vw] md:max-w-[30vw]"
                         alt={logoImg.altText}
@@ -74,7 +76,8 @@ const PlayBanner = ({
                         playPeriod}
                 </p>
             </div>
-            <img
+            <Image
+                fill={true}
                 className="relative w-full h-full max-h-[80vh] object-cover"
                 src={urlFor(bannerImg.image).width(1600).url()}
                 alt={bannerImg.altText}

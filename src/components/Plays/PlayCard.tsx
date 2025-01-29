@@ -6,6 +6,7 @@ import { SanityImageAssetDocument } from '@sanity/client';
 import { urlFor } from '../../lib/sanity';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const PlayCard = ({
     title,
@@ -45,7 +46,8 @@ const PlayCard = ({
                     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`
                 }}
             >
-                <img
+                <Image
+                    fill={true}
                     className="w-full bg-black h-[280px] md:h-[280px] lg:h-[400px] object-cover"
                     src={urlFor(image).width(480).url()}
                     alt={imageAlt}
@@ -91,7 +93,8 @@ const PlayCard = ({
                         className="absolute w-full h-full z-[1] opacity-[0.85] top-0"
                         style={{ backgroundColor: bgColor }}
                     />
-                    <img
+                    <Image
+                        fill={true}
                         className="absolute h-full w-full object-cover z-0 top-0 grayscale"
                         src={urlFor(image).width(350).url()}
                         alt={imageAlt}
