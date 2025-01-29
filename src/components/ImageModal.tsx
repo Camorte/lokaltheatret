@@ -1,9 +1,12 @@
-import { urlFor } from '../lib/sanity.ts';
-import { SanityImage } from '../lib/types.ts';
+'use client';
+
+import { urlFor } from '@/lib/sanity';
+import { SanityImage } from '@/lib/types';
 import { useEffect, useRef, useState } from 'react';
-import { assertIsNode } from '../lib/helpers.ts';
-import LoadingSpinner from './LoadingSpinner.tsx';
+import { assertIsNode } from '@/lib/helpers';
+import LoadingSpinner from './LoadingSpinner';
 import { RxCross2 } from 'react-icons/rx';
+import Image from 'next/image';
 
 const ImageModal = ({
     chosenImg,
@@ -60,13 +63,14 @@ const ImageModal = ({
                             <RxCross2 color="white" />
                         </button>
                     )}
-                    <img
+                    <Image
                         loading={'lazy'}
                         className="object-contain max-h-[90vh] max-w-[90vw]"
                         src={urlFor(chosenImg.image).url()}
                         onLoad={() => {
                             setIsLoading(false);
                         }}
+                        alt="Bilde i model"
                     />
                     {chosenImg.caption && !isLoading && (
                         <p

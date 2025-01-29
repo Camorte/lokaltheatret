@@ -1,8 +1,11 @@
-import { Contributor, Contributors } from '../../lib/types.ts';
+'use client';
+
+import { Contributor, Contributors } from '@/lib/types';
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { IoIosArrowForward } from 'react-icons/io';
-import { urlFor } from '../../lib/sanity.ts';
+import { urlFor } from '@/lib/sanity';
+import Image from 'next/image';
 
 const ContributorList = ({
     title,
@@ -22,12 +25,12 @@ const ContributorList = ({
                         {contributorList.map((contributor, index) => (
                             <div key={`contributor-${title}-${index}`}>
                                 {contributor.image && (
-                                    <img
+                                    <Image
                                         className="w-[200px] max-h-[300px] object-cover"
                                         src={urlFor(contributor.image)
                                             .width(400)
                                             .url()}
-                                        alt={contributor.altText}
+                                        alt={contributor.altText || ''}
                                     />
                                 )}
                                 <p className="font-bold text-lg m-0">

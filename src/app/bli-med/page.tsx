@@ -1,8 +1,11 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { getJoinPage, urlFor } from '../lib/sanity';
-import { JoinPage } from '../lib/types';
+import { getJoinPage, urlFor } from '@/lib/sanity';
+import { JoinPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
-import PortableTextComponent from '../components/PortableTextComponent';
+import PortableTextComponent from '@/components/PortableTextComponent';
+import Image from 'next/image';
 
 interface FormData {
     name: string;
@@ -31,7 +34,7 @@ const roleDisplayNames: Record<keyof FormData['role'], string> = {
     other: 'Annet (beskriv i meldingen under)'
 };
 
-const Join = () => {
+const Page = () => {
     const [joinPage, setJoinPage] = useState<JoinPage>();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -186,7 +189,7 @@ const Join = () => {
                             </h1>
                         </div>
                         {joinPage.joinPageBannerImg && (
-                            <img
+                            <Image
                                 className="relative w-full h-full max-h-[80vh] object-cover"
                                 src={urlFor(joinPage.joinPageBannerImg).url()}
                                 alt={joinPage.joinPageBannerImg.altText}
@@ -362,4 +365,4 @@ const Join = () => {
     );
 };
 
-export default Join;
+export default Page;

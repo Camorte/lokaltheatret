@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+'use client';
+
 import { CiFacebook } from 'react-icons/ci';
 import { CiTwitter } from 'react-icons/ci';
 import { CiInstagram } from 'react-icons/ci';
 import { useEffect, useState } from 'react';
-import { getFooter } from '../lib/sanity.ts';
-import type { Footer } from '../lib/types.ts';
+import { getFooter } from '@/lib/sanity';
+import type { Footer } from '@/lib/types';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
     const [footer, setFooter] = useState<Footer>();
@@ -20,11 +23,13 @@ const Footer = () => {
         <>
             {!isLoading && footer && (
                 <div className="flex py-8 px-4 md:px-16 items-center justify-between border-t border-black">
-                    <Link className="group" to={'/'}>
-                        <img
+                    <Link className="group" href="/">
+                        <Image
                             src="/assets/lokaltheatret-logo-black-white.png"
                             alt="Lokaltheatret logo"
                             className="w-[100px]"
+                            width={100}
+                            height={50}
                         />
                         <p className="group-hover:underline text-sm">
                             {footer.slogan}

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import { getAboutPage, urlFor } from '../lib/sanity';
-import { AboutPage } from '../lib/types';
-import { PortableText } from '@portabletext/react';
-import PortableTextComponent from '../components/PortableTextComponent';
+'use client';
 
-const About = () => {
+import { useEffect, useState } from 'react';
+import { getAboutPage, urlFor } from '@/lib/sanity';
+import { AboutPage } from '@/lib/types';
+import { PortableText } from '@portabletext/react';
+import PortableTextComponent from '@/components/PortableTextComponent';
+import Image from 'next/image';
+
+const Page = () => {
     const [aboutPage, setAboutPage] = useState<AboutPage>();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -32,7 +35,7 @@ const About = () => {
                             </h1>
                         </div>
                         {aboutPage.aboutPageBannerImg && (
-                            <img
+                            <Image
                                 src={urlFor(aboutPage.aboutPageBannerImg).url()}
                                 alt={aboutPage.aboutPageBannerImg.altText}
                                 className="relative w-full h-full max-h-[80vh] object-cover"
@@ -70,7 +73,7 @@ const About = () => {
                                         >
                                             <div className="">
                                                 {founder.image && (
-                                                    <img
+                                                    <Image
                                                         className="rounded-full"
                                                         src={urlFor(
                                                             founder.image
@@ -79,7 +82,7 @@ const About = () => {
                                                             founder.image
                                                                 .altText
                                                         }
-                                                        width={'200px'}
+                                                        width="200"
                                                     />
                                                 )}
                                             </div>
@@ -103,4 +106,4 @@ const About = () => {
     );
 };
 
-export default About;
+export default Page;
