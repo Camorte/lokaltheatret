@@ -1,9 +1,11 @@
+'use client';
+
 import { useSpring, a } from '@react-spring/web';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SanityImageAssetDocument } from '@sanity/client';
-import { urlFor } from '../../lib/sanity.ts';
+import { urlFor } from '../../lib/sanity';
 import { FaArrowRightLong } from 'react-icons/fa6';
+import { useRouter } from 'next/navigation';
 
 const PlayCard = ({
     title,
@@ -24,8 +26,7 @@ const PlayCard = ({
     description: string;
     href: string;
 }) => {
-    const navigate = useNavigate();
-
+    const router = useRouter();
     const [flipped, setFlipped] = useState(false);
     const { transform, opacity } = useSpring({
         opacity: flipped ? 1 : 0,
@@ -64,7 +65,7 @@ const PlayCard = ({
             <a.div
                 onClick={() => {
                     if (flipped) {
-                        navigate('/forestillinger' + href);
+                        router.push('/forestillinger' + href);
                     }
                 }}
                 className="play-card-content"

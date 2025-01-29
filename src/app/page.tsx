@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
-import { getMainBanner, urlFor } from '../lib/sanity.ts';
-import { LandingPage } from '../lib/types.ts';
-import PlayCard from '../components/Plays/PlayCard.tsx';
-import { useNavigate } from 'react-router-dom';
+'use client';
 
-const Home = () => {
-    const navigate = useNavigate();
+import { useEffect, useState } from 'react';
+import { getMainBanner, urlFor } from '@/lib/sanity';
+import { LandingPage } from '@/lib/types';
+import PlayCard from '@/components/Plays/PlayCard';
+import { useRouter } from 'next/navigation';
+
+const Page = () => {
+    const router = useRouter();
 
     const [landingPage, setLandingPage] = useState<LandingPage>();
     const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +27,9 @@ const Home = () => {
                 <>
                     <div
                         onClick={() =>
-                            navigate('/forestillinger' + landingPage.bannerUrl)
+                            router.push(
+                                '/forestillinger' + landingPage.bannerUrl
+                            )
                         }
                         className="relative group hover:cursor-pointer w-full h-[50vh] md:h-full max-h-[70vh]"
                     >
@@ -112,4 +116,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Page;

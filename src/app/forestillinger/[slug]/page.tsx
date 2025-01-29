@@ -1,23 +1,24 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getPlay } from '../lib/sanity.ts';
-import { Play } from '../lib/types.ts';
-import { PortableText } from '@portabletext/react';
-import PortableTextComponent from '../components/PortableTextComponent.tsx';
-import { parseToDate } from '../lib/helpers.ts';
-import PlayBanner from '../components/Plays/PlayBanner.tsx';
-import ImageGallery from '../components/ImageGallery.tsx';
-import ContributorsSection from '../components/Plays/ContributorsSection.tsx';
-import LoadingSpinner from '../components/LoadingSpinner.tsx';
+'use client';
 
-const PlayPage = () => {
-    const params = useParams();
+import { use, useEffect, useState } from 'react';
+import { getPlay } from '@/lib/sanity';
+import { Play } from '@/lib/types';
+import { PortableText } from '@portabletext/react';
+import PortableTextComponent from '@/components/PortableTextComponent';
+import { parseToDate } from '@/lib/helpers';
+import PlayBanner from '@/components/Plays/PlayBanner';
+import ImageGallery from '@/components/ImageGallery';
+import ContributorsSection from '@/components/Plays/ContributorsSection';
+import LoadingSpinner from '@/components/LoadingSpinner';
+
+const Page = ({ params }) => {
+    const { slug } = use(params) as { slug: string };
     const [isLoading, setIsLoading] = useState(true);
     const [play, setPlay] = useState<Play>();
 
     useEffect(() => {
-        if (params.slug) {
-            getPlay(params.slug)
+        if (slug) {
+            getPlay(slug)
                 .then((response: Play) => {
                     setPlay(response);
                 })
@@ -186,4 +187,4 @@ const PlayPage = () => {
     );
 };
 
-export default PlayPage;
+export default Page;

@@ -1,8 +1,10 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { getJoinPage, urlFor } from '../lib/sanity';
-import { JoinPage } from '../lib/types';
+import { getJoinPage, urlFor } from '@/lib/sanity';
+import { JoinPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
-import PortableTextComponent from '../components/PortableTextComponent';
+import PortableTextComponent from '@/components/PortableTextComponent';
 
 interface FormData {
     name: string;
@@ -31,7 +33,7 @@ const roleDisplayNames: Record<keyof FormData['role'], string> = {
     other: 'Annet (beskriv i meldingen under)'
 };
 
-const Join = () => {
+const Page = () => {
     const [joinPage, setJoinPage] = useState<JoinPage>();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -362,4 +364,4 @@ const Join = () => {
     );
 };
 
-export default Join;
+export default Page;

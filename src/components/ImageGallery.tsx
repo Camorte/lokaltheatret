@@ -1,11 +1,13 @@
-import { SanityImage } from '../lib/types.ts';
-import { urlFor } from '../lib/sanity.ts';
+'use client';
+
+import { SanityImage } from '@/lib/types';
+import { urlFor } from '@/lib/sanity';
 import { IoIosArrowForward } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 
-import ImageModal from './ImageModal.tsx';
+import ImageModal from './ImageModal';
 
 const ImageGallery = ({ images }: { images: SanityImage[] }) => {
     const scrollToRef: MutableRefObject<HTMLDivElement | null> = useRef(null);

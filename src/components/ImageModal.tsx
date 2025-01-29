@@ -1,8 +1,10 @@
-import { urlFor } from '../lib/sanity.ts';
-import { SanityImage } from '../lib/types.ts';
+'use client';
+
+import { urlFor } from '@/lib/sanity';
+import { SanityImage } from '@/lib/types';
 import { useEffect, useRef, useState } from 'react';
-import { assertIsNode } from '../lib/helpers.ts';
-import LoadingSpinner from './LoadingSpinner.tsx';
+import { assertIsNode } from '@/lib/helpers';
+import LoadingSpinner from './LoadingSpinner';
 import { RxCross2 } from 'react-icons/rx';
 
 const ImageModal = ({

@@ -1,7 +1,7 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
-import { Link } from 'react-router-dom';
-import { urlFor } from '../lib/sanity';
+import { urlFor } from '@/lib/sanity';
+import Link from 'next/link';
 
 const PortableTextComponent: PortableTextComponents = {
     types: {
@@ -36,7 +36,7 @@ const PortableTextComponent: PortableTextComponents = {
     marks: {
         link: ({ children, value }) => {
             return (
-                <Link className="underline" to={value.href}>
+                <Link className="underline" href={value.href}>
                     {children}
                 </Link>
             );

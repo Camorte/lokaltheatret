@@ -1,7 +1,11 @@
-import { Link, useLocation } from 'react-router-dom';
+'use client';
+
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoMdClose } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import router from 'next/router';
 
 const NavLinks = [
     { name: 'Forestillinger', path: '/forestillinger' },
@@ -13,7 +17,7 @@ const NavbarLinks = ({
     currentRoute,
     setShowMenu
 }: {
-    currentRoute: string;
+    currentRoute: string | null;
     setShowMenu?: (show: boolean) => void;
 }) => (
     <>
@@ -23,10 +27,10 @@ const NavbarLinks = ({
                     onClick={() => {
                         if (setShowMenu) setShowMenu(false);
                     }}
-                    to={nav.path}
+                    href={nav.path}
                 >
                     <p
-                        className={`group-hover:underline py-2 px-2 md:text-xl ${currentRoute.includes(nav.path) ? 'underline' : ''}`}
+                        className={`group-hover:underline py-2 px-2 md:text-xl ${currentRoute?.includes(nav.path) ? 'underline' : ''}`}
                     >
                         {nav.name}
                     </p>
@@ -37,7 +41,7 @@ const NavbarLinks = ({
 );
 
 const Header = () => {
-    const location = useLocation();
+    const pathname = usePathname();
     const [showMenu, setShowMenu] = useState<boolean>(false);
 
     const divRef = useRef<HTMLDivElement | null>(null);
@@ -62,7 +66,7 @@ const Header = () => {
 
     return (
         <div className="flex shadow-md px-2 py-2 md:px-4 items-center border-b border-black justify-between">
-            <Link to={'/'}>
+            <Link href={'/'}>
                 <img
                     src="/assets/lokaltheatret-black-logo-white-bg.png"
                     alt="Lokaltheatret logo"
@@ -71,7 +75,7 @@ const Header = () => {
             </Link>
             <div className="flex items-center">
                 <ul className="hidden md:flex-row md:gap-x-8 md:flex">
-                    <NavbarLinks currentRoute={location.pathname} />
+                    <NavbarLinks currentRoute={pathname} />
                 </ul>
                 <button
                     className="mb-0 px-4 md:hidden"
@@ -95,7 +99,7 @@ const Header = () => {
                         <ul className="flex flex-col pl-4 items-center  ">
                             <NavbarLinks
                                 setShowMenu={setShowMenu}
-                                currentRoute={location.pathname}
+                                currentRoute={pathname}
                             />
                         </ul>
                     </div>
