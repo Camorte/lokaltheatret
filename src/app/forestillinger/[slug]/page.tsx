@@ -24,7 +24,7 @@ const Page = ({ params }) => {
                 })
                 .finally(() => setIsLoading(false));
         }
-    }, []);
+    }, [slug]);
 
     return (
         <>

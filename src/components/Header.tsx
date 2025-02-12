@@ -5,7 +5,6 @@ import { IoMdClose } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import router from 'next/router';
 
 const NavLinks = [
     { name: 'Forestillinger', path: '/forestillinger' },
