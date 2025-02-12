@@ -69,6 +69,7 @@ const ImageModal = ({
                         onLoad={() => {
                             setIsLoading(false);
                         }}
+                        alt={chosenImg.altText}
                     />
                     {chosenImg.caption && !isLoading && (
                         <p

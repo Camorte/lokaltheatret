@@ -55,7 +55,7 @@ const Page = () => {
                                         src={landingPage.videoUrl}
                                         type="video/mp4"
                                     />
-                                    Sorry, your browser doesn't support embedded
+                                    Sorry, your browser doesn´t support embedded
                                     videos.
                                 </video>
                             </div>
