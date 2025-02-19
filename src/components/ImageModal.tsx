@@ -1,21 +1,19 @@
 'use client';
 
-import { urlFor } from '@/lib/sanity';
-import { SanityImage } from '@/lib/types';
-import { useEffect, useRef, useState } from 'react';
+import { SanityImage as SanityImageType } from '@/lib/types';
+import { useEffect, useRef } from 'react';
 import { assertIsNode } from '@/lib/helpers';
-import LoadingSpinner from './LoadingSpinner';
 import { RxCross2 } from 'react-icons/rx';
+import SanityImage from './SanityImage';
 
 const ImageModal = ({
     chosenImg,
     setChosenImg
 }: {
-    chosenImg: SanityImage;
-    setChosenImg: (img: SanityImage | undefined) => void;
+    chosenImg: SanityImageType;
+    setChosenImg: (img: SanityImageType | undefined) => void;
 }) => {
     const refElement = useRef<HTMLImageElement | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -54,24 +52,22 @@ const ImageModal = ({
                     ref={refElement}
                     className="relative max-w-full max-h-full"
                 >
-                    {!isLoading && (
-                        <button
-                            className="absolute top-5 right-5 bg-black rounded-full p-2"
-                            onClick={() => setChosenImg(undefined)}
-                        >
-                            <RxCross2 color="white" />
-                        </button>
-                    )}
-                    <img
-                        loading={'lazy'}
+                    <button
+                        className="absolute top-5 right-5 bg-black rounded-full p-2"
+                        onClick={() => setChosenImg(undefined)}
+                    >
+                        <RxCross2 color="white" />
+                    </button>
+
+                    <SanityImage
                         className="object-contain max-h-[90vh] max-w-[90vw]"
-                        src={urlFor(chosenImg.image).url()}
-                        onLoad={() => {
-                            setIsLoading(false);
-                        }}
+                        src={chosenImg.image}
                         alt={chosenImg.altText}
+                        width={800}
+                        height={800}
                     />
-                    {chosenImg.caption && !isLoading && (
+
+                    {chosenImg.caption && (
                         <p
                             className="absolute bottom-5 left-0 right-0 mx-auto text-white m-0 max-w-[300px] p-2 md:max-w-[500px]"
                             style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
@@ -80,7 +76,6 @@ const ImageModal = ({
                         </p>
                     )}
                 </div>
-                {isLoading && <LoadingSpinner />}
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import { IoMdClose } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const NavLinks = [
     { name: 'Forestillinger', path: '/forestillinger' },
@@ -66,10 +67,12 @@ const Header = () => {
     return (
         <div className="flex shadow-md px-2 py-2 md:px-4 items-center border-b border-black justify-between">
             <Link href={'/'}>
-                <img
+                <Image
                     src="/assets/lokaltheatret-black-logo-white-bg.png"
                     alt="Lokaltheatret logo"
                     className="w-[150px] md:w-[200px]"
+                    width={200}
+                    height={200}
                 />
             </Link>
             <div className="flex items-center">

@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAboutPage, urlFor } from '@/lib/sanity';
+import { getAboutPage } from '@/lib/sanity';
 import { AboutPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
+import SanityImage from '@/components/SanityImage';
 
 const Page = () => {
     const [aboutPage, setAboutPage] = useState<AboutPage>();
@@ -22,7 +23,7 @@ const Page = () => {
         <main className="flex flex-col justify-center items-center mb-16">
             {!isLoading && aboutPage && (
                 <>
-                    <div className="relative w-full h-[80vh]">
+                    <div className="relative w-full h-1/6">
                         <div
                             className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                             style={{
@@ -34,10 +35,13 @@ const Page = () => {
                             </h1>
                         </div>
                         {aboutPage.aboutPageBannerImg && (
-                            <img
-                                src={urlFor(aboutPage.aboutPageBannerImg).url()}
+                            <SanityImage
+                                src={aboutPage.aboutPageBannerImg.image}
                                 alt={aboutPage.aboutPageBannerImg.altText}
-                                className="relative w-full h-full max-h-[80vh] object-cover"
+                                className="relative w-full h-full"
+                                width={800}
+                                height={800}
+                                priority
                             />
                         )}
                     </div>
@@ -72,16 +76,15 @@ const Page = () => {
                                         >
                                             <div className="">
                                                 {founder.image && (
-                                                    <img
+                                                    <SanityImage
                                                         className="rounded-full"
-                                                        src={urlFor(
-                                                            founder.image
-                                                        ).url()}
+                                                        src={founder.image}
                                                         alt={
-                                                            founder.image
-                                                                .altText
+                                                            'Bilde av ' +
+                                                            founder.name
                                                         }
-                                                        width={'200px'}
+                                                        width={200}
+                                                        height={200}
                                                     />
                                                 )}
                                             </div>

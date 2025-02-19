@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getPlays, urlFor } from '@/lib/sanity';
+import { getPlays } from '@/lib/sanity';
 import { PlaysList } from '@/lib/types';
 import { parseToDate } from '@/lib/helpers';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useRouter } from 'next/navigation';
+import SanityImage from '@/components/SanityImage';
 
 const Page = () => {
     const router = useRouter();
@@ -42,22 +43,25 @@ const Page = () => {
                             router.push('/forestillinger' + play.slug)
                         }
                     >
-                        <img
-                            className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== undefined && hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
-                            src={urlFor(play.bannerImg.image).width(1200).url()}
+                        <SanityImage
+                            src={play.bannerImg.image}
                             alt={play.bannerImg.altText}
+                            className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== undefined && hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
+                            width={800}
+                            height={800}
                         />
+
                         <div
                             className="p-8 md:p-4 w-full flex flex-col items-center justify-center"
                             style={{ color: play.textColor }}
                         >
                             {play.logoImg?.image && (
-                                <img
+                                <SanityImage
                                     className="w-[150px] md:w-[200px]"
-                                    src={urlFor(play.logoImg.image)
-                                        .width(300)
-                                        .url()}
+                                    src={play.logoImg.image}
                                     alt={play.logoImg.altText}
+                                    width={300}
+                                    height={300}
                                 />
                             )}
                             {!play.logoImg?.image && play.playTitle && (

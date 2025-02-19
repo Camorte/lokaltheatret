@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getMainBanner, urlFor } from '@/lib/sanity';
+import { getMainBanner } from '@/lib/sanity';
 import { LandingPage } from '@/lib/types';
 import PlayCard from '@/components/Plays/PlayCard';
 import { useRouter } from 'next/navigation';
+import SanityImage from '@/components/SanityImage';
 
 const Page = () => {
     const router = useRouter();
@@ -61,16 +62,20 @@ const Page = () => {
                             </div>
                         )}
 
-                        <img
+                        <SanityImage
                             className="relative z-[2] w-full object-cover h-[50vh] md:h-full max-h-[70vh] ease-in transition-opacity duration-300 opacity-100 md:group-hover:opacity-[0.8]"
-                            src={urlFor(landingPage.image).width(1500).url()}
+                            src={landingPage.image}
                             alt={landingPage.bannerAltText}
+                            width={1500}
+                            height={700}
                         />
 
-                        <img
+                        <SanityImage
                             className="absolute bottom-10 right-5 md:right-10 max-w-[250px] md:max-w-[500px] ease-in duration-300 z-[3] md:group-hover:scale-110"
-                            src={urlFor(landingPage.logo).width(700).url()}
+                            src={landingPage.logo}
                             alt={landingPage.logoAltText}
+                            width={700}
+                            height={700}
                         />
                     </div>
                     <div className="page-container">
@@ -99,7 +104,7 @@ const Page = () => {
                                         key={'play-card-' + index}
                                         title={play.title}
                                         image={play.image}
-                                        imageAlt={play.imageAlt}
+                                        imageAlt={play.image.alt}
                                         playPeriod={playPeriod}
                                         description={play.description}
                                         bgColor={play.playReference.playColor}
