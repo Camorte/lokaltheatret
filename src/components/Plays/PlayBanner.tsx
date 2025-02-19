@@ -1,10 +1,10 @@
 'use client';
 
-import { urlFor } from '@/lib/sanity';
-import { PlayDate, SanityImage } from '@/lib/types';
+import { PlayDate, SanityImage as SanityImageType } from '@/lib/types';
 import { parseToDate } from '@/lib/helpers';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
+import SanityImage from '../SanityImage';
 
 const PlayBanner = ({
     bannerImg,
@@ -16,8 +16,8 @@ const PlayBanner = ({
     playActive,
     logoImg
 }: {
-    bannerImg: SanityImage;
-    logoImg: SanityImage | undefined;
+    bannerImg: SanityImageType;
+    logoImg: SanityImageType | undefined;
     playPeriod: string | undefined;
     playDates: PlayDate[] | undefined;
     playActive: boolean;
@@ -41,10 +41,12 @@ const PlayBanner = ({
                 style={{ backgroundColor: playColor }}
             >
                 {logoImg?.image ? (
-                    <img
-                        src={urlFor(logoImg.image).width(300).url()}
+                    <SanityImage
+                        src={logoImg.image}
                         className="max-w-[30vw] md:max-w-[30vw]"
                         alt={logoImg.altText}
+                        width={300}
+                        height={300}
                     />
                 ) : (
                     <p
@@ -74,10 +76,13 @@ const PlayBanner = ({
                         playPeriod}
                 </p>
             </div>
-            <img
+            <SanityImage
                 className="relative w-full h-full max-h-[80vh] object-cover"
-                src={urlFor(bannerImg.image).width(1600).url()}
+                src={bannerImg.image}
                 alt={bannerImg.altText}
+                width={1600}
+                height={1600}
+                priority
             />
         </div>
     );

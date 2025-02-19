@@ -1,17 +1,17 @@
 'use client';
 
-import { SanityImage } from '@/lib/types';
-import { urlFor } from '@/lib/sanity';
+import type { SanityImage as SanityImageType } from '@/lib/types';
 import { IoIosArrowForward } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { FaCircle } from 'react-icons/fa';
 
 import ImageModal from './ImageModal';
+import SanityImage from './SanityImage';
 
-const ImageGallery = ({ images }: { images: SanityImage[] }) => {
+const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
     const scrollToRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-    const [chosenImg, setChosenImg] = useState<SanityImage | undefined>(
+    const [chosenImg, setChosenImg] = useState<SanityImageType | undefined>(
         undefined
     );
 
@@ -145,10 +145,12 @@ const ImageGallery = ({ images }: { images: SanityImage[] }) => {
                             onClick={() => setChosenImg(image)}
                             className="cursor-pointer shrink-0 snap-start max-h-[500px] w-[350px] p-4"
                         >
-                            <img
+                            <SanityImage
                                 className="w-full h-full"
-                                src={urlFor(image.image).width(450).url()}
+                                src={image.image}
                                 alt={image.altText}
+                                width={450}
+                                height={450}
                             />
                         </div>
                     ))}

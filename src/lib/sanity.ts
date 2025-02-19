@@ -59,7 +59,9 @@ export const getMainBanner = async () => {
 export const getAboutPage = async () => {
     return client.fetch(
         `*[_type=="about"][0]{
-            aboutPageBannerImg, "bannerColor":bannerColor.hex, title, content, foundersContent, foundersList
+            "aboutPageBannerImg": {"image":aboutPageBannerImg, "altText": aboutPageBannerImg.alt},
+            "bannerColor":bannerColor.hex,
+            title, content, foundersContent, foundersList
         }`
     );
 };
@@ -67,7 +69,9 @@ export const getAboutPage = async () => {
 export const getJoinPage = async () => {
     return client.fetch(
         `*[_type=="join"][0]{
-            joinPageBannerImg, "bannerColor":bannerColor.hex, title, content
+            "joinPageBannerImg": {"image":joinPageBannerImg, "altText": joinPageBannerImg.alt},
+            "bannerColor": bannerColor.hex,
+            title, content
         }`
     );
 };

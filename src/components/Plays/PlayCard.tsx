@@ -3,9 +3,9 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { SanityImageAssetDocument } from '@sanity/client';
-import { urlFor } from '../../lib/sanity';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
+import SanityImage from '../SanityImage';
 
 const PlayCard = ({
     title,
@@ -45,10 +45,12 @@ const PlayCard = ({
                     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`
                 }}
             >
-                <img
+                <SanityImage
                     className="w-full bg-black h-[280px] md:h-[280px] lg:h-[400px] object-cover"
-                    src={urlFor(image).width(480).url()}
+                    src={image}
                     alt={imageAlt}
+                    width={480}
+                    height={480}
                 />
                 <div
                     className="p-4 flex flex-col items-center justify-between"
@@ -91,10 +93,12 @@ const PlayCard = ({
                         className="absolute w-full h-full z-[1] opacity-[0.85] top-0"
                         style={{ backgroundColor: bgColor }}
                     />
-                    <img
+                    <SanityImage
                         className="absolute h-full w-full object-cover z-0 top-0 grayscale"
-                        src={urlFor(image).width(350).url()}
+                        src={image}
                         alt={imageAlt}
+                        width={350}
+                        height={350}
                     />
                 </div>
             </motion.div>

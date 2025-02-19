@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getJoinPage, urlFor } from '@/lib/sanity';
+import { getJoinPage } from '@/lib/sanity';
 import { JoinPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
+import SanityImage from '@/components/SanityImage';
 
 interface FormData {
     name: string;
@@ -176,7 +177,7 @@ const Page = () => {
         <main className="flex flex-col justify-center items-center mb-16">
             {joinPage && !isLoading && (
                 <>
-                    <div className="relative w-full h-[80vh]">
+                    <div className="relative w-full h-1/6">
                         <div
                             className="absolute w-fit p-2 z-[2] top-[50%] left-[32px] md:left-[10vw] md:p-8"
                             style={{
@@ -188,10 +189,13 @@ const Page = () => {
                             </h1>
                         </div>
                         {joinPage.joinPageBannerImg && (
-                            <img
-                                className="relative w-full h-full max-h-[80vh] object-cover"
-                                src={urlFor(joinPage.joinPageBannerImg).url()}
+                            <SanityImage
+                                className="relative w-full h-full"
+                                src={joinPage.joinPageBannerImg.image}
                                 alt={joinPage.joinPageBannerImg.altText}
+                                width={800}
+                                height={800}
+                                priority
                             />
                         )}
                     </div>

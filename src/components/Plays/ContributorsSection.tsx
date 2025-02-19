@@ -4,7 +4,7 @@ import { Contributor, Contributors } from '@/lib/types';
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { IoIosArrowForward } from 'react-icons/io';
-import { urlFor } from '@/lib/sanity';
+import SanityImage from '../SanityImage';
 
 const ContributorList = ({
     title,
@@ -24,12 +24,12 @@ const ContributorList = ({
                         {contributorList.map((contributor, index) => (
                             <div key={`contributor-${title}-${index}`}>
                                 {contributor.image && (
-                                    <img
+                                    <SanityImage
                                         className="w-[200px] max-h-[300px] object-cover"
-                                        src={urlFor(contributor.image)
-                                            .width(400)
-                                            .url()}
-                                        alt={contributor.altText}
+                                        src={contributor.image}
+                                        alt={contributor.altText || ''}
+                                        width={400}
+                                        height={400}
                                     />
                                 )}
                                 <p className="font-bold text-lg m-0">

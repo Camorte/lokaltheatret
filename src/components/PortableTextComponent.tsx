@@ -1,7 +1,7 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
-import { urlFor } from '@/lib/sanity';
 import Link from 'next/link';
+import SanityImage from './SanityImage';
 
 const PortableTextComponent: PortableTextComponents = {
     types: {
@@ -18,10 +18,12 @@ const PortableTextComponent: PortableTextComponents = {
             return (
                 <div className="flex justify-center my-14 relative w-full">
                     <div className="relative">
-                        <img
-                            className="max-w-[250px] md:max-w-[400px]"
-                            src={urlFor(value.asset).url() || ''}
+                        <SanityImage
+                            className="max-w-[250px] md:max-w-[400px] h-auto"
+                            src={value.asset || ''}
                             alt={value.imageAlt}
+                            width={400}
+                            height={400}
                         />
                         {value.imageCaption && (
                             <div className="absolute bg-white px-4 bottom-[-20px] right-[-6px] max-w-[200px] md:right-[-12px] md:max-w-[250px] drop-shadow-md">
