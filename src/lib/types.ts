@@ -40,7 +40,7 @@ export type PlayDate = {
     fewTickets: boolean;
 };
 
-export type PlaysList = {
+export type PlaysListItem = {
     playTitle: string;
     bannerImg: SanityImage;
     logoImg?: SanityImage;
@@ -52,7 +52,9 @@ export type PlaysList = {
     active: boolean;
     soldOut?: boolean;
     slug: string;
-}[];
+};
+
+export type PlaysList = PlaysListItem[];
 
 export type Play = {
     playTitle: string;
