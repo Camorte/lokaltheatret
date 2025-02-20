@@ -11,8 +11,12 @@ type Props = {
     index: number;
 };
 
-const Play = ({ play, index }: Props) => {
+const PlayItem = ({ play, index }: Props) => {
     const [hoverIndex, setHoverIndex] = useState<number | undefined>(undefined);
+
+    if (!play) {
+        return null;
+    }
 
     return (
         <Link
@@ -78,4 +82,4 @@ const Play = ({ play, index }: Props) => {
     );
 };
 
-export default Play;
+export default PlayItem;

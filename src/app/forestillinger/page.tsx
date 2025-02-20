@@ -1,6 +1,6 @@
 import { getPlays } from '@/lib/sanity';
 import { PlaysList } from '@/lib/types';
-import Play from './play';
+import PlayItem from './PlayItem';
 import { notFound } from 'next/navigation';
 
 const Page = async () => {
@@ -14,7 +14,7 @@ const Page = async () => {
         <div className="flex flex-col items-center w-full">
             <div className="flex flex-col w-full gap-y-4 max-w-[1500px]">
                 {playsList.map((play, index) => (
-                    <Play
+                    <PlayItem
                         play={play}
                         index={index}
                         key={`play-list-${index}`}
