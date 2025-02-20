@@ -1,6 +1,5 @@
 import { getMainBanner } from '@/lib/sanity';
 import PlayCard from '@/components/Plays/PlayCard';
-import SanityImage from '@/components/SanityImage';
 import Link from 'next/link';
 import { LandingPage } from '@/lib/types';
 import Hero from '@/components/Hero';

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { getAboutPage } from '@/lib/sanity';
 import { AboutPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
