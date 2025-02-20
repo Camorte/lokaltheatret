@@ -1,9 +1,14 @@
 import { getPlays } from '@/lib/sanity';
 import { PlaysList } from '@/lib/types';
 import Play from './play';
+import { notFound } from 'next/navigation';
 
 const Page = async () => {
     const playsList: PlaysList = await getPlays();
+
+    if (!playsList) {
+        return notFound();
+    }
 
     return (
         <div className="flex flex-col items-center w-full">

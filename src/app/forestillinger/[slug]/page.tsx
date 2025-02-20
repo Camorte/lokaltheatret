@@ -6,10 +6,15 @@ import { parseToDate } from '@/lib/helpers';
 import PlayBanner from '@/components/Plays/PlayBanner';
 import ImageGallery from '@/components/ImageGallery';
 import ContributorsSection from '@/components/Plays/ContributorsSection';
+import { notFound } from 'next/navigation';
 
 const Page = async ({ params }) => {
     const { slug } = (await params) as { slug: string };
     const play: Play = await getPlay(slug);
+
+    if (!play) {
+        return notFound();
+    }
 
     return (
         <div className="flex flex-col">

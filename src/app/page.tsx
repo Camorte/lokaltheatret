@@ -3,12 +3,13 @@ import PlayCard from '@/components/Plays/PlayCard';
 import Link from 'next/link';
 import { LandingPage } from '@/lib/types';
 import Hero from '@/components/Hero';
+import { notFound } from 'next/navigation';
 
 const Page = async () => {
     const landingPage: LandingPage = await getMainBanner();
 
     if (!landingPage) {
-        return null;
+        return notFound();
     }
 
     return (

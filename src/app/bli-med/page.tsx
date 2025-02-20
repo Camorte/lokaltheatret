@@ -4,9 +4,14 @@ import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
 import Form from './form';
+import { notFound } from 'next/navigation';
 
 const Page = async () => {
     const joinPage: JoinPage = await getJoinPage();
+
+    if (!joinPage) {
+        return notFound();
+    }
 
     return (
         <main className="flex flex-col justify-center items-center mb-16">

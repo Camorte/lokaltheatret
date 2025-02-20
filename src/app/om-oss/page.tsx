@@ -3,9 +3,14 @@ import { AboutPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
+import { notFound } from 'next/navigation';
 
 const Page = async () => {
     const aboutPage: AboutPage = await getAboutPage();
+
+    if (!aboutPage) {
+        return notFound();
+    }
 
     return (
         <main className="flex flex-col justify-center items-center mb-16">
