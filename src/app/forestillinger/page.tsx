@@ -1,101 +1,19 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import { getPlays } from '@/lib/sanity';
 import { PlaysList } from '@/lib/types';
-import { parseToDate } from '@/lib/helpers';
-import LoadingSpinner from '@/components/LoadingSpinner';
-import { useRouter } from 'next/navigation';
-import SanityImage from '@/components/SanityImage';
+import Play from './play';
 
-const Page = () => {
-    const router = useRouter();
-    const [isLoading, setIsLoading] = useState(true);
-    const [playsList, setPlaysList] = useState<PlaysList>([]);
-    const [hoverIndex, setHoverIndex] = useState<number | undefined>(undefined);
-
-    useEffect(() => {
-        getPlays()
-            .then((response: PlaysList) => {
-                setPlaysList(response);
-            })
-            .catch((error) => {
-                console.error(error);
-            })
-            .finally(() => setIsLoading(false));
-    }, []);
-
-    if (isLoading) {
-        return <LoadingSpinner colorBlack />;
-    }
+const Page = async () => {
+    const playsList: PlaysList = await getPlays();
 
     return (
         <div className="flex flex-col items-center w-full">
             <div className="flex flex-col w-full gap-y-4 max-w-[1500px]">
                 {playsList.map((play, index) => (
-                    <div
+                    <Play
+                        play={play}
+                        index={index}
                         key={`play-list-${index}`}
-                        className={`flex ${index % 2 !== 0 ? 'flex-row-reverse' : 'flex-row'} w-full hover:cursor-pointer group h-[400px]`}
-                        style={{ backgroundColor: play.playColor }}
-                        onMouseEnter={() => setHoverIndex(index)}
-                        onMouseLeave={() => setHoverIndex(undefined)}
-                        onClick={() =>
-                            router.push('/forestillinger' + play.slug)
-                        }
-                    >
-                        <SanityImage
-                            src={play.bannerImg.image}
-                            alt={play.bannerImg.altText}
-                            className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== undefined && hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
-                            width={800}
-                            height={800}
-                        />
-
-                        <div
-                            className="p-8 md:p-4 w-full flex flex-col items-center justify-center"
-                            style={{ color: play.textColor }}
-                        >
-                            {play.logoImg?.image && (
-                                <SanityImage
-                                    className="w-[150px] md:w-[200px]"
-                                    src={play.logoImg.image}
-                                    alt={play.logoImg.altText}
-                                    width={300}
-                                    height={300}
-                                />
-                            )}
-                            {!play.logoImg?.image && play.playTitle && (
-                                <h2 className="text-2xl m-0 text-center">
-                                    {play.playTitle}
-                                </h2>
-                            )}
-                            <p className="md:text-lg font-bold text-center">
-                                {play.active &&
-                                    `${play.soldOut ? 'Billetter utsolgt' : 'Billetter tilgjengelig nå'}`}
-                            </p>
-                            <p className="text-lg mb-8 text-center">
-                                Lokasjon: {play.location}
-                            </p>
-                            <p className="flex flex-col text-center">
-                                {play.playDates
-                                    ? play.playDates.map((date, index) => (
-                                          <span
-                                              key={`play-list-date-${index}`}
-                                              className="m-0"
-                                          >
-                                              {parseToDate(
-                                                  date.playDate
-                                              ).toLocaleDateString('nb', {
-                                                  month: 'long',
-                                                  day: 'numeric'
-                                              })}{' '}
-                                              {date.soldOut ? ' – Utsolgt' : ''}
-                                          </span>
-                                      ))
-                                    : play.playPeriod}
-                            </p>
-                        </div>
-                    </div>
+                    />
                 ))}
             </div>
         </div>
