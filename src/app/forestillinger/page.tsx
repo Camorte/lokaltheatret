@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Forestillinger - Lokaltheatret',
+    title: 'Forestillinger | Lokaltheatret',
     description: 'Oversikt over alle våre forestillinger på Lokaltheatret'
 };
 
