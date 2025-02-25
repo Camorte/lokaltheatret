@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Bli med! - Lokaltheatret',
+    title: 'Bli med! | Lokaltheatret',
     description:
         'Har du lyst til å bli med i Lokaltheatret? Fyll ut skjemaet på denne siden for å melde din interesse'
 };

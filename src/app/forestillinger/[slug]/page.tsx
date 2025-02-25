@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         (highlightedPlay) => highlightedPlay.title === play.playTitle
     );
 
-    const title = play.playTitle + ' - Lokaltheatret';
+    const title = play.playTitle + ' | Lokaltheatret';
     const description = highlightedPlay?.description;
     const url = 'https://lokaltheatret.no/forestillinger/' + slug;
     const image = play.bannerImg.image.url;
