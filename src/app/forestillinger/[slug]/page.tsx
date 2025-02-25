@@ -38,7 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             'Teater',
             'Oslo',
             'Forestilling',
-            play.playTitle
+            play.playTitle,
+            play.location
         ],
         openGraph: {
             type: 'website',
