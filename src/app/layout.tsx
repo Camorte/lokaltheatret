@@ -11,6 +11,7 @@ const image = 'https://www.lokaltheatret.no/assets/favicon.png';
 export const metadata: Metadata = {
     title: title,
     description: description,
+    keywords: ['teater', 'Oslo', 'Lokaltheatret'],
     openGraph: {
         type: 'website',
         url: url,

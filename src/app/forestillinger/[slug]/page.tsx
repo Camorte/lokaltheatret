@@ -1,4 +1,4 @@
-import { getPlay } from '@/lib/sanity';
+import { getMainBanner, getPlay } from '@/lib/sanity';
 import { Play } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
@@ -7,9 +7,67 @@ import PlayBanner from '@/components/Plays/PlayBanner';
 import ImageGallery from '@/components/ImageGallery';
 import ContributorsSection from '@/components/Plays/ContributorsSection';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
-const Page = async ({ params }) => {
-    const { slug } = (await params) as { slug: string };
+type Props = {
+    params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const slug = (await params).slug;
+
+    const play: Play = await getPlay(slug);
+    const landingPage = await getMainBanner();
+
+    const highlightedPlay = landingPage.highlightedPlays.find(
+        (highlightedPlay) => highlightedPlay.title === play.playTitle
+    );
+
+    const title = play.playTitle + ' - Lokaltheatret';
+    const description = highlightedPlay?.description;
+    const url = 'https://lokaltheatret.no/forestillinger/' + slug;
+    const image = play.bannerImg.image.url;
+    const alt = play.bannerImg.altText;
+
+    return {
+        title: title,
+        description: description,
+
+        keywords: [
+            'Lokaltheatret',
+            'Teater',
+            'Oslo',
+            'Forestilling',
+            play.playTitle
+        ],
+        openGraph: {
+            type: 'website',
+            url: url,
+            title: title,
+            description: description,
+            images: [
+                {
+                    url: image,
+                    alt: alt
+                }
+            ]
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description: description,
+            images: [
+                {
+                    url: image,
+                    alt: alt
+                }
+            ]
+        }
+    };
+}
+
+const Page = async ({ params }: Props) => {
+    const { slug } = await params;
     const play: Play = await getPlay(slug);
 
     if (!play) {

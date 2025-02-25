@@ -4,6 +4,12 @@ import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Om oss - Lokaltheatret',
+    description: 'Her finner du informasjon om oss i Lokaltheatret.'
+};
 
 const Page = async () => {
     const aboutPage: AboutPage = await getAboutPage();
