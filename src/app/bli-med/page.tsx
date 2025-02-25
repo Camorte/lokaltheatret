@@ -5,6 +5,13 @@ import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
 import Form from './form';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Bli med! - Lokaltheatret',
+    description:
+        'Har du lyst til å bli med i Lokaltheatret? Fyll ut skjemaet på denne siden for å melde din interesse'
+};
 
 const Page = async () => {
     const joinPage: JoinPage = await getJoinPage();

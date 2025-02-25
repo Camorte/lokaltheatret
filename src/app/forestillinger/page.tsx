@@ -2,6 +2,12 @@ import { getPlays } from '@/lib/sanity';
 import { PlaysList } from '@/lib/types';
 import PlayItem from './PlayItem';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Forestillinger - Lokaltheatret',
+    description: 'Oversikt over alle våre forestillinger på Lokaltheatret'
+};
 
 const Page = async () => {
     const playsList: PlaysList = await getPlays();
