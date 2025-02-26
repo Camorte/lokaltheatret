@@ -6,6 +6,7 @@ import {playImage} from './playImage'
 import {contributors} from './contributors'
 import {join} from './join'
 import {playDay} from './playDay'
+import {article} from './article'
 
 export const schemaTypes = [
   landingPage,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   contributors,
   join,
   playDay,
+  article,
 ]

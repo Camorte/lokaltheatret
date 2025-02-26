@@ -20,6 +20,10 @@ const structure: StructureToolOptions = (S: StructureBuilder, context: ConfigCon
         context,
       }),
       S.listItem()
+        .title('Artikler')
+        .schemaType('article')
+        .child(S.documentTypeList('article').title('Artikler')),
+      S.listItem()
         .title('Om oss')
         .schemaType('about')
         .child(S.document().schemaType('about').documentId('about')),
