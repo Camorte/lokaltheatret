@@ -12,6 +12,16 @@ export default defineConfig({
   projectId: 'c99u49i1',
   dataset: 'production',
 
+  beta: {
+    create: {
+      startInCreateEnabled: false,
+    },
+  },
+
+  scheduledPublishing: {
+    enabled: false,
+  },
+
   plugins: [
     colorInput(),
     structureTool({
