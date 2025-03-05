@@ -2,13 +2,19 @@ import {Stack, Text} from '@sanity/ui'
 import {useFormValue} from 'sanity'
 import {useEffect, useState} from 'react'
 
+type RGB = {
+  r: number
+  g: number
+  b: number
+}
+
 const RED = 0.2126
 const GREEN = 0.7152
 const BLUE = 0.0722
 
 const GAMMA = 2.4
 
-const luminance = (r, g, b) => {
+const luminance = (r: number, g: number, b: number) => {
   var a = [r, g, b].map((v) => {
     v /= 255
     return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, GAMMA)
@@ -16,7 +22,7 @@ const luminance = (r, g, b) => {
   return a[0] * RED + a[1] * GREEN + a[2] * BLUE
 }
 
-const contrast = (rgb1, rgb2) => {
+const contrast = (rgb1: RGB, rgb2: RGB) => {
   var lum1 = luminance(rgb1.r, rgb1.g, rgb1.b)
   var lum2 = luminance(rgb2.r, rgb2.g, rgb2.b)
   var brightest = Math.max(lum1, lum2)
@@ -24,16 +30,15 @@ const contrast = (rgb1, rgb2) => {
   return (brightest + 0.05) / (darkest + 0.05)
 }
 
-const ColorContrastString = (props) => {
-  const playColor = useFormValue(['playColor'])
-  const textColor = useFormValue(['textColor'])
-  const [contrastValue, setContrastValue] = useState()
+const ColorContrastString = () => {
+  const playColor = useFormValue(['playColor']) as {rgb: RGB}
+  const textColor = useFormValue(['textColor']) as {rgb: RGB}
+  const [contrastValue, setContrastValue] = useState<number>()
 
   useEffect(() => {
-    console.log(playColor, textColor)
     if (playColor && textColor && playColor.rgb && textColor.rgb) {
-      const newContrastValue = contrast(playColor.rgb, textColor.rgb)
-      setContrastValue(newContrastValue.toFixed(2))
+      const newContrastValue = Number(contrast(playColor.rgb, textColor.rgb).toFixed(2))
+      setContrastValue(newContrastValue)
     }
   }, [playColor, textColor])
 
