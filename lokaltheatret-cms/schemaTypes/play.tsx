@@ -38,6 +38,14 @@ export const play = defineType({
       validation: (Rule) => Rule.required(),
     }),
     orderRankField({type: 'play', newItemPosition: 'before'}),
+    {
+      title: 'Bannervideo',
+      name: 'video',
+      type: 'file',
+      options: {
+        accept: '.mp4',
+      },
+    },
     defineField({
       title: 'Banner bilde',
       name: 'playBannerImg',

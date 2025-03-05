@@ -14,6 +14,22 @@ export const article = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      title: 'Url slug',
+      name: 'slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Forestilling',
+      name: 'play',
+      type: 'reference',
+      to: [{type: 'play'}],
+    }),
+    defineField({
       title: 'Ingress',
       name: 'ingress',
       type: 'text',
