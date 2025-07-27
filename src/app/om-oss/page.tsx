@@ -1,4 +1,4 @@
-import { getAboutPage } from '@/lib/sanity';
+import { getAboutPage } from '@/lib/sanity/fetch';
 import { AboutPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';

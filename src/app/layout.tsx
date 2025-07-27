@@ -2,6 +2,10 @@ import { Metadata } from 'next';
 import './global.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { VisualEditing } from 'next-sanity';
+import { draftMode } from 'next/headers';
+import { Toaster } from 'sonner';
+import { SanityLive } from '@/lib/sanity/live';
 
 const title = 'Lokaltheatret';
 const description = 'Teater i hjerte av Oslo';
@@ -37,13 +41,22 @@ export const metadata: Metadata = {
     }
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+    const { isEnabled: isDraftMode } = await draftMode();
+
     return (
         <html lang="nb">
             <body>
                 <div id="root">
                     <Header />
                     {children}
+                    <Toaster />
+                    <SanityLive />
+                    {isDraftMode && (
+                        <>
+                            <VisualEditing />
+                        </>
+                    )}
                     <Footer />
                 </div>
 

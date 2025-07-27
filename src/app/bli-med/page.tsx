@@ -1,4 +1,4 @@
-import { getJoinPage } from '@/lib/sanity';
+import { getJoinPage } from '@/lib/sanity/fetch';
 import { JoinPage } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';

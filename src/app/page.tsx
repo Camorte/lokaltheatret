@@ -1,4 +1,4 @@
-import { getMainBanner } from '@/lib/sanity';
+import { getMainBanner } from '@/lib/sanity/fetch';
 import PlayCard from '@/components/Plays/PlayCard';
 import Link from 'next/link';
 import { LandingPage } from '@/lib/types';
@@ -25,6 +25,7 @@ const Page = async () => {
                     {landingPage.highlightedPlays.map((play, index) => {
                         let playPeriod = '';
                         if (
+                            play.playReference &&
                             play.playReference.playStartDate &&
                             play.playReference.playEndDate &&
                             play.playReference.active

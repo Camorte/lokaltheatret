@@ -1,4 +1,4 @@
-import { getPlays } from '@/lib/sanity';
+import { getPlays } from '@/lib/sanity/fetch';
 import { PlaysList } from '@/lib/types';
 import PlayItem from './PlayItem';
 import { notFound } from 'next/navigation';
