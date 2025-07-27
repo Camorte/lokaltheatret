@@ -1,16 +1,4 @@
-import {defineDocuments, defineLocations, type DocumentLocation} from 'sanity/presentation'
-
-// resolveHref() is a convenience function that resolves the URL
-// path for different document types and used in the presentation tool.
-function resolveHref(documentType?: string, slug?: string): string | undefined {
-  switch (documentType) {
-    case 'play':
-      return `/forestillinger/${slug}`
-    default:
-      console.warn('Invalid document type:', documentType)
-      return undefined
-  }
-}
+import {defineDocuments, defineLocations} from 'sanity/presentation'
 
 export const resolve = {
   // The Main Document Resolver API provides a method of resolving a main document from a given route or route pattern. https://www.sanity.io/docs/presentation-resolver-api#57720a5678d9
@@ -77,7 +65,7 @@ export const resolve = {
         locations: [
           {
             title: doc?.name || 'Untitled',
-            href: resolveHref('play', doc?.slug)!,
+            href: `/forestillinger/${doc?.slug}`,
           },
         ],
       }),
