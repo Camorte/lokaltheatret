@@ -1,4 +1,4 @@
-import { getMainBanner, getPlay } from '@/lib/sanity';
+import { getMainBanner, getPlay } from '@/lib/sanity/fetch';
 import { Play } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';

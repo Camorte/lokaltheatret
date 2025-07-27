@@ -4,7 +4,7 @@ import { CiFacebook } from 'react-icons/ci';
 import { CiTwitter } from 'react-icons/ci';
 import { CiInstagram } from 'react-icons/ci';
 import { useEffect, useState } from 'react';
-import { getFooter } from '@/lib/sanity';
+import { getFooter } from '@/lib/sanity/fetch';
 import type { Footer } from '@/lib/types';
 import Link from 'next/link';
 import Image from 'next/image';

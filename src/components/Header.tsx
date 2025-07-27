@@ -70,7 +70,7 @@ const Header = () => {
                 <Image
                     src="/assets/lokaltheatret-black-logo-white-bg.png"
                     alt="Lokaltheatret logo"
-                    className="w-[150px] md:w-[200px]"
+                    className="w-[150px] h-auto md:w-[200px]"
                     width={200}
                     height={200}
                 />

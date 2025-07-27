@@ -2,7 +2,7 @@
 
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Image, { ImageProps } from 'next/image';
-import { urlFor } from '@/lib/sanity';
+import { urlFor } from '@/lib/sanity/client';
 
 type Props = Omit<ImageProps, 'src'> & {
     src: SanityImageSource;
