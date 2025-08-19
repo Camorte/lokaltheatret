@@ -39,8 +39,9 @@ const Page = async () => {
                             className="relative w-full h-full"
                             src={joinPage.joinPageBannerImg.image}
                             alt={joinPage.joinPageBannerImg.altText}
-                            width={800}
-                            height={800}
+                            width={joinPage.joinPageBannerImg.width}
+                            height={joinPage.joinPageBannerImg.height}
+                            lqip={joinPage.joinPageBannerImg.lqip}
                             priority
                         />
                     )}

@@ -51,11 +51,11 @@ code {
 
 @layer components {
   .page-container {
-    @apply px-[6vw] md:px-[6vw] lg:px-[10vw] py-4 md:py-8 flex flex-col w-full h-full;
+    @apply px-[6vw] md:px-[10vw] lg:px-[20vw] py-4 md:py-8 flex flex-col w-full h-full;
   }
 
   .play-card-contents {
-    @apply absolute cursor-pointer w-full h-full will-change-transform-opacity;
+    @apply absolute cursor-pointer w-full h-full;
   }
 }
 

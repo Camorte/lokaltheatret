@@ -48,23 +48,25 @@ const ImageModal = ({
             }}
         >
             <div className="flex items-center justify-center h-full w-full gap-x-4 p-2 md:p-10">
+                <button
+                    className="absolute top-5 right-5 bg-black rounded-full p-2"
+                    onClick={() => setChosenImg(undefined)}
+                >
+                    <RxCross2 color="white" />
+                </button>
+
                 <div
                     ref={refElement}
                     className="relative max-w-full max-h-full"
                 >
-                    <button
-                        className="absolute top-5 right-5 bg-black rounded-full p-2"
-                        onClick={() => setChosenImg(undefined)}
-                    >
-                        <RxCross2 color="white" />
-                    </button>
-
                     <SanityImage
                         className="object-contain max-h-[90vh] max-w-[90vw]"
                         src={chosenImg.image}
                         alt={chosenImg.altText}
-                        width={800}
+                        width={1200}
                         height={800}
+                        lqip={chosenImg.lqip}
+                        sizes="90vw"
                     />
 
                     {chosenImg.caption && (

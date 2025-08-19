@@ -27,7 +27,7 @@ const PlayBanner = ({
 }) => {
     const route = useRouter();
     return (
-        <div className="relative w-full h-[80vh]">
+        <div className="relative w-full">
             <button
                 className="absolute top-4 left-4 md:top-6 md:left-6 z-[3] flex text-base font-bold items-center gap-x-2 p-4"
                 style={{ backgroundColor: playColor, color: textColor }}
@@ -45,8 +45,9 @@ const PlayBanner = ({
                         src={logoImg.image}
                         className="max-w-[30vw] md:max-w-[30vw]"
                         alt={logoImg.altText}
-                        width={300}
-                        height={300}
+                        width={logoImg.width || 300}
+                        height={logoImg.height || 300}
+                        lqip={logoImg.lqip}
                     />
                 ) : (
                     <p
@@ -77,12 +78,15 @@ const PlayBanner = ({
                 </p>
             </div>
             <SanityImage
-                className="relative w-full h-full max-h-[80vh] object-cover"
+                className="relative w-full h-full max-h-[80vh] object-cover top-0"
                 src={bannerImg.image}
                 alt={bannerImg.altText}
-                width={1600}
-                height={1600}
+                width={Math.min(bannerImg.width || 1600, 1600)}
+                height={Math.min(bannerImg.height || 900, 900)}
+                lqip={bannerImg.lqip}
+                sizes="100vw"
                 priority
+                quality={90}
             />
         </div>
     );

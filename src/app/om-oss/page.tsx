@@ -37,8 +37,9 @@ const Page = async () => {
                             src={aboutPage.aboutPageBannerImg.image}
                             alt={aboutPage.aboutPageBannerImg.altText}
                             className="relative w-full h-full"
-                            width={800}
-                            height={800}
+                            width={aboutPage.aboutPageBannerImg.width}
+                            height={aboutPage.aboutPageBannerImg.height}
+                            lqip={aboutPage.aboutPageBannerImg.lqip}
                             priority
                         />
                     )}
@@ -76,13 +77,16 @@ const Page = async () => {
                                             {founder.image && (
                                                 <SanityImage
                                                     className="rounded-full"
-                                                    src={founder.image}
+                                                    src={founder.image.image}
                                                     alt={
                                                         'Bilde av ' +
                                                         founder.name
                                                     }
-                                                    width={200}
-                                                    height={200}
+                                                    width={founder.image.width}
+                                                    height={
+                                                        founder.image.height
+                                                    }
+                                                    lqip={founder.image.lqip}
                                                 />
                                             )}
                                         </div>

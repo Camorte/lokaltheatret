@@ -29,11 +29,12 @@ const PlayItem = ({ play, index }: Props) => {
             <SanityImage
                 src={play.bannerImg.image}
                 alt={play.bannerImg.altText}
-                className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== undefined && hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
-                width={800}
-                height={800}
+                className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
+                width={3000}
+                height={3000}
+                lqip={play.bannerImg.lqip}
+                priority
             />
-
             <div
                 className="p-8 md:p-4 w-full flex flex-col items-center justify-center"
                 style={{ color: play.textColor }}
@@ -43,8 +44,9 @@ const PlayItem = ({ play, index }: Props) => {
                         className="w-[150px] md:w-[200px]"
                         src={play.logoImg.image}
                         alt={play.logoImg.altText}
-                        width={300}
-                        height={300}
+                        width={play.logoImg.width}
+                        height={play.logoImg.height}
+                        lqip={play.logoImg.lqip}
                     />
                 )}
                 {!play.logoImg?.image && play.playTitle && (

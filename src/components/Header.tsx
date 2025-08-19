@@ -70,9 +70,10 @@ const Header = () => {
                 <Image
                     src="/assets/lokaltheatret-black-logo-white-bg.png"
                     alt="Lokaltheatret logo"
-                    className="w-[150px] h-auto md:w-[200px]"
+                    className="w-[150px] h-full md:w-[200px]"
                     width={200}
                     height={200}
+                    sizes="(max-width: 767px) 150px, 200px"
                 />
             </Link>
             <div className="flex items-center">

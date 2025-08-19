@@ -146,11 +146,13 @@ const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
                             className="cursor-pointer shrink-0 snap-start max-h-[500px] w-[350px] p-4"
                         >
                             <SanityImage
-                                className="w-full h-full"
+                                className="w-full h-full object-cover"
                                 src={image.image}
                                 alt={image.altText}
-                                width={450}
-                                height={450}
+                                width={image.width || 350}
+                                height={image.height || 400}
+                                lqip={image.lqip}
+                                loading="lazy"
                             />
                         </div>
                     ))}

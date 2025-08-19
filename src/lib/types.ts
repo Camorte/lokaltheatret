@@ -5,6 +5,9 @@ export type SanityImage = {
     image: SanityImageAssetDocument;
     caption?: string;
     altText: string;
+    width?: number;
+    height?: number;
+    lqip?: string;
 };
 
 export type LandingPage = {
