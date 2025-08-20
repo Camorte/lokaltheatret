@@ -56,10 +56,10 @@ const PlayCard = ({
                         quality={70}
                     />
                     <div
-                        className="absolute w-full bottom-0 p-4 flex flex-col items-center justify-between"
+                        className="absolute w-full bottom-0 p-4 flex flex-col items-center justify-between min-h-[40%]"
                         style={{ color: textColor, backgroundColor: bgColor }}
                     >
-                        <p className="text-lg md:text-xl lg:text-2xl font-bold text-center">
+                        <p className="text-lg md:text-xl lg:text-2xl font-bold text-center align-middle">
                             {title.toLocaleUpperCase()}
                         </p>
                         <p className="text-center">{playPeriod}</p>

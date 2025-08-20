@@ -29,7 +29,7 @@ const PlayItem = ({ play, index }: Props) => {
             <SanityImage
                 src={play.bannerImg.image}
                 alt={play.bannerImg.altText}
-                className={`object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
+                className={`h-full object-cover w-1/2 md:w-2/3 md:group-hover:w-1/2 md:transition-filter-width md:ease-in-out md:duration-300 ${hoverIndex !== index ? 'md:filter md:grayscale' : ''}`}
                 width={3000}
                 height={3000}
                 lqip={play.bannerImg.lqip}

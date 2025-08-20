@@ -12,7 +12,7 @@ const Hero = ({ data }: Props) => {
     const [videoEnded, setVideoEnded] = useState(false);
 
     return (
-        <>
+        <div className="relative">
             <div className="absolute z-[4] shadow-inner-lg h-full w-full" />
             <div className="bg-black absolute h-full w-full z-0 opacity-100" />
             {data.videoUrl && (
@@ -31,6 +31,10 @@ const Hero = ({ data }: Props) => {
                         }}
                         onEnded={() => setVideoEnded(true)}
                     >
+                        <source
+                            src={data.videoUrl}
+                            type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+                        />
                         <source src={data.videoUrl} type="video/mp4" />
                         Sorry, your browser doesn´t support embedded videos.
                     </video>
@@ -52,7 +56,7 @@ const Hero = ({ data }: Props) => {
                 width={700}
                 height={700}
             />
-        </>
+        </div>
     );
 };
 
