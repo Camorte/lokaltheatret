@@ -29,6 +29,8 @@ export default function SanityImage({ src, alt, lqip, ...props }: Props) {
                     else targetWidth = Math.min(width, 1000);
                 }
 
+                targetWidth = Math.round(targetWidth);
+
                 return urlFor(src)
                     .width(targetWidth)
                     .quality(quality)
