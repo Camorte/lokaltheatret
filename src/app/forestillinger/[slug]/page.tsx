@@ -46,23 +46,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: url,
             title: title,
             description: description,
-            images: [
-                {
-                    url: image,
-                    alt: alt
-                }
-            ]
+            images: {
+                url: image,
+                alt: alt
+            }
         },
         twitter: {
             card: 'summary_large_image',
             title: title,
             description: description,
-            images: [
-                {
-                    url: image,
-                    alt: alt
-                }
-            ]
+            images: {
+                url: image,
+                alt: alt
+            }
         }
     };
 }
@@ -167,7 +163,7 @@ const Page = async ({ params }: Props) => {
 
                     <PortableText
                         value={play.content}
-                        components={PortableTextComponent}
+                        components={PortableTextComponent(play.textColor, play.playColor)}
                     />
                     {play.imageGallery && play.imageGallery.length > 0 && (
                         <ImageGallery images={play.imageGallery} />

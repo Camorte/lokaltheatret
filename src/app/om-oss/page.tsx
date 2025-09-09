@@ -49,7 +49,7 @@ const Page = async () => {
                     <div className="mx-0 my-auto mt-16">
                         <PortableText
                             value={aboutPage.content}
-                            components={PortableTextComponent}
+                            components={PortableTextComponent()}
                         />
                     </div>
 
@@ -58,7 +58,7 @@ const Page = async () => {
                             <h2>Våre grunnleggere</h2>
                             <PortableText
                                 value={aboutPage.foundersContent}
-                                components={PortableTextComponent}
+                                components={PortableTextComponent()}
                             />
                         </div>
                         <div

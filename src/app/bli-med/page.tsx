@@ -50,7 +50,7 @@ const Page = async () => {
                 <section className="w-4/5 md:w-2/4 mt-16">
                     <PortableText
                         value={joinPage.content}
-                        components={PortableTextComponent}
+                        components={PortableTextComponent()}
                     />
 
                     <Form />

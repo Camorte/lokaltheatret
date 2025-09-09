@@ -3,7 +3,10 @@ import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import Link from 'next/link';
 import SanityImage from './SanityImage';
 
-const PortableTextComponent: PortableTextComponents = {
+const PortableTextComponent = (
+    textColor?: string,
+    playColor?: string
+): PortableTextComponents => ({
     types: {
         image: ({
             value
@@ -32,8 +35,18 @@ const PortableTextComponent: PortableTextComponents = {
                             quality={75}
                         />
                         {value.imageCaption && (
-                            <div className="absolute bg-white px-4 bottom-[-45px] right-[-6px] max-w-[200px] md:right-[-12px] md:max-w-[250px] drop-shadow-md">
-                                <p className="italic">{value.imageCaption}</p>
+                            <div
+                                className="absolute px-4 bottom-[-45px] right-[-6px] max-w-[200px] md:right-[-12px] md:max-w-[250px] drop-shadow-md"
+                                style={{
+                                    backgroundColor: playColor ?? '#ffffff'
+                                }}
+                            >
+                                <p
+                                    className="italic"
+                                    style={{ color: textColor ?? 'black' }}
+                                >
+                                    {value.imageCaption}
+                                </p>
                             </div>
                         )}
                     </div>
@@ -63,6 +76,6 @@ const PortableTextComponent: PortableTextComponents = {
             </div>
         )
     }
-};
+});
 
 export default PortableTextComponent;
