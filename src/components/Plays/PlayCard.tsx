@@ -33,7 +33,7 @@ const PlayCard = ({
 
     return (
         <div
-            className="cursor-pointer flex w-full h-[400px] md:max-w-[380px] lg:max-w-[500px] md:h-[450px] lg:h-[560px] relative md:transition md:ease-in-out md:duration-300 md:hover:scale-105"
+            className="cursor-pointer flex w-full aspect-[9/10] sm:max-w-[450px] md:aspect-[4/7]  lg:max-w-[500px]  relative md:transition md:ease-in-out md:duration-300 md:hover:scale-105"
             onMouseOver={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -67,6 +67,7 @@ const PlayCard = ({
                 </div>
             </motion.div>
             <motion.div
+                className="play-card-contents"
                 onClick={() => {
                     if (isHovered) {
                         router.push('/forestillinger' + href);
@@ -79,10 +80,10 @@ const PlayCard = ({
             >
                 <div className="w-full h-full relative">
                     <div
-                        className="relative z-[2] p-[10px] lg:p-4 flex flex-col h-full justify-between"
+                        className="relative h-full z-[2] p-[10px] lg:p-4 flex flex-col  justify-between"
                         style={{ color: textColor }}
                     >
-                        <div>
+                        <div className="px-2">
                             <p className="md:text-base lg:text-2xl font-bold">
                                 {title.toLocaleUpperCase()}
                             </p>
@@ -92,7 +93,7 @@ const PlayCard = ({
                         <FaArrowRightLong className="self-end" />
                     </div>
                     <div
-                        className="absolute w-full h-full z-[1] opacity-[0.5] top-0"
+                        className="absolute w-full h-full z-[1] opacity-[0.8] top-0"
                         style={{ backgroundColor: bgColor }}
                     />
                     <SanityImage
