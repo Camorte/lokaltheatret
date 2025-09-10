@@ -8,6 +8,7 @@ import ImageGallery from '@/components/ImageGallery';
 import ContributorsSection from '@/components/Plays/ContributorsSection';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { urlFor } from '@/lib/sanity/client';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = play.playTitle + ' | Lokaltheatret';
     const description = highlightedPlay?.description;
     const url = 'https://lokaltheatret.no/forestillinger/' + slug;
-    const image = play.bannerImg.image.url;
+    const image = urlFor(play.bannerImg).width(1200).format('jpg').url();
     const alt = play.bannerImg.altText;
 
     return {
