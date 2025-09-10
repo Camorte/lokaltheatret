@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = play.playTitle + ' | Lokaltheatret';
     const description = highlightedPlay?.description;
     const url = 'https://lokaltheatret.no/forestillinger/' + slug;
-    const image = urlFor(play.bannerImg).width(1200).format('jpg').url();
+    const image = urlFor(play.bannerImg.image).width(1200).format('jpg').url();
     const alt = play.bannerImg.altText;
 
     return {
@@ -47,23 +47,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: url,
             title: title,
             description: description,
-            images: [
-                {
-                    url: image,
-                    alt: alt
-                }
-            ]
+            images: {
+                url: image,
+                alt: alt
+            }
         },
         twitter: {
             card: 'summary_large_image',
             title: title,
             description: description,
-            images: [
-                {
-                    url: image,
-                    alt: alt
-                }
-            ]
+            images: {
+                url: image,
+                alt: alt
+            }
         }
     };
 }
