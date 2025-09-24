@@ -50,10 +50,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             images: [
                 {
                     url: image,
-                    alt: alt
+                    alt: alt,
+                    width: 1200,
+                    height: 630
                 }
             ]
         },
+        metadataBase: new URL('https://lokaltheatret.no'),
         twitter: {
             card: 'summary_large_image',
             title: title,
