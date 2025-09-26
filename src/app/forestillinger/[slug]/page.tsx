@@ -1,4 +1,4 @@
-import { getMainBanner, getPlay } from '@/lib/sanity/fetch';
+import { getPlayMetadata, getHighlightedPlayDescription, getPlay } from '@/lib/sanity/fetch';
 import { Play } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
@@ -18,15 +18,15 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const slug = (await params).slug;
 
-    const play: Play = await getPlay(slug);
-    const landingPage = await getMainBanner();
+    const play = await getPlayMetadata(slug);
 
-    const highlightedPlay = landingPage.highlightedPlays.find(
-        (highlightedPlay) => highlightedPlay.title === play.playTitle
-    );
+    if (!play) {
+        return {};
+    }
+
+    const description = await getHighlightedPlayDescription(play.playTitle);
 
     const title = play.playTitle + ' | Lokaltheatret';
-    const description = highlightedPlay?.description;
     const url = 'https://lokaltheatret.no/forestillinger/' + slug;
     const image = urlFor(play.bannerImg.image).width(1200).format('jpg').url();
     const alt = play.bannerImg.altText;

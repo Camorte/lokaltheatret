@@ -23,13 +23,32 @@ export const getPlays = async () => {
     return sanityFetch({ query: playsQuery }).then((result) => result.data);
 };
 
+export const getPlayMetadata = async (slug: string) => {
+    const playMetadataQuery = defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
+        playTitle, location,
+        "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}
+    }`);
+
+    return sanityFetch({ query: playMetadataQuery }).then((result) => result.data);
+};
+
+export const getHighlightedPlayDescription = async (playTitle: string) => {
+    const highlightedPlayQuery = defineQuery(`*[_type=="landingPage"][0]{
+        highlightedPlays[title == "${playTitle}"][0]{
+            description
+        }
+    }`);
+
+    return sanityFetch({ query: highlightedPlayQuery }).then((result) => result.data?.highlightedPlays?.description);
+};
+
 export const getPlay = async (slug: string) => {
     const playQuery =
         defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
         "playColor":playColor.hex, "textColor": textColor.hex,
-        "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt, "width": playBannerImg.asset->metadata.dimensions.width, "height": playBannerImg.asset->metadata.dimensions.height, "lqip": playBannerImg.asset->metadata.lqip}, 
-        "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt, "width": playLogoImg.asset->metadata.dimensions.width, "height": playLogoImg.asset->metadata.dimensions.height, "lqip": playLogoImg.asset->metadata.lqip}, 
-        playTitle, playDates[]{playDate, soldOut, fewTickets}, duration, location, 
+        "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt, "width": playBannerImg.asset->metadata.dimensions.width, "height": playBannerImg.asset->metadata.dimensions.height, "lqip": playBannerImg.asset->metadata.lqip},
+        "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt, "width": playLogoImg.asset->metadata.dimensions.width, "height": playLogoImg.asset->metadata.dimensions.height, "lqip": playLogoImg.asset->metadata.lqip},
+        playTitle, playDates[]{playDate, soldOut, fewTickets}, duration, location,
         content[]{
             ...,
             _type == "image" => {
@@ -38,7 +57,7 @@ export const getPlay = async (slug: string) => {
                 "height": asset->metadata.dimensions.height,
                 "lqip": asset->metadata.lqip
             }
-        }, 
+        },
         playPeriod, ticketsPage, active, soldOut,
         imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip},
         contributors{"actors": actors[]{role, "image": image.asset, "altText": image.altText, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, names[], "lqip": image.asset->metadata.lqip}, "artisticTeam": aristicTeam[]{role, names[]},
