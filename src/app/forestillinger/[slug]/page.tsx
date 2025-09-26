@@ -9,6 +9,7 @@ import ContributorsSection from '@/components/Plays/ContributorsSection';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { urlFor } from '@/lib/sanity/client';
+import TicketButton from '@/components/TicketButton';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -154,19 +155,13 @@ const Page = async ({ params }: Props) => {
             <div>
                 <div className="page-container">
                     {play.active && (
-                        <button
-                            className="hidden md:block w-full my-4 p-4 font-bold text-center"
-                            style={{
-                                backgroundColor: play.textColor,
-                                color: play.playColor
-                            }}
-                            onClick={() =>
-                                (window.location.href = play.ticketsPage)
-                            }
-                            disabled={play.soldOut}
-                        >
-                            {play.soldOut ? 'UTSOLGT' : 'KJØP BILLETTER'}
-                        </button>
+                        <TicketButton
+                            ticketsPage={play.ticketsPage}
+                            soldOut={play.soldOut}
+                            backgroundColor={play.textColor}
+                            color={play.playColor}
+                            className="hidden md:block w-full my-4 p-4"
+                        />
                     )}
 
                     <PortableText
@@ -189,20 +184,13 @@ const Page = async ({ params }: Props) => {
                 </div>
 
                 {play.active && (
-                    <button
-                        className="sticky md:hidden bottom-0 w-full p-4 font-bold text-center"
-                        style={{
-                            backgroundColor: play.textColor,
-                            color: play.playColor
-                        }}
-                        onClick={() =>
-                            (window.location.href = play.ticketsPage)
-                        }
-                        role="link"
-                        disabled={play.soldOut}
-                    >
-                        {play.soldOut ? 'UTSOLGT' : 'KJØP BILLETTER'}
-                    </button>
+                    <TicketButton
+                        ticketsPage={play.ticketsPage}
+                        soldOut={play.soldOut}
+                        backgroundColor={play.textColor}
+                        color={play.playColor}
+                        className="sticky md:hidden bottom-0 w-full p-4"
+                    />
                 )}
             </div>
         </div>
