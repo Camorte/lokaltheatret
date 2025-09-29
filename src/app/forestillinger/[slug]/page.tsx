@@ -126,9 +126,10 @@ const Page = async ({ params }: Props) => {
                                     className={`${dateNow.setHours(0, 0, 0, 0) > currDateCopy.setHours(0, 0, 0, 0) ? 'line-through' : ''}`}
                                 >
                                     {dateText},{' '}
-                                    {currDate.toLocaleTimeString('no', {
+                                    {currDate.toLocaleTimeString('nb', {
                                         hour: '2-digit',
-                                        minute: '2-digit'
+                                        minute: '2-digit',
+                                        timeZone: 'Europe/Oslo'
                                     })}{' '}
                                     {date.soldOut
                                         ? ' – Utsolgt'
