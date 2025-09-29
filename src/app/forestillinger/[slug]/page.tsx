@@ -1,4 +1,8 @@
-import { getPlayMetadata, getHighlightedPlayDescription, getPlay } from '@/lib/sanity/fetch';
+import {
+    getPlayMetadata,
+    getHighlightedPlayDescription,
+    getPlay
+} from '@/lib/sanity/fetch';
 import { Play } from '@/lib/types';
 import { PortableText } from '@portabletext/react';
 import PortableTextComponent from '@/components/PortableTextComponent';
@@ -122,7 +126,7 @@ const Page = async ({ params }: Props) => {
                                     className={`${dateNow.setHours(0, 0, 0, 0) > currDateCopy.setHours(0, 0, 0, 0) ? 'line-through' : ''}`}
                                 >
                                     {dateText},{' '}
-                                    {currDate.toLocaleTimeString('default', {
+                                    {currDate.toLocaleTimeString('no', {
                                         hour: '2-digit',
                                         minute: '2-digit'
                                     })}{' '}
