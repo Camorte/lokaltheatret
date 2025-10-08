@@ -58,7 +58,7 @@ export const getPlay = async (slug: string) => {
                 "lqip": asset->metadata.lqip
             }
         },
-        playPeriod, ticketsPage, active, soldOut,
+        playPeriod, ticketInfo, active, soldOut,
         imageGallery[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip},
         contributors{"actors": actors[]{role, "image": image.asset, "altText": image.altText, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, names[], "lqip": image.asset->metadata.lqip}, "artisticTeam": aristicTeam[]{role, names[]},
           "productionTeam": productionTeam[]{role, names[]}

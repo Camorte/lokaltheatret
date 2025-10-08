@@ -1,7 +1,9 @@
 'use client';
 
+import { TicketInfo } from '@/lib/types';
+
 interface TicketButtonProps {
-    ticketsPage: string;
+    ticketInfo: TicketInfo;
     soldOut?: boolean;
     backgroundColor: string;
     color: string;
@@ -9,12 +11,44 @@ interface TicketButtonProps {
 }
 
 export default function TicketButton({
-    ticketsPage,
+    ticketInfo,
     soldOut,
     backgroundColor,
     color,
     className = ''
 }: TicketButtonProps) {
+    if (soldOut) {
+        return (
+            <div
+                className={`font-bold text-center ${className}`}
+                style={{
+                    backgroundColor,
+                    color
+                }}
+            >
+                UTSOLGT
+            </div>
+        );
+    }
+
+    if (ticketInfo.type === 'text') {
+        return (
+            <>
+                {ticketInfo.text && (
+                    <div
+                        className={`font-bold text-center ${className}`}
+                        style={{
+                            backgroundColor,
+                            color
+                        }}
+                    >
+                        {ticketInfo.text}
+                    </div>
+                )}
+            </>
+        );
+    }
+
     return (
         <button
             className={`font-bold text-center ${className}`}
@@ -23,11 +57,10 @@ export default function TicketButton({
                 color
             }}
             onClick={() => {
-                window.location.href = ticketsPage;
+                window.location.href = ticketInfo.url || '';
             }}
-            disabled={soldOut}
         >
-            {soldOut ? 'UTSOLGT' : 'KJØP BILLETTER'}
+            KJØP BILLETTER
         </button>
     );
 }

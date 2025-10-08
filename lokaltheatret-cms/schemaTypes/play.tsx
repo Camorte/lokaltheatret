@@ -91,15 +91,55 @@ export const play = defineType({
       ],
     }),
     defineField({
-      title: 'Billettsiden',
-      name: 'ticketsPage',
-      description: 'Lenke til hvor man kjøper billetter til forestillingen',
-      type: 'url',
+      title: 'Billettinformasjon',
+      name: 'ticketInfo',
+      description: 'Enten en lenke til billettsiden eller en tekstbeskjed',
+      type: 'object',
       hidden: ({document}) => !document?.active,
+      fields: [
+        defineField({
+          title: 'Type',
+          name: 'type',
+          type: 'string',
+          options: {
+            list: [
+              {title: 'URL/Lenke', value: 'url'},
+              {title: 'Tekst', value: 'text'},
+            ],
+            layout: 'radio',
+          },
+          initialValue: 'url',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          title: 'URL til billettsiden',
+          name: 'url',
+          type: 'url',
+          hidden: ({parent}) => parent?.type !== 'url',
+          validation: (Rule) =>
+            Rule.custom((currentValue, {parent}) => {
+              return parent?.type === 'url' && (!currentValue || currentValue.length === 0)
+                ? 'URL er påkrevd når type er URL'
+                : true
+            }),
+        }),
+        defineField({
+          title: 'Tekstmelding',
+          name: 'text',
+          type: 'string',
+          hidden: ({parent}) => parent?.type !== 'text',
+          validation: (Rule) =>
+            Rule.custom((currentValue, {parent}) => {
+              return parent?.type === 'text' && (!currentValue || currentValue.length === 0)
+                ? 'Tekst er påkrevd når type er tekst'
+                : true
+            }),
+        }),
+      ],
       validation: (Rule) =>
         Rule.custom((currentValue, {document}) => {
-          return document?.active && (!currentValue || currentValue.length === 0)
-            ? 'Required'
+          return document?.active && !currentValue
+            ? 'Billettinformasjon er påkrevd for aktive forestillinger'
             : true
         }),
     }),

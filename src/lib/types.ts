@@ -59,6 +59,12 @@ export type PlaysListItem = {
 
 export type PlaysList = PlaysListItem[];
 
+export type TicketInfo = {
+    type: 'url' | 'text';
+    url?: string;
+    text?: string;
+};
+
 export type Play = {
     playTitle: string;
     bannerImg: SanityImage;
@@ -70,7 +76,7 @@ export type Play = {
     duration?: string;
     location: string;
     playPeriod?: string;
-    ticketsPage: string;
+    ticketInfo?: TicketInfo;
     active: boolean;
     imageGallery?: SanityImage[];
     content: PortableTextBlock;

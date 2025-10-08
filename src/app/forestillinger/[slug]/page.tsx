@@ -32,7 +32,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const title = play.playTitle + ' | Lokaltheatret';
     const url = 'https://lokaltheatret.no/forestillinger/' + slug;
-    const image = urlFor(play.bannerImg.image).width(1200).format('jpg').url();
+    const image = play.banngerImg
+        ? urlFor(play.bannerImg.image).width(1200).format('jpg').url()
+        : '';
     const alt = play.bannerImg.altText;
 
     return {
@@ -161,7 +163,7 @@ const Page = async ({ params }: Props) => {
                 <div className="page-container">
                     {play.active && (
                         <TicketButton
-                            ticketsPage={play.ticketsPage}
+                            ticketInfo={play.ticketInfo}
                             soldOut={play.soldOut}
                             backgroundColor={play.textColor}
                             color={play.playColor}
@@ -188,9 +190,9 @@ const Page = async ({ params }: Props) => {
                     )}
                 </div>
 
-                {play.active && (
+                {play.active && play.ticketInfo && (
                     <TicketButton
-                        ticketsPage={play.ticketsPage}
+                        ticketInfo={play.ticketInfo}
                         soldOut={play.soldOut}
                         backgroundColor={play.textColor}
                         color={play.playColor}
