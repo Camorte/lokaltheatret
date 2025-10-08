@@ -5,6 +5,5 @@ export default defineCliConfig({
     projectId: 'c99u49i1',
     dataset: 'production',
   },
-  autoUpdates: true,
-  studioHost: 'lokaltheatret',
+  deployment: {autoUpdates: true, appId: 'lokaltheatret'},
 })
