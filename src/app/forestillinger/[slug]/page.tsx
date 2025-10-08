@@ -161,7 +161,7 @@ const Page = async ({ params }: Props) => {
             </div>
             <div>
                 <div className="page-container">
-                    {play.active && (
+                    {play.active && play.ticketInfo && (
                         <TicketButton
                             ticketInfo={play.ticketInfo}
                             soldOut={play.soldOut}
