@@ -3,7 +3,6 @@ import { defineEnableDraftMode } from 'next-sanity/draft-mode';
 
 export const GET = async (req: Request) => {
     const token = process.env.SANITY_VIEWER_TOKEN;
-    console.log('SANITY_VIEWER_TOKEN:', token);
 
     if (!token) {
         return new Response('Token is undefined', { status: 500 });
