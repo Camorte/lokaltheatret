@@ -1,16 +1,17 @@
 'use server';
 
 import { defineQuery } from 'next-sanity';
+
 import { sanityFetch } from './live';
 
 export const getFooter = async () => {
-    const footerQuery = defineQuery("*[_type=='footer'][0]{...}");
+  const footerQuery = defineQuery("*[_type=='footer'][0]{...}");
 
-    return sanityFetch({ query: footerQuery }).then((result) => result.data);
+  return sanityFetch({ query: footerQuery }).then((result) => result.data);
 };
 
 export const getPlays = async () => {
-    const playsQuery = defineQuery(`
+  const playsQuery = defineQuery(`
         *[_type=="play"] | order(orderRank){
             "playColor":playColor.hex, "textColor": textColor.hex,
             "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt, "width": playBannerImg.asset->metadata.dimensions.width, "height": playBannerImg.asset->metadata.dimensions.height, "lqip": playBannerImg.asset->metadata.lqip}, 
@@ -20,31 +21,32 @@ export const getPlays = async () => {
         }
     `);
 
-    return sanityFetch({ query: playsQuery }).then((result) => result.data);
+  return sanityFetch({ query: playsQuery }).then((result) => result.data);
 };
 
 export const getPlayMetadata = async (slug: string) => {
-    const playMetadataQuery = defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
+  const playMetadataQuery = defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
         playTitle, location,
         "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}
     }`);
 
-    return sanityFetch({ query: playMetadataQuery }).then((result) => result.data);
+  return sanityFetch({ query: playMetadataQuery }).then((result) => result.data);
 };
 
 export const getHighlightedPlayDescription = async (playTitle: string) => {
-    const highlightedPlayQuery = defineQuery(`*[_type=="landingPage"][0]{
+  const highlightedPlayQuery = defineQuery(`*[_type=="landingPage"][0]{
         highlightedPlays[title == "${playTitle}"][0]{
             description
         }
     }`);
 
-    return sanityFetch({ query: highlightedPlayQuery }).then((result) => result.data?.highlightedPlays?.description);
+  return sanityFetch({ query: highlightedPlayQuery }).then(
+    (result) => result.data?.highlightedPlays?.description,
+  );
 };
 
 export const getPlay = async (slug: string) => {
-    const playQuery =
-        defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
+  const playQuery = defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
         "playColor":playColor.hex, "textColor": textColor.hex,
         "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt, "width": playBannerImg.asset->metadata.dimensions.width, "height": playBannerImg.asset->metadata.dimensions.height, "lqip": playBannerImg.asset->metadata.lqip},
         "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt, "width": playLogoImg.asset->metadata.dimensions.width, "height": playLogoImg.asset->metadata.dimensions.height, "lqip": playLogoImg.asset->metadata.lqip},
@@ -65,11 +67,11 @@ export const getPlay = async (slug: string) => {
         }
     }`);
 
-    return sanityFetch({ query: playQuery }).then((result) => result.data);
+  return sanityFetch({ query: playQuery }).then((result) => result.data);
 };
 
 export const getMainBanner = async () => {
-    const mainBannerQuery = defineQuery(`*[_type=="landingPage"][0]{
+  const mainBannerQuery = defineQuery(`*[_type=="landingPage"][0]{
     "image": image{"asset": asset, "alt": alt, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}, 
     "logo": logo{"asset": asset, "alt": alt, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}, 
     "bannerAltText": image.alt, "logoAltText": logo.alt, 
@@ -83,13 +85,11 @@ export const getMainBanner = async () => {
     }
 }`);
 
-    return sanityFetch({ query: mainBannerQuery }).then(
-        (result) => result.data
-    );
+  return sanityFetch({ query: mainBannerQuery }).then((result) => result.data);
 };
 
 export const getAboutPage = async () => {
-    const aboutQuery = defineQuery(`*[_type=="about"][0]{
+  const aboutQuery = defineQuery(`*[_type=="about"][0]{
         "aboutPageBannerImg": {"image":aboutPageBannerImg, "altText": aboutPageBannerImg.alt, "width": aboutPageBannerImg.asset->metadata.dimensions.width, "height": aboutPageBannerImg.asset->metadata.dimensions.height, "lqip": aboutPageBannerImg.asset->metadata.lqip},
         "bannerColor":bannerColor.hex,
         title, 
@@ -114,11 +114,11 @@ export const getAboutPage = async () => {
         foundersList[]{name, role, "image": {"image": image, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "lqip": image.asset->metadata.lqip}}
     }`);
 
-    return sanityFetch({ query: aboutQuery }).then((result) => result.data);
+  return sanityFetch({ query: aboutQuery }).then((result) => result.data);
 };
 
 export const getJoinPage = async () => {
-    const joinQuery = defineQuery(`*[_type=="join"][0]{
+  const joinQuery = defineQuery(`*[_type=="join"][0]{
         "joinPageBannerImg": {"image":joinPageBannerImg, "altText": joinPageBannerImg.alt, "width": joinPageBannerImg.asset->metadata.dimensions.width, "height": joinPageBannerImg.asset->metadata.dimensions.height, "lqip": joinPageBannerImg.asset->metadata.lqip},
         "bannerColor": bannerColor.hex,
         title, 
@@ -133,5 +133,5 @@ export const getJoinPage = async () => {
         }
     }`);
 
-    return sanityFetch({ query: joinQuery }).then((result) => result.data);
+  return sanityFetch({ query: joinQuery }).then((result) => result.data);
 };
