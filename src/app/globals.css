@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+@theme {
+  /* Transition Properties */
+  --transition-property-height-width-opacity-display: height, width, opacity, display;
+  --transition-property-filter-width: filter, width;
+
+  /* Will Change */
+  --will-change-transform-opacity: transform, opacity;
+
+  /* Keyframes & Animations */
+  @keyframes slideIn {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  --animate-slide-in: slideIn 0.5s ease-in-out;
+
+  /* Box Shadows */
+  --shadow-inner-lg: inset 1px 1px 40px 0px rgba(0, 0, 0, 1);
+}
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.6rem;
+    @apply bg-white text-black;
+  }
+
+  html,
+  body {
+    @apply h-full w-full;
+  }
+
+  h1 {
+    @apply my-6 w-fit text-3xl font-bold;
+  }
+  h2 {
+    @apply my-6 w-fit text-2xl font-bold;
+  }
+  h3 {
+    @apply my-4 w-fit text-xl font-bold;
+  }
+  h4 {
+    @apply my-4 w-fit text-lg font-bold;
+  }
+  p {
+    @apply my-2 w-fit text-base font-light;
+  } /* font-[300] is font-light */
+}
+
+@layer components {
+  .page-container {
+    /* min-h-screen is often better than h-full for App Router layouts */
+    @apply flex min-h-screen w-full flex-col px-[6vw] py-4 md:px-[10vw] md:py-8 lg:px-[20vw];
+  }
+
+  .play-card-contents {
+    @apply absolute inset-0 cursor-pointer;
+  }
+
+  /* Slick Carousel Modernized */
+  .slick-arrow.slick-next,
+  .slick-arrow.slick-prev {
+    @apply flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#428cff] text-black opacity-80 transition-opacity;
+  }
+
+  .slick-arrow.slick-next:hover,
+  .slick-arrow.slick-prev:hover {
+    @apply bg-[#2574f5] opacity-100;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    @apply hidden;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

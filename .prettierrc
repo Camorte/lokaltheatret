@@ -1,19 +1,11 @@
 {
-  "singleQuote": true,
-  "trailingComma": "none",
-  "tabWidth": 4,
-  "overrides": [
-    {
-      "files": "*.css",
-      "options": {
-        "singleQuote": false
-      }
-    },
-    {
-      "files": [".prettierrc", "*.json", "*.yml", ".travis.yml", ".eslintrc"],
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ]
+    "plugins": [
+        "prettier-plugin-tailwindcss"
+    ],
+    "tailwindConfig": "./src/app/globals.css",
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100,
+    "tabWidth": 2,
+    "endOfLine": "lf"
 }

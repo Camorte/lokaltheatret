@@ -25,3 +25,10 @@ build
 *.sln
 *.sw?
 .env
+
+/.sanity
+
+/coverage
+*.tsbuildinfo
+
+
