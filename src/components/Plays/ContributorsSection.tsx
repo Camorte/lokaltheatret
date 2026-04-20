@@ -19,7 +19,7 @@ const ContributorList = ({
     <>
       {contributorList && contributorList.length > 0 && (
         <div>
-          {title && <h2 className="m-0 text-2xl md:text-4xl">{title}</h2>}
+          {title && <h2 className="m-0 mb-4 text-2xl md:text-4xl">{title}</h2>}
           <div className="grid w-full grid-cols-1 gap-4 border-t border-black pt-4 md:grid-cols-3">
             {contributorList.map((contributor, index) => (
               <div key={`contributor-${title}-${index}`}>
@@ -89,7 +89,7 @@ const ContributorsSection = ({
           </button>
         )}
         <div
-          className={`flex flex-col gap-y-8 transition-height-width-opacity-display delay-200 ease-in-out md:gap-y-16 ${isOpen ? 'h-full w-full opacity-100' : 'h-0 w-0 opacity-0'}`}
+          className={`flex flex-col gap-y-8 transition-height-width-opacity-display delay-200 ease-in-out md:gap-y-16 ${isOpen ? 'mt-6 h-full w-full opacity-100' : 'h-0 w-0 opacity-0'}`}
         >
           <ContributorList contributorList={contributors.actors} />
           <ContributorList title="KUNSTNERISK LAG" contributorList={contributors.artisticTeam} />
