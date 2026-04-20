@@ -31,7 +31,7 @@ const PlayBanner = ({
   return (
     <div className="relative h-[80vh] w-full">
       <button
-        className="absolute top-4 left-4 z-[3] flex items-center gap-x-2 p-4 text-base font-bold md:top-6 md:left-6"
+        className="absolute top-4 left-4 z-[3] flex cursor-pointer items-center gap-x-2 p-4 text-base font-bold transition-opacity hover:opacity-80 md:top-6 md:left-6"
         style={{ backgroundColor: playColor, color: textColor }}
         onClick={() => route.push('/forestillinger')}
       >
