@@ -27,17 +27,21 @@ const PlayItem = ({ play, index }: Props) => {
       onMouseEnter={() => setHoverIndex(index)}
       onMouseLeave={() => setHoverIndex(undefined)}
     >
-      <SanityImage
-        src={play.bannerImg.image}
-        alt={play.bannerImg.altText}
-        className={`md:transition-filter-width h-full w-1/2 object-cover md:w-2/3 md:duration-300 md:ease-in-out md:group-hover:w-1/2 ${hoverIndex !== index ? 'md:grayscale md:filter' : ''}`}
-        width={3000}
-        height={3000}
-        lqip={play.bannerImg.lqip}
-        priority
-      />
       <div
-        className="flex w-full flex-col items-center justify-center p-8 md:p-4"
+        className={`h-full w-1/2 flex-shrink-0 overflow-hidden md:w-2/3 md:transition-[width] md:duration-300 md:ease-in-out md:group-hover:w-1/2`}
+      >
+        <SanityImage
+          src={play.bannerImg.image}
+          alt={play.bannerImg.altText}
+          className={`h-full w-full object-cover md:transition-[filter] md:duration-300 md:ease-in-out ${hoverIndex !== index ? 'md:grayscale md:filter' : ''}`}
+          width={3000}
+          height={3000}
+          lqip={play.bannerImg.lqip}
+          priority
+        />
+      </div>
+      <div
+        className="flex min-w-0 flex-1 flex-col items-center justify-center p-8 md:p-4"
         style={{ color: play.textColor }}
       >
         {play.logoImg?.image && (
