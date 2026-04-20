@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: title,
   description: description,
   keywords: ['teater', 'Oslo', 'Lokaltheatret'],
+  icons: {
+    icon: '/assets/favicon.png',
+  },
   openGraph: {
     type: 'website',
     url: url,
