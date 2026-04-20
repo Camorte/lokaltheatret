@@ -19,7 +19,7 @@ const Hero = ({ data }: Props) => {
       <div className="absolute z-0 h-full w-full bg-black opacity-100" />
       {data.videoUrl && (
         <div
-          className={`absolute z-4 h-[50vh] max-h-[70vh] w-full transition-opacity duration-300 ease-in md:h-full ${videoEnded ? 'opacity-0' : 'opacity-1'}`}
+          className={`absolute z-4 h-[50vh] max-h-[70vh] w-full transition-opacity duration-300 ease-in md:h-full ${videoEnded ? 'opacity-0' : 'opacity-100'}`}
         >
           <video
             preload="auto"

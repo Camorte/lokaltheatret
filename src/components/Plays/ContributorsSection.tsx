@@ -89,7 +89,7 @@ const ContributorsSection = ({
           </button>
         )}
         <div
-          className={`flex flex-col gap-y-8 transition-height-width-opacity-display delay-200 ease-in-out md:gap-y-16 ${isOpen ? 'h-full w-full opacity-1' : 'h-0 w-0 opacity-0'}`}
+          className={`flex flex-col gap-y-8 transition-height-width-opacity-display delay-200 ease-in-out md:gap-y-16 ${isOpen ? 'h-full w-full opacity-100' : 'h-0 w-0 opacity-0'}`}
         >
           <ContributorList contributorList={contributors.actors} />
           <ContributorList title="KUNSTNERISK LAG" contributorList={contributors.artisticTeam} />
