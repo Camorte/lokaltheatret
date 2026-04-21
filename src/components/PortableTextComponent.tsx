@@ -2,6 +2,9 @@ import { PortableTextComponents } from '@portabletext/react';
 import { SanityAsset } from '@sanity/image-url';
 import Link from 'next/link';
 
+import type { SanityImage as SanityImageType } from '@/lib/types';
+
+import ImageGallery from './ImageGallery';
 import SanityImage from './SanityImage';
 
 const PortableTextComponent = (textColor?: string, playColor?: string): PortableTextComponents => ({
@@ -45,6 +48,131 @@ const PortableTextComponent = (textColor?: string, playColor?: string): Portable
               </div>
             )}
           </div>
+        </div>
+      );
+    },
+    fullWidthImage: ({
+      value,
+    }: {
+      value: {
+        image: SanityAsset;
+        imageCaption?: string;
+        imageAlt: string;
+        width?: number;
+        height?: number;
+        lqip?: string;
+      };
+    }) => {
+      return (
+        <div className="relative my-14">
+          <SanityImage
+            className="h-auto w-full"
+            src={value.image || ''}
+            alt={value.imageAlt}
+            width={value.width || 1200}
+            height={value.height || 800}
+            lqip={value.lqip}
+            loading="lazy"
+            quality={75}
+          />
+          {value.imageCaption && (
+            <div
+              className="mt-2 max-w-[250px] px-4 drop-shadow-md"
+              style={{
+                backgroundColor: playColor ?? '#ffffff',
+              }}
+            >
+              <p className="italic" style={{ color: textColor ?? 'black' }}>
+                {value.imageCaption}
+              </p>
+            </div>
+          )}
+        </div>
+      );
+    },
+    twoImages: ({
+      value,
+    }: {
+      value: {
+        imageLeft: SanityAsset & {
+          imageCaption?: string;
+          imageAlt: string;
+          width?: number;
+          height?: number;
+          lqip?: string;
+        };
+        imageRight: SanityAsset & {
+          imageCaption?: string;
+          imageAlt: string;
+          width?: number;
+          height?: number;
+          lqip?: string;
+        };
+      };
+    }) => {
+      return (
+        <div className="my-14 flex flex-col gap-4 md:flex-row">
+          <div className="relative md:w-1/2">
+            <SanityImage
+              className="h-auto w-full"
+              src={value.imageLeft || ''}
+              alt={value.imageLeft?.imageAlt || ''}
+              width={value.imageLeft?.width || 600}
+              height={value.imageLeft?.height || 450}
+              lqip={value.imageLeft?.lqip}
+              loading="lazy"
+              quality={75}
+            />
+            {value.imageLeft?.imageCaption && (
+              <div
+                className="mt-2 max-w-[200px] px-4 drop-shadow-md"
+                style={{
+                  backgroundColor: playColor ?? '#ffffff',
+                }}
+              >
+                <p className="italic" style={{ color: textColor ?? 'black' }}>
+                  {value.imageLeft.imageCaption}
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="relative md:w-1/2">
+            <SanityImage
+              className="h-auto w-full"
+              src={value.imageRight || ''}
+              alt={value.imageRight?.imageAlt || ''}
+              width={value.imageRight?.width || 600}
+              height={value.imageRight?.height || 450}
+              lqip={value.imageRight?.lqip}
+              loading="lazy"
+              quality={75}
+            />
+            {value.imageRight?.imageCaption && (
+              <div
+                className="mt-2 max-w-[200px] px-4 drop-shadow-md"
+                style={{
+                  backgroundColor: playColor ?? '#ffffff',
+                }}
+              >
+                <p className="italic" style={{ color: textColor ?? 'black' }}>
+                  {value.imageRight.imageCaption}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    },
+    imageGalleryBlock: ({
+      value,
+    }: {
+      value: {
+        images: SanityImageType[];
+      };
+    }) => {
+      return (
+        <div className="my-14">
+          <ImageGallery images={value.images} />
         </div>
       );
     },
