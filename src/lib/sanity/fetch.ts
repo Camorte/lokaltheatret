@@ -58,6 +58,19 @@ export const getPlay = async (slug: string) => {
                 "width": asset->metadata.dimensions.width,
                 "height": asset->metadata.dimensions.height,
                 "lqip": asset->metadata.lqip
+            },
+            _type == "fullWidthImage" => {
+                ...,
+                "image": image{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "twoImages" => {
+                ...,
+                "imageLeft": imageLeft{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip},
+                "imageRight": imageRight{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "imageGalleryBlock" => {
+                ...,
+                "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
             }
         },
         playPeriod, ticketInfo, active, soldOut,
@@ -100,8 +113,21 @@ export const getAboutPage = async () => {
                 "width": asset->metadata.dimensions.width,
                 "height": asset->metadata.dimensions.height,
                 "lqip": asset->metadata.lqip
+            },
+            _type == "fullWidthImage" => {
+                ...,
+                "image": image{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "twoImages" => {
+                ...,
+                "imageLeft": imageLeft{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip},
+                "imageRight": imageRight{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "imageGalleryBlock" => {
+                ...,
+                "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
             }
-        }, 
+        },
         foundersContent[]{
             ...,
             _type == "image" => {
@@ -109,8 +135,21 @@ export const getAboutPage = async () => {
                 "width": asset->metadata.dimensions.width,
                 "height": asset->metadata.dimensions.height,
                 "lqip": asset->metadata.lqip
+            },
+            _type == "fullWidthImage" => {
+                ...,
+                "image": image{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "twoImages" => {
+                ...,
+                "imageLeft": imageLeft{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip},
+                "imageRight": imageRight{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "imageGalleryBlock" => {
+                ...,
+                "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
             }
-        }, 
+        },
         foundersList[]{name, role, "image": {"image": image, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "lqip": image.asset->metadata.lqip}}
     }`);
 
@@ -129,6 +168,19 @@ export const getJoinPage = async () => {
                 "width": asset->metadata.dimensions.width,
                 "height": asset->metadata.dimensions.height,
                 "lqip": asset->metadata.lqip
+            },
+            _type == "fullWidthImage" => {
+                ...,
+                "image": image{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "twoImages" => {
+                ...,
+                "imageLeft": imageLeft{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip},
+                "imageRight": imageRight{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+            },
+            _type == "imageGalleryBlock" => {
+                ...,
+                "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
             }
         }
     }`);
