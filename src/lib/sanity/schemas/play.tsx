@@ -110,7 +110,10 @@ export const play = defineType({
             layout: 'radio',
           },
           initialValue: 'url',
-          validation: (Rule) => Rule.required(),
+          validation: (Rule) =>
+            Rule.custom((currentValue, { document }) => {
+              return document?.active && !currentValue ? 'Required' : true;
+            }),
         }),
         defineField({
           title: 'URL til billettsiden',
@@ -118,8 +121,8 @@ export const play = defineType({
           type: 'url',
           hidden: ({ parent }) => (parent as { type?: string })?.type !== 'url',
           validation: (Rule) =>
-            Rule.custom((currentValue, { parent }) => {
-              return (parent as { type?: string })?.type === 'url' && (!currentValue || currentValue.length === 0)
+            Rule.custom((currentValue, { document, parent }) => {
+              return document?.active && (parent as { type?: string })?.type === 'url' && (!currentValue || currentValue.length === 0)
                 ? 'URL er påkrevd når type er URL'
                 : true;
             }),
@@ -130,8 +133,8 @@ export const play = defineType({
           type: 'string',
           hidden: ({ parent }) => (parent as { type?: string })?.type !== 'text',
           validation: (Rule) =>
-            Rule.custom((currentValue, { parent }) => {
-              return (parent as { type?: string })?.type === 'text' && (!currentValue || currentValue.length === 0)
+            Rule.custom((currentValue, { document, parent }) => {
+              return document?.active && (parent as { type?: string })?.type === 'text' && (!currentValue || currentValue.length === 0)
                 ? 'Tekst er påkrevd når type er tekst'
                 : true;
             }),
