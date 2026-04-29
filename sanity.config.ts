@@ -4,8 +4,9 @@ import { defineConfig } from 'sanity';
 import { presentationTool } from 'sanity/presentation';
 import { structureTool } from 'sanity/structure';
 
-import { resolve } from './src/lib/sanity/resolve';
-import { schemas } from './src/lib/sanity/schemas';
+import { resolve } from '@/lib/sanity/resolve';
+import { schemas } from '@/lib/sanity/schemas';
+
 import structure from './src/lib/sanity/structure';
 
 export default defineConfig({
@@ -25,6 +26,10 @@ export default defineConfig({
     presentationTool({
       allowOrigins: ['http://localhost:3000', 'https://lokaltheatret.no', 'https://*.netlify.app'],
       previewUrl: {
+        initial:
+          process.env.NODE_ENV === 'development'
+            ? 'http://localhost:3000'
+            : 'https://lokaltheatret.no',
         previewMode: {
           enable: '/api/draft-mode/enable',
         },
