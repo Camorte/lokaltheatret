@@ -9,7 +9,6 @@ export const landingPage = defineType({
       title: 'Logo',
       name: 'logo',
       type: 'image',
-      validation: (Rule) => Rule.required(),
       fields: [
         {
           title: 'Alt. text',
