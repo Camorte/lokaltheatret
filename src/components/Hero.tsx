@@ -48,13 +48,15 @@ const Hero = ({ data }: Props) => {
         height={700}
       />
 
-      <SanityImage
-        className="absolute right-5 bottom-10 z-3 max-w-250px duration-300 ease-in md:right-10 md:max-w-500px md:group-hover:scale-110"
-        src={data.logo}
-        alt={data.logoAltText}
-        width={700}
-        height={700}
-      />
+      {data.logo && (
+        <SanityImage
+          className="max-w-250px md:max-w-500px absolute right-5 bottom-10 z-3 duration-300 ease-in md:right-10 md:group-hover:scale-110"
+          src={data.logo}
+          alt={data.logoAltText}
+          width={700}
+          height={700}
+        />
+      )}
     </div>
   );
 };
