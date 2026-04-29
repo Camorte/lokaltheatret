@@ -47,8 +47,7 @@ const Hero = ({ data }: Props) => {
         width={1500}
         height={700}
       />
-
-      {data.logo && (
+      {data.logo.url && (
         <SanityImage
           className="max-w-250px md:max-w-500px absolute right-5 bottom-10 z-3 duration-300 ease-in md:right-10 md:group-hover:scale-110"
           src={data.logo}
