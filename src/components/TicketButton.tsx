@@ -51,7 +51,7 @@ export default function TicketButton({
 
   return (
     <button
-      className={`text-center font-bold ${className}`}
+      className={`text-center font-bold hover:cursor-pointer ${className}`}
       style={{
         backgroundColor,
         color,
