@@ -84,7 +84,7 @@ const ContributorsSection = ({
           </div>
         ) : (
           <button
-            className="flex w-fit flex-row items-center text-2xl md:text-4xl"
+            className="flex w-fit cursor-pointer flex-row items-center text-2xl hover:opacity-80 md:text-4xl"
             onClick={() => setIsOpen(!isOpen)}
           >
             <p className="text-2xl font-bold md:text-4xl">MEDVIRKENDE</p>
