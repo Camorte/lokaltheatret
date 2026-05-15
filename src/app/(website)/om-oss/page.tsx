@@ -24,12 +24,12 @@ const Page = async () => {
       <>
         <div className="relative h-1/6 w-full">
           <div
-            className="left-32px top-50% md:left-10vw absolute z-2 w-fit p-2 md:p-8"
+            className="absolute top-[50%] left-8 z-2 w-fit p-2 md:left-[10vw] md:p-8"
             style={{
               backgroundColor: aboutPage.bannerColor,
             }}
           >
-            <h1 className="max-w-[200px] text-2xl font-bold md:max-w-[300px] md:text-4xl">
+            <h1 className="max-w-50 text-2xl font-bold md:max-w-75 md:text-4xl">
               {aboutPage.title}
             </h1>
           </div>
@@ -41,7 +41,6 @@ const Page = async () => {
               width={aboutPage.aboutPageBannerImg.width}
               height={aboutPage.aboutPageBannerImg.height}
               lqip={aboutPage.aboutPageBannerImg.lqip}
-              priority
             />
           )}
         </div>

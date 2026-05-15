@@ -10,7 +10,6 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 const NavLinks = [
   { name: 'Forestillinger', path: '/forestillinger' },
   { name: 'Om oss', path: '/om-oss' },
-  { name: 'Bli med!', path: '/bli-med' },
 ];
 
 const NavbarLinks = ({
