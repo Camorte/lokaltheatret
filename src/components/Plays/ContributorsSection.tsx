@@ -75,7 +75,10 @@ const ContributorsSection = ({
         {isOpen ? (
           <div className="flex flex-row items-center justify-between">
             <h2 className="m-0 text-2xl md:text-4xl">MEDVIRKENDE</h2>
-            <button className="p-2" onClick={() => setIsOpen(false)}>
+            <button
+              className="cursor-pointer p-2 hover:opacity-80"
+              onClick={() => setIsOpen(false)}
+            >
               <RxCross2 />
             </button>
           </div>
