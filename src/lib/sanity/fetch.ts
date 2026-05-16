@@ -71,6 +71,11 @@ export const getPlay = async (slug: string) => {
             _type == "imageGalleryBlock" => {
                 ...,
                 "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
+            },
+            _type == "articleReference" => {
+                ...,
+                "articleTitle": article->title,
+                "articleSlug": article->slug.current
             }
         },
         playPeriod, ticketInfo, active, soldOut,
@@ -126,6 +131,11 @@ export const getAboutPage = async () => {
             _type == "imageGalleryBlock" => {
                 ...,
                 "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
+            },
+            _type == "articleReference" => {
+                ...,
+                "articleTitle": article->title,
+                "articleSlug": article->slug.current
             }
         },
         foundersContent[]{
@@ -148,6 +158,11 @@ export const getAboutPage = async () => {
             _type == "imageGalleryBlock" => {
                 ...,
                 "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
+            },
+            _type == "articleReference" => {
+                ...,
+                "articleTitle": article->title,
+                "articleSlug": article->slug.current
             }
         },
         foundersList[]{name, role, "image": {"image": image, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "lqip": image.asset->metadata.lqip}}
@@ -201,6 +216,11 @@ export const getArticle = async (slug: string) => {
       _type == "imageGalleryBlock" => {
         ...,
         "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
+      },
+      _type == "articleReference" => {
+        ...,
+        "articleTitle": article->title,
+        "articleSlug": article->slug.current
       }
     },
     "backgroundColor": backgroundColor.hex,
@@ -235,6 +255,11 @@ export const getJoinPage = async () => {
             _type == "imageGalleryBlock" => {
                 ...,
                 "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
+            },
+            _type == "articleReference" => {
+                ...,
+                "articleTitle": article->title,
+                "articleSlug": article->slug.current
             }
         }
     }`);

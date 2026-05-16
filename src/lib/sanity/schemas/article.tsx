@@ -79,6 +79,7 @@ export const article = defineType({
         defineArrayMember({ type: 'fullWidthImage' }),
         defineArrayMember({ type: 'twoImages' }),
         defineArrayMember({ type: 'imageGalleryBlock' }),
+        defineArrayMember({ type: 'articleReference' }),
       ],
     }),
     defineField({
