@@ -75,27 +75,16 @@ const ImageModal = ({
           <RxCross2 color="white" />
         </button>
 
-        <div ref={contentRef} className="flex items-center gap-x-4">
-          <div className="w-10 shrink-0">
-            {currentIndex > 0 && (
-              <button
-                className="rounded-full bg-black p-2"
-                onClick={() => onChangeIndex(currentIndex - 1)}
-              >
-                <IoIosArrowBack color="white" size={20} />
-              </button>
-            )}
-          </div>
-
+        <div ref={contentRef} className="relative flex items-center">
           <div className="relative max-h-full max-w-full">
             <SanityImage
-              className="max-h-[90vh] max-w-[80vw] object-contain"
+              className="max-h-[90vh] max-w-[90vw] object-contain md:max-w-[80vw]"
               src={chosenImg.image}
               alt={chosenImg.altText}
               width={1200}
               height={800}
               lqip={chosenImg.lqip}
-              sizes="80vw"
+              sizes="(max-width: 768px) 90vw, 80vw"
             />
 
             {chosenImg.caption && (
@@ -108,16 +97,23 @@ const ImageModal = ({
             )}
           </div>
 
-          <div className="w-10 shrink-0">
-            {currentIndex < images.length - 1 && (
-              <button
-                className="rounded-full bg-black p-2"
-                onClick={() => onChangeIndex(currentIndex + 1)}
-              >
-                <IoIosArrowForward color="white" size={20} />
-              </button>
-            )}
-          </div>
+          {currentIndex > 0 && (
+            <button
+              className="absolute left-1 rounded-full bg-black/60 p-2 md:left-[-50px] md:bg-black"
+              onClick={() => onChangeIndex(currentIndex - 1)}
+            >
+              <IoIosArrowBack color="white" size={20} />
+            </button>
+          )}
+
+          {currentIndex < images.length - 1 && (
+            <button
+              className="absolute right-1 rounded-full bg-black/60 p-2 md:right-[-50px] md:bg-black"
+              onClick={() => onChangeIndex(currentIndex + 1)}
+            >
+              <IoIosArrowForward color="white" size={20} />
+            </button>
+          )}
         </div>
       </div>
     </div>
