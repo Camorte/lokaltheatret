@@ -7,6 +7,7 @@ import SanityImage from '@/components/SanityImage';
 import { urlFor } from '@/lib/sanity/client';
 import { getArticle } from '@/lib/sanity/fetch';
 import { Article } from '@/lib/types';
+import ArticleBackButton from '../ArticleBackButton';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -78,8 +79,12 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="flex flex-col">
-      {article.bannerImg?.image && (
+      {article.bannerImg?.image ? (
         <div className="relative h-[300px] w-full md:h-[500px]">
+          <ArticleBackButton
+            backgroundColor={article.backgroundColor}
+            textColor={article.textColor}
+          />
           <SanityImage
             src={article.bannerImg.image}
             alt={article.bannerImg.altText}
@@ -88,6 +93,13 @@ const Page = async ({ params }: Props) => {
             height={3000}
             lqip={article.bannerImg.lqip}
             priority
+          />
+        </div>
+      ) : (
+        <div className="relative">
+          <ArticleBackButton
+            backgroundColor={article.backgroundColor}
+            textColor={article.textColor}
           />
         </div>
       )}
