@@ -25,6 +25,34 @@ export const article = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      title: 'Forfatter',
+      name: 'author',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Publiseringsdato',
+      name: 'publishedDate',
+      type: 'datetime',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Bannerbilde',
+      name: 'bannerImg',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alt-tekst',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
       title: 'Forestilling',
       name: 'play',
       type: 'reference',

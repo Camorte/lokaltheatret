@@ -156,6 +156,59 @@ export const getAboutPage = async () => {
   return sanityFetch({ query: aboutQuery }).then((result) => result.data);
 };
 
+export const getArticles = async () => {
+  const articlesQuery = defineQuery(`
+    *[_type=="article"] | order(publishedDate desc){
+      title,
+      "slug": slug.current,
+      author,
+      publishedDate,
+      ingress,
+      "bannerImg": {"image": bannerImg, "altText": bannerImg.alt, "width": bannerImg.asset->metadata.dimensions.width, "height": bannerImg.asset->metadata.dimensions.height, "lqip": bannerImg.asset->metadata.lqip},
+      "backgroundColor": backgroundColor.hex,
+      "textColor": textColor.hex
+    }
+  `);
+
+  return sanityFetch({ query: articlesQuery }).then((result) => result.data);
+};
+
+export const getArticle = async (slug: string) => {
+  const articleQuery = defineQuery(`*[_type=="article" && slug.current=="${slug}"][0]{
+    title,
+    author,
+    publishedDate,
+    "bannerImg": {"image": bannerImg, "altText": bannerImg.alt, "width": bannerImg.asset->metadata.dimensions.width, "height": bannerImg.asset->metadata.dimensions.height, "lqip": bannerImg.asset->metadata.lqip},
+    ingress,
+    content[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "width": asset->metadata.dimensions.width,
+        "height": asset->metadata.dimensions.height,
+        "lqip": asset->metadata.lqip
+      },
+      _type == "fullWidthImage" => {
+        ...,
+        "image": image{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+      },
+      _type == "twoImages" => {
+        ...,
+        "imageLeft": imageLeft{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip},
+        "imageRight": imageRight{..., "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip": asset->metadata.lqip}
+      },
+      _type == "imageGalleryBlock" => {
+        ...,
+        "images": images[]{"image": media.asset, "altText": media.altText, "caption": media.imageCaption, "width": media.asset->metadata.dimensions.width, "height": media.asset->metadata.dimensions.height, "lqip": media.asset->metadata.lqip}
+      }
+    },
+    "backgroundColor": backgroundColor.hex,
+    "textColor": textColor.hex
+  }`);
+
+  return sanityFetch({ query: articleQuery }).then((result) => result.data);
+};
+
 export const getJoinPage = async () => {
   const joinQuery = defineQuery(`*[_type=="join"][0]{
         "joinPageBannerImg": {"image":joinPageBannerImg, "altText": joinPageBannerImg.alt, "width": joinPageBannerImg.asset->metadata.dimensions.width, "height": joinPageBannerImg.asset->metadata.dimensions.height, "lqip": joinPageBannerImg.asset->metadata.lqip},

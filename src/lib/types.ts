@@ -121,3 +121,25 @@ export type JoinPage = {
     bannerColor: string;
     content: PortableTextBlock;
 };
+
+export type ArticleListItem = {
+    title: string;
+    slug: string;
+    author: string;
+    publishedDate: string;
+    ingress: string;
+    bannerImg?: SanityImage;
+    backgroundColor: string;
+    textColor: string;
+};
+
+export type Article = {
+    title: string;
+    author: string;
+    publishedDate: string;
+    bannerImg?: SanityImage;
+    ingress: string;
+    content: PortableTextBlock;
+    backgroundColor: string;
+    textColor: string;
+};
