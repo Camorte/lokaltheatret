@@ -31,12 +31,6 @@ export const article = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      title: 'Publiseringsdato',
-      name: 'publishedDate',
-      type: 'datetime',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       title: 'Bannerbilde',
       name: 'bannerImg',
       type: 'image',
@@ -51,12 +45,6 @@ export const article = defineType({
           validation: (Rule) => Rule.required(),
         }),
       ],
-    }),
-    defineField({
-      title: 'Forestilling',
-      name: 'play',
-      type: 'reference',
-      to: [{ type: 'play' }],
     }),
     defineField({
       title: 'Ingress',
@@ -112,6 +100,7 @@ export const article = defineType({
       title: 'Custom field',
       type: 'string',
       fieldset: 'articleColorProfile',
+      options: { backgroundColorField: 'backgroundColor' },
       components: { field: ColorContrastString },
     },
   ],

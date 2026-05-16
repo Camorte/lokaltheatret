@@ -158,11 +158,11 @@ export const getAboutPage = async () => {
 
 export const getArticles = async () => {
   const articlesQuery = defineQuery(`
-    *[_type=="article"] | order(publishedDate desc){
+    *[_type=="article"] | order(_createdAt desc){
       title,
       "slug": slug.current,
       author,
-      publishedDate,
+      _createdAt,
       ingress,
       "bannerImg": {"image": bannerImg, "altText": bannerImg.alt, "width": bannerImg.asset->metadata.dimensions.width, "height": bannerImg.asset->metadata.dimensions.height, "lqip": bannerImg.asset->metadata.lqip},
       "backgroundColor": backgroundColor.hex,
@@ -177,7 +177,8 @@ export const getArticle = async (slug: string) => {
   const articleQuery = defineQuery(`*[_type=="article" && slug.current=="${slug}"][0]{
     title,
     author,
-    publishedDate,
+    _createdAt,
+    _updatedAt,
     "bannerImg": {"image": bannerImg, "altText": bannerImg.alt, "width": bannerImg.asset->metadata.dimensions.width, "height": bannerImg.asset->metadata.dimensions.height, "lqip": bannerImg.asset->metadata.lqip},
     ingress,
     content[]{

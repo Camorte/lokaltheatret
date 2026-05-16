@@ -18,7 +18,7 @@ const ArticleItem = ({ article, index }: Props) => {
     return null;
   }
 
-  const publishedDate = new Date(article.publishedDate).toLocaleDateString('nb', {
+  const publishedDate = new Date(article._createdAt).toLocaleDateString('nb', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

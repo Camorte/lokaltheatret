@@ -126,7 +126,7 @@ export type ArticleListItem = {
     title: string;
     slug: string;
     author: string;
-    publishedDate: string;
+    _createdAt: string;
     ingress: string;
     bannerImg?: SanityImage;
     backgroundColor: string;
@@ -136,7 +136,8 @@ export type ArticleListItem = {
 export type Article = {
     title: string;
     author: string;
-    publishedDate: string;
+    _createdAt: string;
+    _updatedAt: string;
     bannerImg?: SanityImage;
     ingress: string;
     content: PortableTextBlock;

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = article.title + ' | Lokaltheatret';
   const description = article.ingress;
   const url = 'https://lokaltheatret.no/artikler/' + slug;
-  const image = article.bannerImg
+  const image = article.bannerImg?.image
     ? urlFor(article.bannerImg.image).width(1200).format('jpg').url()
     : '';
   const alt = article.bannerImg?.altText ?? article.title;
@@ -61,11 +61,20 @@ const Page = async ({ params }: Props) => {
     return notFound();
   }
 
-  const publishedDate = new Date(article.publishedDate).toLocaleDateString('nb', {
+  const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  });
+  };
+
+  const publishedDate = new Date(article._createdAt).toLocaleDateString('nb', dateOptions);
+
+  const createdDay = new Date(article._createdAt).toDateString();
+  const updatedDay = new Date(article._updatedAt).toDateString();
+  const wasUpdated = createdDay !== updatedDay;
+  const updatedDate = wasUpdated
+    ? new Date(article._updatedAt).toLocaleDateString('nb', dateOptions)
+    : null;
 
   return (
     <div className="flex flex-col">
@@ -86,6 +95,7 @@ const Page = async ({ params }: Props) => {
         <h1 className="mt-8 text-3xl md:text-5xl">{article.title}</h1>
         <p className="mt-2 text-sm">
           {article.author} &middot; {publishedDate}
+          {updatedDate && <> &middot; Oppdatert {updatedDate}</>}
         </p>
         <p className="mt-6 text-lg font-bold leading-relaxed">{article.ingress}</p>
         <div className="mt-8">
