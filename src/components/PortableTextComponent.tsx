@@ -1,6 +1,7 @@
 import { PortableTextComponents } from '@portabletext/react';
 import { SanityAsset } from '@sanity/image-url';
 import Link from 'next/link';
+import { FaArrowRightLong } from 'react-icons/fa6';
 
 import type { SanityImage as SanityImageType } from '@/lib/types';
 
@@ -173,6 +174,35 @@ const PortableTextComponent = (textColor?: string, playColor?: string): Portable
       return (
         <div className="my-14">
           <ImageGallery images={value.images} />
+        </div>
+      );
+    },
+    articleReference: ({
+      value,
+    }: {
+      value: {
+        title?: string;
+        articleTitle?: string;
+        articleSlug?: string;
+      };
+    }) => {
+      if (!value.articleSlug) return null;
+      const displayTitle = value.title || value.articleTitle || 'Artikkel';
+      return (
+        <div className="my-8">
+          <Link
+            href={`/artikler/${value.articleSlug}`}
+            className="flex w-full cursor-pointer items-center justify-between px-6 py-4 transition-opacity hover:opacity-80"
+            style={{
+              backgroundColor: playColor ?? '#000000',
+              color: textColor ?? '#ffffff',
+            }}
+          >
+            <span className="text-lg font-semibold">{displayTitle}</span>
+            <span className="flex items-center gap-2 text-sm">
+              Les artikkelen <FaArrowRightLong />
+            </span>
+          </Link>
         </div>
       );
     },

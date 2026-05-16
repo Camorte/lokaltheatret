@@ -1,6 +1,6 @@
 import { Stack, Text } from '@sanity/ui';
 import { useEffect, useState } from 'react';
-import { useFormValue } from 'sanity';
+import { StringFieldProps, useFormValue } from 'sanity';
 
 type RGB = {
   r: number;
@@ -30,17 +30,19 @@ const contrast = (rgb1: RGB, rgb2: RGB) => {
   return (brightest + 0.05) / (darkest + 0.05);
 };
 
-const ColorContrastString = () => {
-  const playColor = useFormValue(['playColor']) as { rgb: RGB };
+const ColorContrastString = (props: StringFieldProps) => {
+  const backgroundColorField =
+    (props.schemaType.options as { backgroundColorField?: string })?.backgroundColorField ?? 'playColor';
+  const bgColor = useFormValue([backgroundColorField]) as { rgb: RGB };
   const textColor = useFormValue(['textColor']) as { rgb: RGB };
   const [contrastValue, setContrastValue] = useState<number>();
 
   useEffect(() => {
-    if (playColor && textColor && playColor.rgb && textColor.rgb) {
-      const newContrastValue = Number(contrast(playColor.rgb, textColor.rgb).toFixed(2));
+    if (bgColor && textColor && bgColor.rgb && textColor.rgb) {
+      const newContrastValue = Number(contrast(bgColor.rgb, textColor.rgb).toFixed(2));
       setContrastValue(newContrastValue);
     }
-  }, [playColor, textColor]);
+  }, [bgColor, textColor]);
 
   return (
     <Stack space={3}>

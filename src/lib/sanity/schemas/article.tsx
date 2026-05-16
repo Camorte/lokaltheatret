@@ -25,10 +25,26 @@ export const article = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      title: 'Forestilling',
-      name: 'play',
-      type: 'reference',
-      to: [{ type: 'play' }],
+      title: 'Forfatter',
+      name: 'author',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Bannerbilde',
+      name: 'bannerImg',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alt-tekst',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
     }),
     defineField({
       title: 'Ingress',
@@ -63,6 +79,7 @@ export const article = defineType({
         defineArrayMember({ type: 'fullWidthImage' }),
         defineArrayMember({ type: 'twoImages' }),
         defineArrayMember({ type: 'imageGalleryBlock' }),
+        defineArrayMember({ type: 'articleReference' }),
       ],
     }),
     defineField({
@@ -84,6 +101,7 @@ export const article = defineType({
       title: 'Custom field',
       type: 'string',
       fieldset: 'articleColorProfile',
+      options: { backgroundColorField: 'backgroundColor' },
       components: { field: ColorContrastString },
     },
   ],

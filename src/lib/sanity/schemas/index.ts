@@ -1,5 +1,6 @@
 import { about } from './about';
 import { article } from './article';
+import { articleReference } from './articleReference';
 import { contributors } from './contributors';
 import { footer } from './footer';
 import { fullWidthImage } from './fullWidthImage';
@@ -24,4 +25,5 @@ export const schemas = [
   fullWidthImage,
   twoImages,
   imageGalleryBlock,
+  articleReference,
 ];
