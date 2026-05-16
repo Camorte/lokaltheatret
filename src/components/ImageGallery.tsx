@@ -12,7 +12,7 @@ import SanityImage from './SanityImage';
 
 const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
   const scrollToRef = useRef<HTMLDivElement | null>(null);
-  const [chosenImg, setChosenImg] = useState<SanityImageType | undefined>(undefined);
+  const [chosenIndex, setChosenIndex] = useState<number | null>(null);
 
   const [numberOfPages, setNumberOfPages] = useState<number | undefined>();
   const [maxScrollRight, setMaxScrollRight] = useState(true);
@@ -133,7 +133,7 @@ const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
           {images.map((image, index) => (
             <div
               key={'img-gallery-' + index}
-              onClick={() => setChosenImg(image)}
+              onClick={() => setChosenIndex(index)}
               className="max-h-[500px] w-[350px] shrink-0 cursor-pointer snap-start p-4"
             >
               <SanityImage
@@ -167,7 +167,14 @@ const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
             />
           ))}
       </div>
-      {chosenImg && <ImageModal chosenImg={chosenImg} setChosenImg={setChosenImg} />}
+      {chosenIndex !== null && (
+        <ImageModal
+          images={images}
+          currentIndex={chosenIndex}
+          onChangeIndex={setChosenIndex}
+          onClose={() => setChosenIndex(null)}
+        />
+      )}
     </div>
   );
 };
