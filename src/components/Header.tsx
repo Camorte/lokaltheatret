@@ -9,7 +9,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 
 const NavLinks = [
   { name: 'Forestillinger', path: '/forestillinger' },
-  { name: 'Artikler', path: '/artikler' },
+  /*{ name: 'Artikler', path: '/artikler' },*/
   { name: 'Om oss', path: '/om-oss' },
 ];
 
