@@ -12,16 +12,20 @@ import { SanityLive } from '@/lib/sanity/live';
 const title = 'Lokaltheatret';
 const description = 'Teater i hjerte av Oslo';
 const url = 'https://www.lokaltheatret.no';
-const image = 'https://www.lokaltheatret.no/assets/favicon.png';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(url),
   title: title,
   description: description,
   keywords: ['teater', 'Oslo', 'Lokaltheatret'],
   icons: {
-    icon: '/assets/favicon.png',
-    apple: '/assets/favicon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/assets/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
+  manifest: '/site.webmanifest',
   openGraph: {
     type: 'website',
     url: url,
@@ -29,8 +33,10 @@ export const metadata: Metadata = {
     description: description,
     images: [
       {
-        url: image,
+        url: '/assets/lokaltheatret-black-logo-white-bg.png',
         alt: title,
+        width: 2250,
+        height: 945,
       },
     ],
   },
@@ -40,7 +46,7 @@ export const metadata: Metadata = {
     description: description,
     images: [
       {
-        url: image,
+        url: '/assets/lokaltheatret-black-logo-white-bg.png',
         alt: title,
       },
     ],
