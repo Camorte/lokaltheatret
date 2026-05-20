@@ -11,7 +11,7 @@ import { SanityLive } from '@/lib/sanity/live';
 
 const title = 'Lokaltheatret';
 const description = 'Teater i hjerte av Oslo';
-const url = 'https://www.lokaltheatret.no';
+const url = 'https://lokaltheatret.no';
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
