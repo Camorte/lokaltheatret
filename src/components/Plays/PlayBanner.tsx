@@ -1,6 +1,4 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import { parseToDate } from '@/lib/helpers';
@@ -27,16 +25,15 @@ const PlayBanner = ({
   playColor: string;
   playTitle: string;
 }) => {
-  const route = useRouter();
   return (
     <div className="relative h-[80vh] w-full">
-      <button
-        className="absolute top-4 left-4 z-[3] flex cursor-pointer items-center gap-x-2 p-4 text-base font-bold transition-opacity hover:opacity-80 md:top-6 md:left-6"
+      <Link
+        href="/forestillinger"
+        className="absolute top-4 left-4 z-[3] flex items-center gap-x-2 p-4 text-base font-bold transition-opacity hover:opacity-80 md:top-6 md:left-6"
         style={{ backgroundColor: playColor, color: textColor }}
-        onClick={() => route.push('/forestillinger')}
       >
         <FaArrowLeftLong /> <p className="hidden md:block">Forestillinger</p>
-      </button>
+      </Link>
       <div
         className="absolute top-[50%] left-[32px] z-[2] w-fit p-2 md:left-[10vw] md:p-8"
         style={{ backgroundColor: playColor }}

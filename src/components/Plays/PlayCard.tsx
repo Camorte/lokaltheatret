@@ -2,7 +2,7 @@
 
 import { SanityImageAssetDocument } from '@sanity/client';
 import { motion } from 'motion/react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
@@ -29,11 +29,11 @@ const PlayCard = ({
   description: string;
   href: string;
 }) => {
-  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
+    <Link
+      href={'/forestillinger' + href}
       className="sm:max-w-450px lg:max-w-500px relative flex aspect-9/10 w-full cursor-pointer md:aspect-4/7 md:transition md:duration-300 md:ease-in-out md:hover:scale-105"
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -69,11 +69,6 @@ const PlayCard = ({
       </motion.div>
       <motion.div
         className="play-card-contents"
-        onClick={() => {
-          if (isHovered) {
-            router.push('/forestillinger' + href);
-          }
-        }}
         initial={{ opacity: 0 }}
         animate={{
           opacity: isHovered ? 1 : 0,
@@ -107,7 +102,7 @@ const PlayCard = ({
           />
         </div>
       </motion.div>
-    </div>
+    </Link>
   );
 };
 
