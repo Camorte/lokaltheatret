@@ -1,12 +1,20 @@
 'use server';
 
+import { draftMode } from 'next/headers';
 import { defineQuery } from 'next-sanity';
 
 import { client } from './client';
+import { sanityFetch as liveFetch } from './live';
 
 const REVALIDATE_SECONDS = 30;
 
 async function fetchSanityData(query: string): Promise<any> {
+  const { isEnabled } = await draftMode();
+
+  if (isEnabled) {
+    return liveFetch({ query }).then((r) => r.data);
+  }
+
   return client.fetch(query, {}, { next: { revalidate: REVALIDATE_SECONDS } });
 }
 
