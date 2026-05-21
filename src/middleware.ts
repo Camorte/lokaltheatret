@@ -2,6 +2,12 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  const isDraftMode = request.cookies.has('__prerender_bypass');
+
+  if (isDraftMode) {
+    return NextResponse.next();
+  }
+
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
 
   const cspHeader = [
