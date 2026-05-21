@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://cdn.sanity.io https://queue.simpleanalyticscdn.com",
     "font-src 'self'",
-    "connect-src 'self' https://*.sanity.io https://*.apicdn.sanity.io https://queue.simpleanalyticscdn.com https://simpleanalyticscdn.com",
+    "connect-src 'self' https://*.sanity.io https://*.apicdn.sanity.io https://queue.simpleanalyticscdn.com https://simpleanalyticscdn.com https://scripts.simpleanalyticscdn.com",
     "media-src 'self' https://*.sanity.io https://*.mux.com",
     "frame-src 'none'",
     "object-src 'none'",
