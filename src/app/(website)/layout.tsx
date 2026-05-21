@@ -2,8 +2,8 @@ import '../globals.css';
 
 import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
+import Script from 'next/script';
 import { VisualEditing } from 'next-sanity/visual-editing';
-import { Toaster } from 'sonner';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -64,12 +64,18 @@ export default async function WebsiteLayout({ children }: { children: React.Reac
       <body>
         <Header />
         {children}
-        <Toaster />
-        <SanityLive />
-        {isDraftMode && <VisualEditing />}
+        {isDraftMode && (
+          <>
+            <SanityLive />
+            <VisualEditing />
+          </>
+        )}
         <Footer />
 
-        <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+        <Script
+          src="https://scripts.simpleanalyticscdn.com/latest.js"
+          strategy="lazyOnload"
+        />
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

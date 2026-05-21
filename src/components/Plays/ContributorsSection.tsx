@@ -78,6 +78,7 @@ const ContributorsSection = ({
             <button
               className="cursor-pointer p-2 hover:opacity-80"
               onClick={() => setIsOpen(false)}
+              aria-label="Lukk medvirkende"
             >
               <RxCross2 />
             </button>

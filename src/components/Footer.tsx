@@ -27,17 +27,17 @@ const Footer = async () => {
       <div className="flex flex-col gap-y-4">
         <div className="flex flex-row">
           {footer.facebook && (
-            <a href={footer.facebook} target="_blank">
+            <a href={footer.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <CiFacebook />
             </a>
           )}
           {footer.twitter && (
-            <a href={footer.twitter} target="_blank">
+            <a href={footer.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <CiTwitter />
             </a>
           )}
           {footer.instagram && (
-            <a href={footer.instagram} target="_blank">
+            <a href={footer.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <CiInstagram />
             </a>
           )}

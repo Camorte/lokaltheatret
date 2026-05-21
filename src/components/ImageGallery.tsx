@@ -118,7 +118,7 @@ const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
       <div className="flex flex-row items-center">
         <div className="mr-4 hidden h-[40px] w-[40px] md:block">
           {!maxScrollRight && (
-            <button onClick={() => handleScroll(false)}>
+            <button onClick={() => handleScroll(false)} aria-label="Forrige bilder">
               <IoIosArrowBack />
             </button>
           )}
@@ -151,7 +151,7 @@ const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
 
         <div className="ml-4 hidden h-[40px] w-[40px] md:block">
           {!maxScrollLeft && (
-            <button onClick={() => handleScroll(true)}>
+            <button onClick={() => handleScroll(true)} aria-label="Neste bilder">
               <IoIosArrowForward />
             </button>
           )}

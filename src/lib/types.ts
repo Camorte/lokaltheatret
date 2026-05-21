@@ -1,5 +1,5 @@
-import { SanityImageAssetDocument } from '@sanity/client';
 import { PortableTextBlock } from '@portabletext/react';
+import { SanityImageAssetDocument } from '@sanity/client';
 
 export type SanityImage = {
     image: SanityImageAssetDocument;
