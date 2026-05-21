@@ -1,13 +1,27 @@
 'use server';
 
+import { draftMode } from 'next/headers';
 import { defineQuery } from 'next-sanity';
 
-import { sanityFetch } from './live';
+import { client } from './client';
+import { sanityFetch as liveFetch } from './live';
+
+const REVALIDATE_SECONDS = 30;
+
+async function fetchSanityData(query: string): Promise<any> {
+  const { isEnabled } = await draftMode();
+
+  if (isEnabled) {
+    return liveFetch({ query }).then((r) => r.data);
+  }
+
+  return client.fetch(query, {}, { next: { revalidate: REVALIDATE_SECONDS } });
+}
 
 export const getFooter = async () => {
   const footerQuery = defineQuery("*[_type=='footer'][0]{...}");
 
-  return sanityFetch({ query: footerQuery }).then((result) => result.data);
+  return fetchSanityData(footerQuery);
 };
 
 export const getPlays = async () => {
@@ -21,7 +35,7 @@ export const getPlays = async () => {
         }
     `);
 
-  return sanityFetch({ query: playsQuery }).then((result) => result.data);
+  return fetchSanityData(playsQuery);
 };
 
 export const getPlayMetadata = async (slug: string) => {
@@ -30,7 +44,7 @@ export const getPlayMetadata = async (slug: string) => {
         "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}
     }`);
 
-  return sanityFetch({ query: playMetadataQuery }).then((result) => result.data);
+  return fetchSanityData(playMetadataQuery);
 };
 
 export const getHighlightedPlayDescription = async (playTitle: string) => {
@@ -40,9 +54,8 @@ export const getHighlightedPlayDescription = async (playTitle: string) => {
         }
     }`);
 
-  return sanityFetch({ query: highlightedPlayQuery }).then(
-    (result) => result.data?.highlightedPlays?.description,
-  );
+  const data = await fetchSanityData(highlightedPlayQuery);
+  return data?.highlightedPlays?.description;
 };
 
 export const getPlay = async (slug: string) => {
@@ -85,7 +98,7 @@ export const getPlay = async (slug: string) => {
         }
     }`);
 
-  return sanityFetch({ query: playQuery }).then((result) => result.data);
+  return fetchSanityData(playQuery);
 };
 
 export const getMainBanner = async () => {
@@ -103,7 +116,7 @@ export const getMainBanner = async () => {
     }
 }`);
 
-  return sanityFetch({ query: mainBannerQuery }).then((result) => result.data);
+  return fetchSanityData(mainBannerQuery);
 };
 
 export const getAboutPage = async () => {
@@ -168,7 +181,7 @@ export const getAboutPage = async () => {
         foundersList[]{name, role, "image": {"image": image, "width": image.asset->metadata.dimensions.width, "height": image.asset->metadata.dimensions.height, "lqip": image.asset->metadata.lqip}}
     }`);
 
-  return sanityFetch({ query: aboutQuery }).then((result) => result.data);
+  return fetchSanityData(aboutQuery);
 };
 
 export const getArticles = async () => {
@@ -185,7 +198,7 @@ export const getArticles = async () => {
     }
   `);
 
-  return sanityFetch({ query: articlesQuery }).then((result) => result.data);
+  return fetchSanityData(articlesQuery);
 };
 
 export const getArticle = async (slug: string) => {
@@ -227,7 +240,7 @@ export const getArticle = async (slug: string) => {
     "textColor": textColor.hex
   }`);
 
-  return sanityFetch({ query: articleQuery }).then((result) => result.data);
+  return fetchSanityData(articleQuery);
 };
 
 export const getJoinPage = async () => {
@@ -264,5 +277,5 @@ export const getJoinPage = async () => {
         }
     }`);
 
-  return sanityFetch({ query: joinQuery }).then((result) => result.data);
+  return fetchSanityData(joinQuery);
 };
