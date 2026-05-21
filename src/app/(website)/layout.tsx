@@ -8,7 +8,6 @@ import { VisualEditing } from 'next-sanity/visual-editing';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { SanityLive } from '@/lib/sanity/live';
-import { refreshAction } from '@/lib/sanity/refreshAction';
 
 const title = 'Lokaltheatret';
 const description = 'Teater i hjerte av Oslo';
@@ -66,7 +65,7 @@ export default async function WebsiteLayout({ children }: { children: React.Reac
         {children}
         {isDraftMode && (
           <>
-            <SanityLive revalidateSyncTags={refreshAction} />
+            <SanityLive />
             <VisualEditing />
           </>
         )}
