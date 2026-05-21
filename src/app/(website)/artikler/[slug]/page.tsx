@@ -7,6 +7,7 @@ import SanityImage from '@/components/SanityImage';
 import { urlFor } from '@/lib/sanity/client';
 import { getArticle } from '@/lib/sanity/fetch';
 import { Article } from '@/lib/types';
+
 import ArticleBackButton from '../ArticleBackButton';
 
 type Props = {

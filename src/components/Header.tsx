@@ -77,7 +77,7 @@ const Header = () => {
         <ul className="hidden md:flex md:flex-row md:gap-x-8">
           <NavbarLinks currentRoute={pathname} />
         </ul>
-        <button className="mb-0 px-4 md:hidden" onClick={() => setShowMenu(!showMenu)}>
+        <button className="mb-0 px-4 md:hidden" onClick={() => setShowMenu(!showMenu)} aria-label="Åpne meny">
           <RxHamburgerMenu size={35} />
         </button>
       </div>
@@ -87,7 +87,7 @@ const Header = () => {
             ref={divRef}
             className="absolute right-0 flex h-full w-2/3 flex-col bg-white shadow-lg"
           >
-            <button className="my-2 mr-4 self-end" onClick={() => setShowMenu(false)}>
+            <button className="my-2 mr-4 self-end" onClick={() => setShowMenu(false)} aria-label="Lukk meny">
               <IoMdClose />
             </button>
             <ul className="flex flex-col items-center pl-4">

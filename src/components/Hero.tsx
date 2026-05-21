@@ -46,6 +46,8 @@ const Hero = ({ data }: Props) => {
         alt={data.bannerAltText}
         width={1500}
         height={700}
+        priority
+        sizes="100vw"
       />
       {data.logo.url && (
         <SanityImage

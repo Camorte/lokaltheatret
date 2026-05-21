@@ -71,6 +71,7 @@ const ImageModal = ({
         <button
           className="absolute top-5 right-5 rounded-full bg-black p-2"
           onClick={onClose}
+          aria-label="Lukk"
         >
           <RxCross2 color="white" />
         </button>
@@ -101,6 +102,7 @@ const ImageModal = ({
             <button
               className="absolute left-1 rounded-full bg-black/60 p-2 md:left-[-50px] md:bg-black"
               onClick={() => onChangeIndex(currentIndex - 1)}
+              aria-label="Forrige bilde"
             >
               <IoIosArrowBack color="white" size={20} />
             </button>
@@ -110,6 +112,7 @@ const ImageModal = ({
             <button
               className="absolute right-1 rounded-full bg-black/60 p-2 md:right-[-50px] md:bg-black"
               onClick={() => onChangeIndex(currentIndex + 1)}
+              aria-label="Neste bilde"
             >
               <IoIosArrowForward color="white" size={20} />
             </button>

@@ -21,7 +21,7 @@ export default function SanityImage({ src, alt, lqip, ...props }: Props) {
           alt={alt}
           loader={({ width, quality = 75 }) => {
             let targetWidth: number;
-            if (props.preload) {
+            if (props.priority) {
               targetWidth = Math.min(width, 1200);
             } else {
               if (width <= 200) targetWidth = width;
