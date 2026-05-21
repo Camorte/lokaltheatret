@@ -31,10 +31,13 @@ export const metadata: Metadata = {
     url: url,
     title: title,
     description: description,
+    siteName: title,
+    locale: 'nb_NO',
     images: [
       {
         url: '/assets/lokaltheatret-black-logo-white-bg.png',
         alt: title,
+        type: 'image/png',
         width: 2250,
         height: 945,
       },
