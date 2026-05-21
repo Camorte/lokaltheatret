@@ -16,6 +16,14 @@ export const resolve = {
       route: '/forestillinger/:slug',
       filter: `_type == "play" && slug.current == $slug`,
     },
+    {
+      route: '/artikler',
+      filter: `_type == "article"`,
+    },
+    {
+      route: '/artikler/:slug',
+      filter: `_type == "article" && slug.current == $slug`,
+    },
   ]),
   // Locations Resolver API allows you to define where data is being used in your application. https://www.sanity.io/docs/presentation-resolver-api#8d8bca7bfcd7
   locations: {
@@ -66,6 +74,20 @@ export const resolve = {
           {
             title: doc?.name || 'Untitled',
             href: `/forestillinger/${doc?.slug}`,
+          },
+        ],
+      }),
+    }),
+    article: defineLocations({
+      select: {
+        title: 'title',
+        slug: 'slug.current',
+      },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.title || 'Untitled',
+            href: `/artikler/${doc?.slug}`,
           },
         ],
       }),
