@@ -2,7 +2,7 @@
 
 import { SanityImageAssetDocument } from '@sanity/client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 import SanityImage from '../SanityImage';
@@ -29,13 +29,48 @@ const PlayCard = ({
   href: string;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isTouchRef = useRef(false);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  const handleTouchStart = useCallback(() => {
+    isTouchRef.current = true;
+  }, []);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (!isTouchRef.current) return;
+      isTouchRef.current = false;
+
+      if (!isHovered) {
+        e.preventDefault();
+        setIsHovered(true);
+      }
+    },
+    [isHovered],
+  );
+
+  useEffect(() => {
+    if (!isHovered) return;
+
+    const handleOutsideTap = (e: TouchEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        setIsHovered(false);
+      }
+    };
+
+    document.addEventListener('touchstart', handleOutsideTap);
+    return () => document.removeEventListener('touchstart', handleOutsideTap);
+  }, [isHovered]);
 
   return (
     <Link
+      ref={cardRef}
       href={'/forestillinger' + href}
       className="sm:max-w-450px lg:max-w-500px relative flex aspect-9/10 w-full cursor-pointer md:aspect-4/7 md:transition md:duration-300 md:ease-in-out md:hover:scale-105"
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onClick={handleClick}
     >
       <div
         className="play-card-contents transition-opacity duration-300"
