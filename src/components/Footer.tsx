@@ -25,20 +25,20 @@ const Footer = async () => {
         <p className="text-sm group-hover:underline">{footer.slogan}</p>
       </Link>
       <div className="flex flex-col gap-y-4">
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-x-1">
           {footer.facebook && (
-            <a href={footer.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <CiFacebook />
+            <a href={footer.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-12 w-12 items-center justify-center">
+              <CiFacebook size={24} />
             </a>
           )}
           {footer.twitter && (
-            <a href={footer.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <CiTwitter />
+            <a href={footer.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="flex h-12 w-12 items-center justify-center">
+              <CiTwitter size={24} />
             </a>
           )}
           {footer.instagram && (
-            <a href={footer.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <CiInstagram />
+            <a href={footer.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-12 w-12 items-center justify-center">
+              <CiInstagram size={24} />
             </a>
           )}
         </div>

@@ -1,7 +1,7 @@
 import '../globals.css';
 
 import { Metadata } from 'next';
-import { draftMode } from 'next/headers';
+import { draftMode, headers } from 'next/headers';
 import Script from 'next/script';
 import { VisualEditing } from 'next-sanity/visual-editing';
 
@@ -58,6 +58,7 @@ export const metadata: Metadata = {
 
 export default async function WebsiteLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled: isDraftMode } = await draftMode();
+  const nonce = (await headers()).get('x-nonce') ?? undefined;
 
   return (
     <html lang="nb">
@@ -75,6 +76,7 @@ export default async function WebsiteLayout({ children }: { children: React.Reac
         <Script
           src="https://scripts.simpleanalyticscdn.com/latest.js"
           strategy="lazyOnload"
+          nonce={nonce}
         />
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}

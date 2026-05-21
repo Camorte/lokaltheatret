@@ -1,7 +1,6 @@
 'use client';
 
 import { SanityImageAssetDocument } from '@sanity/client';
-import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { FaArrowRightLong } from 'react-icons/fa6';
@@ -38,12 +37,9 @@ const PlayCard = ({
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <motion.div
-        className="play-card-contents"
-        initial={{ opacity: 1 }}
-        animate={{
-          opacity: isHovered ? 0 : 1,
-        }}
+      <div
+        className="play-card-contents transition-opacity duration-300"
+        style={{ opacity: isHovered ? 0 : 1 }}
       >
         <div className="relative h-full w-full">
           <SanityImage
@@ -66,13 +62,10 @@ const PlayCard = ({
             <p className="text-center">{playPeriod}</p>
           </div>
         </div>
-      </motion.div>
-      <motion.div
-        className="play-card-contents"
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: isHovered ? 1 : 0,
-        }}
+      </div>
+      <div
+        className="play-card-contents transition-opacity duration-300"
+        style={{ opacity: isHovered ? 1 : 0 }}
       >
         <div className="relative h-full w-full">
           <div
@@ -101,7 +94,7 @@ const PlayCard = ({
             quality={70}
           />
         </div>
-      </motion.div>
+      </div>
     </Link>
   );
 };
