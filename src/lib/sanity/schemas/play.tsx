@@ -237,6 +237,7 @@ export const play = defineType({
         defineArrayMember({ type: 'twoImages' }),
         defineArrayMember({ type: 'imageGalleryBlock' }),
         defineArrayMember({ type: 'articleReference' }),
+        defineArrayMember({ type: 'videoEmbed' }),
       ],
     }),
     defineField({
