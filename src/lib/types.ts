@@ -115,13 +115,6 @@ export type AboutPage = {
     }[];
 };
 
-export type JoinPage = {
-    joinPageBannerImg: SanityImage;
-    title: string;
-    bannerColor: string;
-    content: PortableTextBlock;
-};
-
 export type ArticleListItem = {
     title: string;
     slug: string;

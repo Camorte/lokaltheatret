@@ -11,7 +11,6 @@ export const resolve = {
       route: '/om-oss',
       filter: `_type == "about"`,
     },
-    { route: '/bli-med', filter: `_type == "join"` },
     {
       route: '/forestillinger/:slug',
       filter: `_type == "play" && slug.current == $slug`,
@@ -54,15 +53,6 @@ export const resolve = {
         },
       ],
       message: 'Dette dokumentet brukes på Om oss-siden',
-    }),
-    join: defineLocations({
-      locations: [
-        {
-          title: 'Om oss',
-          href: '/bli-med',
-        },
-      ],
-      message: 'Dette dokumentet brukes på Bli med-siden',
     }),
     play: defineLocations({
       select: {
