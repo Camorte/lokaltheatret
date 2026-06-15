@@ -6,7 +6,8 @@ export type ParsedVideo = {
   embedUrl: string;
 };
 
-function youtube(id: string): ParsedVideo {
+function youtube(id: string): ParsedVideo | null {
+  if (!/^[\w-]+$/.test(id)) return null;
   return {
     provider: 'youtube',
     id,
@@ -14,7 +15,8 @@ function youtube(id: string): ParsedVideo {
   };
 }
 
-function vimeo(id: string): ParsedVideo {
+function vimeo(id: string): ParsedVideo | null {
+  if (!/^\d+$/.test(id)) return null;
   return {
     provider: 'vimeo',
     id,
@@ -32,6 +34,10 @@ export function parseVideoUrl(url: string): ParsedVideo | null {
     return null;
   }
 
+  if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+    return null;
+  }
+
   const host = parsed.hostname.replace(/^www\./, '').replace(/^m\./, '');
 
   if (host === 'youtu.be') {
@@ -42,7 +48,7 @@ export function parseVideoUrl(url: string): ParsedVideo | null {
   if (host === 'youtube.com' || host === 'youtube-nocookie.com') {
     const vParam = parsed.searchParams.get('v');
     if (vParam) return youtube(vParam);
-    const match = parsed.pathname.match(/^\/(?:embed|shorts|v)\/([^/?]+)/);
+    const match = parsed.pathname.match(/^\/(?:embed|shorts|v)\/([\w-]+)/);
     if (match) return youtube(match[1]);
     return null;
   }
