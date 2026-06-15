@@ -7,6 +7,7 @@ import type { SanityImage as SanityImageType } from '@/lib/types';
 
 import ImageGallery from './ImageGallery';
 import SanityImage from './SanityImage';
+import VideoEmbed from './VideoEmbed';
 
 const PortableTextComponent = (textColor?: string, playColor?: string): PortableTextComponents => ({
   types: {
@@ -203,6 +204,33 @@ const PortableTextComponent = (textColor?: string, playColor?: string): Portable
               Les artikkelen <FaArrowRightLong />
             </span>
           </Link>
+        </div>
+      );
+    },
+    videoEmbed: ({
+      value,
+    }: {
+      value: {
+        url: string;
+        width?: 'full' | 'content';
+        caption?: string;
+      };
+    }) => {
+      return (
+        <div className="my-14">
+          <div className={value.width === 'full' ? 'w-full' : 'mx-auto w-full max-w-[800px]'}>
+            <VideoEmbed url={value.url} title={value.caption} />
+            {value.caption && (
+              <div
+                className="mt-2 max-w-[250px] px-4 drop-shadow-md"
+                style={{ backgroundColor: playColor ?? '#ffffff' }}
+              >
+                <p className="italic" style={{ color: textColor ?? 'black' }}>
+                  {value.caption}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       );
     },
