@@ -12,13 +12,11 @@ export const videoEmbed = defineType({
       title: 'Video-URL (YouTube eller Vimeo)',
       type: 'url',
       validation: (Rule) =>
-        Rule.required()
-          .uri({ scheme: ['http', 'https'] })
-          .custom((value) =>
-            !value || parseVideoUrl(value)
-              ? true
-              : 'Skriv inn en gyldig YouTube- eller Vimeo-URL',
-          ),
+        Rule.required().custom((value) =>
+          !value || parseVideoUrl(value)
+            ? true
+            : 'Skriv inn en gyldig YouTube- eller Vimeo-URL',
+        ),
     }),
     defineField({
       name: 'width',
@@ -35,7 +33,7 @@ export const videoEmbed = defineType({
     }),
     defineField({
       name: 'caption',
-      title: 'Bildetekst',
+      title: 'Videotekst',
       type: 'string',
     }),
   ],
