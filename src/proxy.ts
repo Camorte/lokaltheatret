@@ -16,7 +16,7 @@ export function proxy(request: NextRequest) {
     "font-src 'self'",
     "connect-src 'self' https://*.sanity.io https://*.apicdn.sanity.io https://queue.simpleanalyticscdn.com https://simpleanalyticscdn.com https://scripts.simpleanalyticscdn.com",
     "media-src 'self' https://*.sanity.io https://*.mux.com",
-    "frame-src 'none'",
+    'frame-src https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com',
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

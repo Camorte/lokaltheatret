@@ -10,6 +10,7 @@ import { play } from './play';
 import { playDay } from './playDay';
 import { playImage } from './playImage';
 import { twoImages } from './twoImages';
+import { videoEmbed } from './videoEmbed';
 
 export const schemas = [
   landingPage,
@@ -24,4 +25,5 @@ export const schemas = [
   twoImages,
   imageGalleryBlock,
   articleReference,
+  videoEmbed,
 ];
