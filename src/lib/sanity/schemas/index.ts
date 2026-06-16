@@ -5,7 +5,6 @@ import { contributors } from './contributors';
 import { footer } from './footer';
 import { fullWidthImage } from './fullWidthImage';
 import { imageGalleryBlock } from './imageGalleryBlock';
-import { join } from './join';
 import { landingPage } from './landingPage';
 import { play } from './play';
 import { playDay } from './playDay';
@@ -19,7 +18,6 @@ export const schemas = [
   footer,
   playImage,
   contributors,
-  join,
   playDay,
   article,
   fullWidthImage,

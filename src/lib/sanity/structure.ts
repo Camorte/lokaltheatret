@@ -28,10 +28,6 @@ const structure: StructureResolver = (S: StructureBuilder, context: ConfigContex
         .schemaType('about')
         .child(S.document().schemaType('about').documentId('about')),
       S.listItem()
-        .title('Bli med')
-        .schemaType('join')
-        .child(S.document().schemaType('join').documentId('join')),
-      S.listItem()
         .title('Footer')
         .schemaType('footer')
         .child(S.document().schemaType('footer').documentId('footer')),
