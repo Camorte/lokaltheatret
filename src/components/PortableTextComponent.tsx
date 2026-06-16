@@ -222,7 +222,7 @@ const PortableTextComponent = (textColor?: string, playColor?: string): Portable
             <VideoEmbed url={value.url} title={value.caption} />
             {value.caption && (
               <div
-                className="mt-2 max-w-[250px] px-4 drop-shadow-md"
+                className="mt-2 w-fit max-w-[250px] px-4 drop-shadow-md"
                 style={{ backgroundColor: playColor ?? '#ffffff' }}
               >
                 <p className="italic" style={{ color: textColor ?? 'black' }}>
