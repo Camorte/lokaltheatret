@@ -6,7 +6,9 @@ import { defineQuery } from 'next-sanity';
 import { client } from './client';
 import { sanityFetch as liveFetch } from './live';
 
-const REVALIDATE_SECONDS = 30;
+// Long revalidate window keeps the edge cache warm; publishes trigger
+// instant updates via the /api/revalidate webhook (revalidateTag('sanity')).
+const REVALIDATE_SECONDS = 3600;
 
 async function fetchSanityData(query: string): Promise<any> {
   const { isEnabled } = await draftMode();
@@ -15,7 +17,7 @@ async function fetchSanityData(query: string): Promise<any> {
     return liveFetch({ query }).then((r) => r.data);
   }
 
-  return client.fetch(query, {}, { next: { revalidate: REVALIDATE_SECONDS } });
+  return client.fetch(query, {}, { next: { revalidate: REVALIDATE_SECONDS, tags: ['sanity'] } });
 }
 
 export const getFooter = async () => {
