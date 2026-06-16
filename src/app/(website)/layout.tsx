@@ -60,6 +60,9 @@ export default async function WebsiteLayout({ children }: { children: React.Reac
   const { isEnabled: isDraftMode } = await draftMode();
   return (
     <html lang="nb">
+      <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+      </head>
       <body>
         <Header />
         {children}
