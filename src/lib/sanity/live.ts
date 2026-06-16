@@ -11,6 +11,8 @@ if (!token) {
 // stega lives here (draft/visual-editing only) so public visitors don't pay for it.
 export const { sanityFetch, SanityLive } = defineLive({
   client: client.withConfig({
+    // Live/draft reads must bypass the CDN, otherwise Presentation shows stale drafts.
+    useCdn: false,
     stega: { studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL },
   }),
   serverToken: token,
