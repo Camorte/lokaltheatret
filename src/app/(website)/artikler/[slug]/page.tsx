@@ -1,7 +1,9 @@
 import { PortableText } from '@portabletext/react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
+import PageSkeleton from '@/components/PageSkeleton';
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
 import { urlFor } from '@/lib/sanity/client';
@@ -55,7 +57,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const Page = async ({ params }: Props) => {
+const Page = ({ params }: Props) => (
+  <Suspense fallback={<PageSkeleton />}>
+    <ArticleContent params={params} />
+  </Suspense>
+);
+
+const ArticleContent = async ({ params }: Props) => {
   const { slug } = await params;
   const article: Article = await getArticle(slug);
 

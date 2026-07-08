@@ -1,8 +1,10 @@
 import { PortableText } from '@portabletext/react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 import ImageGallery from '@/components/ImageGallery';
+import PageSkeleton from '@/components/PageSkeleton';
 import ContributorsSection from '@/components/Plays/ContributorsSection';
 import PlayBanner from '@/components/Plays/PlayBanner';
 import PortableTextComponent from '@/components/PortableTextComponent';
@@ -66,7 +68,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const Page = async ({ params }: Props) => {
+const Page = ({ params }: Props) => (
+  <Suspense fallback={<PageSkeleton />}>
+    <PlayContent params={params} />
+  </Suspense>
+);
+
+const PlayContent = async ({ params }: Props) => {
   const { slug } = await params;
   const play: Play = await getPlay(slug);
 
