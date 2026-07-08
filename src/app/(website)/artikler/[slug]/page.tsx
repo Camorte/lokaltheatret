@@ -1,10 +1,11 @@
 import { PortableText } from '@portabletext/react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
-import { client, urlFor } from '@/lib/sanity/client';
+import { urlFor } from '@/lib/sanity/client';
 import { getArticle } from '@/lib/sanity/fetch';
 import { Article } from '@/lib/types';
 
@@ -13,13 +14,6 @@ import ArticleBackButton from '../ArticleBackButton';
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
-export async function generateStaticParams() {
-  const slugs: { slug: string }[] = await client.fetch(
-    `*[_type=="article" && defined(slug.current)]{"slug": slug.current}`,
-  );
-  return slugs.map(({ slug }) => ({ slug }));
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
@@ -62,7 +56,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const Page = async ({ params }: Props) => {
+const Page = ({ params }: Props) => (
+  <Suspense fallback={null}>
+    <ArticleContent params={params} />
+  </Suspense>
+);
+
+const ArticleContent = async ({ params }: Props) => {
   const { slug } = await params;
   const article: Article = await getArticle(slug);
 

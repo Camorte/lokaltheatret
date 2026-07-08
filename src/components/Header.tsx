@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
@@ -40,8 +40,12 @@ const NavbarLinks = ({
   </>
 );
 
-const Header = () => {
+const ActiveNavbarLinks = ({ setShowMenu }: { setShowMenu?: (show: boolean) => void }) => {
   const pathname = usePathname();
+  return <NavbarLinks currentRoute={pathname} setShowMenu={setShowMenu} />;
+};
+
+const Header = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const divRef = useRef<HTMLDivElement | null>(null);
@@ -75,7 +79,9 @@ const Header = () => {
       </Link>
       <div className="flex items-center">
         <ul className="hidden md:flex md:flex-row md:gap-x-8">
-          <NavbarLinks currentRoute={pathname} />
+          <Suspense fallback={<NavbarLinks currentRoute={null} />}>
+            <ActiveNavbarLinks />
+          </Suspense>
         </ul>
         <button className="mb-0 px-4 md:hidden" onClick={() => setShowMenu(!showMenu)} aria-label="Åpne meny">
           <RxHamburgerMenu size={35} />
@@ -91,7 +97,7 @@ const Header = () => {
               <IoMdClose />
             </button>
             <ul className="flex flex-col items-center pl-4">
-              <NavbarLinks setShowMenu={setShowMenu} currentRoute={pathname} />
+              <ActiveNavbarLinks setShowMenu={setShowMenu} />
             </ul>
           </div>
         </div>
