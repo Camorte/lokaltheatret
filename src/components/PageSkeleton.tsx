@@ -1,4 +1,4 @@
-const DetailPageSkeleton = () => (
+const PageSkeleton = () => (
   <div className="flex flex-col" role="status" aria-label="Laster innhold">
     <div className="h-[300px] w-full animate-pulse bg-gray-200 md:h-[500px]" />
     <div className="page-container">
@@ -16,4 +16,4 @@ const DetailPageSkeleton = () => (
   </div>
 );
 
-export default DetailPageSkeleton;
+export default PageSkeleton;
