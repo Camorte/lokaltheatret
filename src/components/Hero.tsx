@@ -21,7 +21,6 @@ const Hero = ({ data }: Props) => {
         <div
           className={`absolute z-4 h-[50vh] max-h-[70vh] w-full transition-opacity duration-300 ease-in md:h-full ${videoEnded ? 'opacity-0' : 'opacity-100'}`}
         >
-          {/* ponytail: metadata not auto — let the priority banner image win LCP; video streams after */}
           <video
             preload="metadata"
             playsInline
