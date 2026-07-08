@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
-import { urlFor } from '@/lib/sanity/client';
+import { client, urlFor } from '@/lib/sanity/client';
 import { getArticle } from '@/lib/sanity/fetch';
 import { Article } from '@/lib/types';
 
@@ -13,6 +13,13 @@ import ArticleBackButton from '../ArticleBackButton';
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateStaticParams() {
+  const slugs: { slug: string }[] = await client.fetch(
+    `*[_type=="article" && defined(slug.current)]{"slug": slug.current}`,
+  );
+  return slugs.map(({ slug }) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;

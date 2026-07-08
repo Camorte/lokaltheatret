@@ -8,13 +8,20 @@ import PlayBanner from '@/components/Plays/PlayBanner';
 import PortableTextComponent from '@/components/PortableTextComponent';
 import TicketButton from '@/components/TicketButton';
 import { parseToDate } from '@/lib/helpers';
-import { urlFor } from '@/lib/sanity/client';
+import { client, urlFor } from '@/lib/sanity/client';
 import { getHighlightedPlayDescription, getPlay, getPlayMetadata } from '@/lib/sanity/fetch';
 import { Play } from '@/lib/types';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateStaticParams() {
+  const slugs: { slug: string }[] = await client.fetch(
+    `*[_type=="play" && defined(slug.current)]{"slug": slug.current}`,
+  );
+  return slugs.map(({ slug }) => ({ slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
