@@ -22,7 +22,7 @@ const Hero = ({ data }: Props) => {
           className={`absolute z-4 h-[50vh] max-h-[70vh] w-full transition-opacity duration-300 ease-in md:h-full ${videoEnded ? 'opacity-0' : 'opacity-100'}`}
         >
           <video
-            preload="auto"
+            preload="metadata"
             playsInline
             autoPlay
             muted
