@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
+import DetailPageSkeleton from '@/components/DetailPageSkeleton';
 import ImageGallery from '@/components/ImageGallery';
 import ContributorsSection from '@/components/Plays/ContributorsSection';
 import PlayBanner from '@/components/Plays/PlayBanner';
@@ -68,7 +69,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Page = ({ params }: Props) => (
-  <Suspense fallback={null}>
+  <Suspense fallback={<DetailPageSkeleton />}>
     <PlayContent params={params} />
   </Suspense>
 );

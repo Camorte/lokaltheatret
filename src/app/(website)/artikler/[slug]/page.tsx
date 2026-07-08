@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
+import DetailPageSkeleton from '@/components/DetailPageSkeleton';
 import PortableTextComponent from '@/components/PortableTextComponent';
 import SanityImage from '@/components/SanityImage';
 import { urlFor } from '@/lib/sanity/client';
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Page = ({ params }: Props) => (
-  <Suspense fallback={null}>
+  <Suspense fallback={<DetailPageSkeleton />}>
     <ArticleContent params={params} />
   </Suspense>
 );
