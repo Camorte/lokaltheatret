@@ -57,8 +57,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function WebsiteLayout({ children }: { children: React.ReactNode }) {
-  const { isEnabled: isDraftMode } = await draftMode();
+async function DraftTools() {
+  'use cache';
+  const { isEnabled } = await draftMode();
+  if (!isEnabled) return null;
+  return (
+    <>
+      <SanityLive />
+      <VisualEditing />
+      <DraftModeBanner />
+    </>
+  );
+}
+
+export default function WebsiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nb">
       <head>
@@ -67,13 +79,7 @@ export default async function WebsiteLayout({ children }: { children: React.Reac
       <body>
         <Header />
         {children}
-        {isDraftMode && (
-          <>
-            <SanityLive />
-            <VisualEditing />
-            <DraftModeBanner />
-          </>
-        )}
+        <DraftTools />
         <Footer />
 
         <Script
