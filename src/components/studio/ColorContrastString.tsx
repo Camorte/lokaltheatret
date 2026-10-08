@@ -1,5 +1,4 @@
 import { Stack, Text } from '@sanity/ui';
-import { useEffect, useState } from 'react';
 import { StringFieldProps, useFormValue } from 'sanity';
 
 type RGB = {
