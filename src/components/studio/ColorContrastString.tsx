@@ -35,17 +35,14 @@ const ColorContrastString = (props: StringFieldProps) => {
     (props.schemaType.options as { backgroundColorField?: string })?.backgroundColorField ?? 'playColor';
   const bgColor = useFormValue([backgroundColorField]) as { rgb: RGB };
   const textColor = useFormValue(['textColor']) as { rgb: RGB };
-  const [contrastValue, setContrastValue] = useState<number>();
 
-  useEffect(() => {
-    if (bgColor && textColor && bgColor.rgb && textColor.rgb) {
-      const newContrastValue = Number(contrast(bgColor.rgb, textColor.rgb).toFixed(2));
-      setContrastValue(newContrastValue);
-    }
-  }, [bgColor, textColor]);
+  const contrastValue =
+    bgColor?.rgb && textColor?.rgb
+      ? Number(contrast(bgColor.rgb, textColor.rgb).toFixed(2))
+      : 0;
 
   return (
-    <Stack space={3}>
+    <Stack gap={3}>
       {contrastValue ? (
         <>
           <Text size={3}>Kontrastratio er: {contrastValue}</Text>
@@ -54,7 +51,7 @@ const ColorContrastString = (props: StringFieldProps) => {
               Denne kontrastratioen er ikke innenfor WCAG standarden
             </Text>
           ) : (
-            <Stack space={3}>
+            <Stack gap={3}>
               {contrastValue > 3 && (
                 <Text style={{ color: contrastValue >= 3 ? 'green' : 'red' }}>
                   AA: Kontrasten er bra for store tekster og UI elementer.
