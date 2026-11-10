@@ -4,7 +4,7 @@ import { StructureBuilder, StructureResolver } from 'sanity/structure';
 
 const structure: StructureResolver = (S: StructureBuilder, context: ConfigContext) =>
   S.list()
-    .title('Folkearkivet')
+    .title('Lokaltheatret')
     .items([
       S.listItem()
         .title('Landingsside')
