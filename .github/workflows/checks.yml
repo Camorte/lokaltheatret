@@ -1,4 +1,4 @@
-name: Checks
+name: Typecheck, lint and format
 
 on:
   pull_request:
@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   checks:
+    name: Run checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
