@@ -41,9 +41,8 @@ export const playImage = defineType({
       mediaType: 'media._type',
     },
     prepare({ title, media }: { title?: string; media?: any }) {
-      
       return {
-        title: title ?? "Image",
+        title: title ?? 'Image',
         media: media,
       };
     },

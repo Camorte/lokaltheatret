@@ -82,10 +82,7 @@ export default function WebsiteLayout({ children }: { children: React.ReactNode 
         <DraftTools />
         <Footer />
 
-        <Script
-          src="https://scripts.simpleanalyticscdn.com/latest.js"
-          strategy="lazyOnload"
-        />
+        <Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="lazyOnload" />
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

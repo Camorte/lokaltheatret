@@ -1,11 +1,9 @@
 {
-    "plugins": [
-        "prettier-plugin-tailwindcss"
-    ],
-    "tailwindConfig": "./src/app/globals.css",
-    "singleQuote": true,
-    "trailingComma": "all",
-    "printWidth": 100,
-    "tabWidth": 2,
-    "endOfLine": "lf"
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/app/globals.css",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "endOfLine": "lf"
 }

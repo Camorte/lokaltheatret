@@ -13,9 +13,7 @@ export const videoEmbed = defineType({
       type: 'url',
       validation: (Rule) =>
         Rule.required().custom((value) =>
-          !value || parseVideoUrl(value)
-            ? true
-            : 'Skriv inn en gyldig YouTube- eller Vimeo-URL',
+          !value || parseVideoUrl(value) ? true : 'Skriv inn en gyldig YouTube- eller Vimeo-URL',
         ),
     }),
     defineField({

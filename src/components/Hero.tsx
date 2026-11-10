@@ -15,7 +15,7 @@ const Hero = ({ data }: Props) => {
 
   return (
     <div className="relative">
-      <div className="shadow-inner-lg absolute z-4 h-full w-full" />
+      <div className="absolute z-4 h-full w-full shadow-inner-lg" />
       <div className="absolute z-0 h-full w-full bg-black opacity-100" />
       {data.videoUrl && (
         <div
