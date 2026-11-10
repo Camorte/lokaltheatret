@@ -12,9 +12,9 @@ npm run lint         # ESLint (lint:fix to auto-fix)
 npm run format       # Prettier check (format:write to fix)
 ```
 
-There is no test suite. Before finishing a change, run `typecheck`, `lint` and `format`.
+There is no test suite. Before finishing a change, run `typecheck`, `lint` and `format`. The GitHub Actions workflow `.github/workflows/checks.yml` runs the same three on every PR.
 
-Node version is pinned with Volta (`24.14.0`). If Volta is not installed, whatever Node is on `PATH` is used.
+Node version is `24.14.0`, pinned in `.nvmrc` (read by Netlify and CI) and in the `volta` field of `package.json`. Keep the two in sync.
 
 All three checks pass with no errors or warnings. Keep it that way.
 
@@ -58,6 +58,7 @@ Read from `.env` (gitignored). Do not read or print secret values.
 - Any publish in Sanity triggers the webhook, which calls `revalidateTag('sanity')` and revalidates the whole site. This is intentional at the current scale.
 - In draft mode, `fetchSanityData()` switches to the live client (`liveFetch`), and the layout renders `SanityLive`, `VisualEditing` and `DraftModeBanner`.
 - When you add a new query, add it in `fetch.ts` through `fetchSanityData()`. Do not call `client.fetch` directly from pages, or you bypass caching and draft mode.
+- Pass user input (slugs, titles) as GROQ params: `fetchSanityData(query, { slug })` with `$slug` in the query. Never interpolate values into the query string.
 - Image fields in queries project `width`, `height` and `lqip` from `asset->metadata` so `SanityImage` can render blur placeholders and avoid layout shift. Follow the same pattern for new image fields.
 
 ## Adding content types
@@ -81,5 +82,5 @@ Current allowed sources: Sanity CDN/API, Simple Analytics, YouTube (`youtube-noc
 - Prettier: single quotes, trailing commas, 100 character lines, 2 spaces, Tailwind class sorting (`prettier-plugin-tailwindcss`).
 - ESLint enforces sorted imports (`simple-import-sort`) and no unused imports.
 - Use the `@/` alias for imports from `src/`.
-- Styling uses Tailwind CSS v4 (config lives in `src/app/globals.css`). `styled-components` is in `package.json` but not used; do not add new usage.
+- Styling uses Tailwind CSS v4 (config lives in `src/app/globals.css`). `styled-components` is never imported in `src/`, but Sanity Studio needs it. Don't remove it, and don't use it for site styling.
 - Commit messages follow Conventional Commits (`feat:`, `fix:`, `perf:`, `chore:`).
