@@ -118,7 +118,7 @@ const ArticleContent = async ({ params }: Props) => {
           {article.author} &middot; {publishedDate}
           {updatedDate && <> &middot; Oppdatert {updatedDate}</>}
         </p>
-        <p className="mt-6 text-lg font-bold leading-relaxed">{article.ingress}</p>
+        <p className="mt-6 text-lg leading-relaxed font-bold">{article.ingress}</p>
         <div className="mt-8">
           <PortableText
             value={article.content}
