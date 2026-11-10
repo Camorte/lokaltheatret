@@ -30,6 +30,9 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    { source: '/((?!studio|api|_next/static|_next/image|favicon\\.ico|assets/).*)', missing: [{ type: 'header', key: 'next-router-prefetch' }] },
+    {
+      source: '/((?!studio|api|_next/static|_next/image|favicon\\.ico|assets/).*)',
+      missing: [{ type: 'header', key: 'next-router-prefetch' }],
+    },
   ],
 };

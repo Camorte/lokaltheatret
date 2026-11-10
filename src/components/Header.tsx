@@ -83,7 +83,11 @@ const Header = () => {
             <ActiveNavbarLinks />
           </Suspense>
         </ul>
-        <button className="mb-0 px-4 md:hidden" onClick={() => setShowMenu(!showMenu)} aria-label="Åpne meny">
+        <button
+          className="mb-0 px-4 md:hidden"
+          onClick={() => setShowMenu(!showMenu)}
+          aria-label="Åpne meny"
+        >
           <RxHamburgerMenu size={35} />
         </button>
       </div>
@@ -93,7 +97,11 @@ const Header = () => {
             ref={divRef}
             className="absolute right-0 flex h-full w-2/3 flex-col bg-white shadow-lg"
           >
-            <button className="my-2 mr-4 self-end" onClick={() => setShowMenu(false)} aria-label="Lukk meny">
+            <button
+              className="my-2 mr-4 self-end"
+              onClick={() => setShowMenu(false)}
+              aria-label="Lukk meny"
+            >
               <IoMdClose />
             </button>
             <ul className="flex flex-col items-center pl-4">
