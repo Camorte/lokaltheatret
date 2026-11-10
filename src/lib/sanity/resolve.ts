@@ -39,7 +39,7 @@ export const resolve = {
     landingPage: defineLocations({
       locations: [
         {
-          title: 'Landigsside',
+          title: 'Landingsside',
           href: '/',
         },
       ],
