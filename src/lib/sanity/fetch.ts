@@ -5,8 +5,6 @@ import { defineQuery, type QueryParams } from 'next-sanity';
 import { client } from './client';
 import { sanityFetch as liveFetch } from './live';
 
-// Pass user input (slugs, titles) as `params` and reference them as `$name` in the
-// query. Never interpolate them into the query string.
 async function fetchSanityData(query: string, params: QueryParams = {}): Promise<any> {
   'use cache';
   cacheLife('hours');
