@@ -24,7 +24,6 @@ export type LandingPage = {
 export type HighlightedPlay = {
     title: string;
     image: SanityImageAssetDocument;
-    imageAlt: string;
     description: string;
     playReference: {
         active: boolean;

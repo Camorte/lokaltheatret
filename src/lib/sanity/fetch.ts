@@ -1,11 +1,13 @@
 import { cacheLife, cacheTag } from 'next/cache';
 import { draftMode } from 'next/headers';
-import { defineQuery } from 'next-sanity';
+import { defineQuery, type QueryParams } from 'next-sanity';
 
 import { client } from './client';
 import { sanityFetch as liveFetch } from './live';
 
-async function fetchSanityData(query: string): Promise<any> {
+// Pass user input (slugs, titles) as `params` and reference them as `$name` in the
+// query. Never interpolate them into the query string.
+async function fetchSanityData(query: string, params: QueryParams = {}): Promise<any> {
   'use cache';
   cacheLife('hours');
   cacheTag('sanity');
@@ -13,10 +15,10 @@ async function fetchSanityData(query: string): Promise<any> {
   const { isEnabled } = await draftMode();
 
   if (isEnabled) {
-    return liveFetch({ query }).then((r) => r.data);
+    return liveFetch({ query, params }).then((r) => r.data);
   }
 
-  return client.fetch(query);
+  return client.fetch(query, params);
 }
 
 export const getFooter = async () => {
@@ -40,27 +42,27 @@ export const getPlays = async () => {
 };
 
 export const getPlayMetadata = async (slug: string) => {
-  const playMetadataQuery = defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
+  const playMetadataQuery = defineQuery(`*[_type=="play" && slug.current==$slug][0]{
         playTitle, location,
         "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt}
     }`);
 
-  return fetchSanityData(playMetadataQuery);
+  return fetchSanityData(playMetadataQuery, { slug });
 };
 
 export const getHighlightedPlayDescription = async (playTitle: string) => {
   const highlightedPlayQuery = defineQuery(`*[_type=="landingPage"][0]{
-        highlightedPlays[title == "${playTitle}"][0]{
+        highlightedPlays[title == $playTitle][0]{
             description
         }
     }`);
 
-  const data = await fetchSanityData(highlightedPlayQuery);
+  const data = await fetchSanityData(highlightedPlayQuery, { playTitle });
   return data?.highlightedPlays?.description;
 };
 
 export const getPlay = async (slug: string) => {
-  const playQuery = defineQuery(`*[_type=="play" && slug.current=="${slug}"][0]{
+  const playQuery = defineQuery(`*[_type=="play" && slug.current==$slug][0]{
         "playColor":playColor.hex, "textColor": textColor.hex,
         "bannerImg": {"image": playBannerImg, "altText": playBannerImg.alt, "width": playBannerImg.asset->metadata.dimensions.width, "height": playBannerImg.asset->metadata.dimensions.height, "lqip": playBannerImg.asset->metadata.lqip},
         "logoImg": {"image":playLogoImg, "altText": playLogoImg.alt, "width": playLogoImg.asset->metadata.dimensions.width, "height": playLogoImg.asset->metadata.dimensions.height, "lqip": playLogoImg.asset->metadata.lqip},
@@ -99,7 +101,7 @@ export const getPlay = async (slug: string) => {
         }
     }`);
 
-  return fetchSanityData(playQuery);
+  return fetchSanityData(playQuery, { slug });
 };
 
 export const getMainBanner = async () => {
@@ -109,7 +111,7 @@ export const getMainBanner = async () => {
     "bannerAltText": image.alt, "logoAltText": logo.alt, 
    "bannerUrl":bannerReference->{"urlRef":"/"+slug.current}.urlRef, "videoUrl": video.asset->url,
     highlightedPlays[]{
-        title, "image": image{"asset": asset, "alt": alt, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip":asset->metadata.lqip}, "imageAlt": imgage.alt, description, 
+        title, "image": image{"asset": asset, "alt": alt, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height, "lqip":asset->metadata.lqip}, description, 
         playReference->{"urlRef":"/"+slug.current, 
             "playStartDate": playDates[0].playDate, "playEndDate": playDates[-1].playDate, 
             "playColor": playColor.hex, "textColor": textColor.hex, playPeriod, active
@@ -203,7 +205,7 @@ export const getArticles = async () => {
 };
 
 export const getArticle = async (slug: string) => {
-  const articleQuery = defineQuery(`*[_type=="article" && slug.current=="${slug}"][0]{
+  const articleQuery = defineQuery(`*[_type=="article" && slug.current==$slug][0]{
     title,
     author,
     _createdAt,
@@ -241,5 +243,5 @@ export const getArticle = async (slug: string) => {
     "textColor": textColor.hex
   }`);
 
-  return fetchSanityData(articleQuery);
+  return fetchSanityData(articleQuery, { slug });
 };
