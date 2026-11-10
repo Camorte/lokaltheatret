@@ -42,24 +42,17 @@ const ImageGallery = ({ images }: { images: SanityImageType[] }) => {
     }
   };
 
-  const updateScrollIndex = () => {
-    const currScrollRef = scrollToRef.current;
-
-    if (!currScrollRef) return;
-    if (numberOfPages !== undefined) {
-      const scrollPercentage = currScrollRef.scrollLeft / currScrollRef.scrollWidth;
-
-      const newIndex = Math.round(scrollPercentage * numberOfPages);
-      if (newIndex >= numberOfPages) {
-        setScrollIndex(numberOfPages - 1);
-      } else {
-        setScrollIndex(newIndex);
-      }
-    }
-  };
-
   useEffect(() => {
     const currScrollRef = scrollToRef.current;
+
+    const updateScrollIndex = () => {
+      if (!currScrollRef || numberOfPages === undefined) return;
+
+      const scrollPercentage = currScrollRef.scrollLeft / currScrollRef.scrollWidth;
+      const newIndex = Math.round(scrollPercentage * numberOfPages);
+      setScrollIndex(Math.min(newIndex, numberOfPages - 1));
+    };
+
     if (currScrollRef) {
       currScrollRef.addEventListener('scroll', updateScrollIndex);
 
