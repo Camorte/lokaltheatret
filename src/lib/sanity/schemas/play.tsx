@@ -122,7 +122,9 @@ export const play = defineType({
           hidden: ({ parent }) => (parent as { type?: string })?.type !== 'url',
           validation: (Rule) =>
             Rule.custom((currentValue, { document, parent }) => {
-              return document?.active && (parent as { type?: string })?.type === 'url' && (!currentValue || currentValue.length === 0)
+              return document?.active &&
+                (parent as { type?: string })?.type === 'url' &&
+                (!currentValue || currentValue.length === 0)
                 ? 'URL er påkrevd når type er URL'
                 : true;
             }),
@@ -134,7 +136,9 @@ export const play = defineType({
           hidden: ({ parent }) => (parent as { type?: string })?.type !== 'text',
           validation: (Rule) =>
             Rule.custom((currentValue, { document, parent }) => {
-              return document?.active && (parent as { type?: string })?.type === 'text' && (!currentValue || currentValue.length === 0)
+              return document?.active &&
+                (parent as { type?: string })?.type === 'text' &&
+                (!currentValue || currentValue.length === 0)
                 ? 'Tekst er påkrevd når type er tekst'
                 : true;
             }),

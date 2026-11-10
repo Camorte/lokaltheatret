@@ -2,138 +2,138 @@ import { PortableTextBlock } from '@portabletext/react';
 import { SanityImageAssetDocument } from '@sanity/client';
 
 export type SanityImage = {
-    image: SanityImageAssetDocument;
-    caption?: string;
-    altText: string;
-    width?: number;
-    height?: number;
-    lqip?: string;
+  image: SanityImageAssetDocument;
+  caption?: string;
+  altText: string;
+  width?: number;
+  height?: number;
+  lqip?: string;
 };
 
 export type LandingPage = {
-    title?: string;
-    logo: SanityImageAssetDocument;
-    image: SanityImageAssetDocument;
-    logoAltText: string;
-    bannerAltText: string;
-    bannerUrl: string;
-    highlightedPlays: HighlightedPlay[];
-    videoUrl: string;
+  title?: string;
+  logo: SanityImageAssetDocument;
+  image: SanityImageAssetDocument;
+  logoAltText: string;
+  bannerAltText: string;
+  bannerUrl: string;
+  highlightedPlays: HighlightedPlay[];
+  videoUrl: string;
 };
 
 export type HighlightedPlay = {
-    title: string;
-    image: SanityImageAssetDocument;
-    imageAlt: string;
-    description: string;
-    playReference: {
-        active: boolean;
-        playStartDate?: string;
-        playEndDate?: string;
-        playPeriod?: string;
-        urlRef: string;
-        playColor: string;
-        textColor: string;
-    };
+  title: string;
+  image: SanityImageAssetDocument;
+  imageAlt: string;
+  description: string;
+  playReference: {
+    active: boolean;
+    playStartDate?: string;
+    playEndDate?: string;
+    playPeriod?: string;
+    urlRef: string;
+    playColor: string;
+    textColor: string;
+  };
 };
 
 export type PlayDate = {
-    playDate: string;
-    soldOut: boolean;
-    fewTickets: boolean;
+  playDate: string;
+  soldOut: boolean;
+  fewTickets: boolean;
 };
 
 export type PlaysListItem = {
-    playTitle: string;
-    bannerImg: SanityImage;
-    logoImg?: SanityImage;
-    playDates?: PlayDate[];
-    playColor: string;
-    textColor: string;
-    location: string;
-    playPeriod?: string;
-    active: boolean;
-    soldOut?: boolean;
-    slug: string;
+  playTitle: string;
+  bannerImg: SanityImage;
+  logoImg?: SanityImage;
+  playDates?: PlayDate[];
+  playColor: string;
+  textColor: string;
+  location: string;
+  playPeriod?: string;
+  active: boolean;
+  soldOut?: boolean;
+  slug: string;
 };
 
 export type PlaysList = PlaysListItem[];
 
 export type TicketInfo = {
-    type: 'url' | 'text';
-    url?: string;
-    text?: string;
+  type: 'url' | 'text';
+  url?: string;
+  text?: string;
 };
 
 export type Play = {
-    playTitle: string;
-    bannerImg: SanityImage;
-    logoImg?: SanityImage;
-    playDates?: PlayDate[];
-    soldOut?: boolean;
-    playColor: string;
-    textColor: string;
-    duration?: string;
-    location: string;
-    playPeriod?: string;
-    ticketInfo?: TicketInfo;
-    active: boolean;
-    imageGallery?: SanityImage[];
-    content: PortableTextBlock;
-    contributors: Contributors;
+  playTitle: string;
+  bannerImg: SanityImage;
+  logoImg?: SanityImage;
+  playDates?: PlayDate[];
+  soldOut?: boolean;
+  playColor: string;
+  textColor: string;
+  duration?: string;
+  location: string;
+  playPeriod?: string;
+  ticketInfo?: TicketInfo;
+  active: boolean;
+  imageGallery?: SanityImage[];
+  content: PortableTextBlock;
+  contributors: Contributors;
 };
 
 export type Footer = {
-    twitter?: string;
-    facebook?: string;
-    instagram?: string;
-    slogan?: string;
-    contactEmail: string;
+  twitter?: string;
+  facebook?: string;
+  instagram?: string;
+  slogan?: string;
+  contactEmail: string;
 };
 
 export type Contributor = {
-    role: string;
-    names: string[];
+  role: string;
+  names: string[];
 } & Partial<SanityImage>;
 
 export type Contributors = {
-    actors?: Contributor[];
-    artisticTeam?: Contributor[];
-    productionTeam?: Contributor[];
+  actors?: Contributor[];
+  artisticTeam?: Contributor[];
+  productionTeam?: Contributor[];
 };
 
 export type AboutPage = {
-    aboutPageBannerImg: SanityImage;
-    title?: string;
-    content: PortableTextBlock;
-    bannerColor: string;
-    foundersContent: PortableTextBlock;
-    foundersList: {
-        name: string;
-        role: string;
-        image: SanityImage;
-    }[];
+  aboutPageBannerImg: SanityImage;
+  title?: string;
+  content: PortableTextBlock;
+  bannerColor: string;
+  foundersContent: PortableTextBlock;
+  foundersList: {
+    name: string;
+    role: string;
+    image: SanityImage;
+  }[];
 };
 
 export type ArticleListItem = {
-    title: string;
-    slug: string;
-    author: string;
-    _createdAt: string;
-    ingress: string;
-    bannerImg?: SanityImage;
-    backgroundColor: string;
-    textColor: string;
+  title: string;
+  slug: string;
+  author: string;
+  _createdAt: string;
+  ingress: string;
+  bannerImg?: SanityImage;
+  backgroundColor: string;
+  textColor: string;
 };
 
 export type Article = {
-    title: string;
-    author: string;
-    _createdAt: string;
-    _updatedAt: string;
-    bannerImg?: SanityImage;
-    ingress: string;
-    content: PortableTextBlock;
-    backgroundColor: string;
-    textColor: string;
+  title: string;
+  author: string;
+  _createdAt: string;
+  _updatedAt: string;
+  bannerImg?: SanityImage;
+  ingress: string;
+  content: PortableTextBlock;
+  backgroundColor: string;
+  textColor: string;
 };

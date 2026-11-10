@@ -31,14 +31,13 @@ const contrast = (rgb1: RGB, rgb2: RGB) => {
 
 const ColorContrastString = (props: StringFieldProps) => {
   const backgroundColorField =
-    (props.schemaType.options as { backgroundColorField?: string })?.backgroundColorField ?? 'playColor';
+    (props.schemaType.options as { backgroundColorField?: string })?.backgroundColorField ??
+    'playColor';
   const bgColor = useFormValue([backgroundColorField]) as { rgb: RGB };
   const textColor = useFormValue(['textColor']) as { rgb: RGB };
 
   const contrastValue =
-    bgColor?.rgb && textColor?.rgb
-      ? Number(contrast(bgColor.rgb, textColor.rgb).toFixed(2))
-      : 0;
+    bgColor?.rgb && textColor?.rgb ? Number(contrast(bgColor.rgb, textColor.rgb).toFixed(2)) : 0;
 
   return (
     <Stack gap={3}>
